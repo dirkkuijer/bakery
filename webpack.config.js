@@ -7,10 +7,10 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
-
     /*
-     * ENTRY CONFIG
-     *
+    * ENTRY CONFIG
+    *
+    .
      * Add 1 entry for each "page" of your app
      * (including one that's included on every page - e.g. "app")
      *

@@ -4,15 +4,13 @@
     "watch": "encore dev --watch",
     "prod": "encore production"
   },
-
   "devDependencies": {
-     "@symfony/webpack-encore": "^0.27.0",
-     "core-js": "^3.0.0",
-     "imports-loader": "^0.8.0",
-     "node-sass": "^4.11.0",
-     "nodemon": "^1.18.10",
-     "sass-loader": "^7.1.0",
-     "webpack-notifier": "^1.7.0"
-
+    "@symfony/webpack-encore": "^0.27.0",
+    "core-js": "^3.0.0",
+    "imports-loader": "^0.8.0",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10",
+    "sass-loader": "^7.1.0",
+    "webpack-notifier": "^1.7.0"
   }
 }

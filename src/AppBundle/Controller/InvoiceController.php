@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Invoice;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Invoice controller.
@@ -26,9 +27,9 @@ class InvoiceController extends Controller
 
         $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
 
-        return $this->render('invoice/index.html.twig', array(
+        return $this->render('invoice/index.html.twig', [
             'invoices' => $invoices,
-        ));
+        ]);
     }
 
     /**
@@ -51,10 +52,10 @@ class InvoiceController extends Controller
             return $this->redirectToRoute('invoice_show', array('id' => $invoice->getId()));
         }
 
-        return $this->render('invoice/new.html.twig', array(
+        return $this->render('invoice/new.html.twig', [
             'invoice' => $invoice,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -67,10 +68,10 @@ class InvoiceController extends Controller
     {
         $deleteForm = $this->createDeleteForm($invoice);
 
-        return $this->render('invoice/show.html.twig', array(
+        return $this->render('invoice/show.html.twig', [
             'invoice' => $invoice,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**

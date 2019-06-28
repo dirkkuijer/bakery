@@ -1,15 +1,15 @@
-$primary-color: #cbc0ff;
+$primary-color: #d7cbe3;
 $secondary-color: purple;
 
 body {
-    font-family: 'Arial', Courier, monospace;
+    font-family: Calibri;
 }
 
 .button {
     background-color: $primary-color;
     color: $secondary-color;
     border-radius: 4px;
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.5rem;
 }
 .button:hover{
     background-color: $secondary-color;
@@ -17,10 +17,62 @@ body {
     box-shadow: 3px 3px 3px $secondary-color;
 }
 h1 {
-    justify-content: center;
-    margin: 0 auto;
+    text-align: center;
+    background-color: $primary-color;
 }
-
+h3, h5 {
+    text-align: center;
+}
 a {
     text-decoration: none;
 }
+
+.container-user {
+    display: flex;
+    float:right;
+
+}
+.button-logout {
+    display:flex;
+    flex-shrink: 2;
+    margin-top: 1%;
+}
+.userLoggedIn {
+    margin: 1rem 1rem;
+}
+ul {
+    list-style-type: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 1rem;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: $primary-color;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px $secondary-color;
+    z-index: 1;
+
+    a {
+        color: $secondary-color;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      a:hover {
+        background-color: $secondary-color;
+        color: white;
+      }
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }

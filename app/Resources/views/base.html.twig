@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>
-            {% block title %}S J Home Bakery{% endblock %}
+            S J Home bakery
         </title>
        
         {% block stylesheets %} 
@@ -22,12 +22,86 @@
             <div class="callout alert center">Activeer JavaScript in uw browser. Anders werkt 
                 deze site niet goed.
             </div>
-        </noscript> 
+        </noscript>
+        
+        <div class="container-user">
+            <div class="button-logout">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div id="userLoggedIn">
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                    </div>
+                        &nbsp;&nbsp;    
+                        <a class="button" href="{{ path('fos_user_security_logout') }}" title="Uitloggen">
+                            Uitloggen
+                        </a>
+                {% else %} 
 
-        <h1>S J Home Bakery</h1>
-            <ul class="menu">
-                <li>Menu</li>
-                <li>
-            </ul>
+                    <a href="{{ path('fos_user_security_login') }}">
+                        {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                {% endif %}
+        
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                        <br />
+                            <div class="flash-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <br />
+
+        <h1><nobr>S J Home Bakery<nobr></h1>
+
+        <h3>Administratie</h3>
+        
+         {% if is_granted('ROLE_ADMIN') %}
+        
+            <div class="dropdown">
+                <button class="button">Gebruikers</button>
+                <div class="dropdown-content">
+                   <a href=" {{ path('user_index') }} " class="menu-item">Overzicht</a>
+                   <a href=" {{ path('user_new') }} " class="menu-item">Nieuw</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="button">Facturen</button>
+                <div class="dropdown-content">
+                   <a href=" {{ path('invoice_index') }} " class="menu-item">Overzicht</a>
+                   <a href=" {{ path('invoice_new') }} " class="menu-item">Nieuw</a>
+                   <a href=" {{ path('invoice_index') }} " class="menu-item">Bewerken</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="button">Klanten</button>
+                <div class="dropdown-content">
+                   <a href="#" class="menu-item">Overzicht</a>
+                   <a href="#" class="menu-item">Nieuw</a>
+                   <a href="#" class="menu-item">Bewerken</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="button">Leveranciers</button>
+                <div class="dropdown-content">
+                   <a href="#" class="menu-item">Overzicht</a>
+                   <a href="#" class="menu-item">Nieuw</a>
+                   <a href="#" class="menu-item">Bewerken</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="button">Belasting</button>
+                <div class="dropdown-content">
+                   <a href="#" class="menu-item">Overzicht</a>
+                   <a href="#" class="menu-item">Nieuw </a>
+                   <a href="#" class="menu-item">Bewerken</a>
+                </div>
+            </div>
+        {% endif %}
+            <h5>Druk op "Inloggen".</h5>
     </body>
 </html>
