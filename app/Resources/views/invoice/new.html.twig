@@ -1,67 +1,72 @@
 {% extends 'base.html.twig' %}
      
-  {% block stylesheet %}
-           {{ parent() }}
-    {% endblock %}
+{% block stylesheet %}
+    {{ parent() }}
+{% endblock %}
+
+{% block Javascript %}
+   {{ parent() }}
+{% endblock %}
 
 {% block body %}
 
-    {{ form_start(form) }}
-    <table>
-        <theader>
-            <th>
-                <h3>Factuur aanmaken</h3>
-            </th>
-        </theader>
-        <tbody>
-            <tr>
-                <td>
-                    {{ form_label(form.firstName) }}
-                </td>
-                <td>
-                    {{ form_widget(form.firstName) }}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{ form_label(form.lastName) }}
-                </td>
-                <td>
-                    {{ form_widget(form.lastName) }}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{ form_label(form.date) }}
-                </td>
-                <td>
-                    {{ form_widget(form.date) }}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{ form_label(form.description) }}
-                </td>
-                <td>
-                    {{ form_widget(form.description) }}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{ form_label(form.invoiceNumber) }}
-                </td>
-                <td>
-                    {{ form_widget(form.invoiceNumber) }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-        <input type="submit" value="Opslaan" class="button"/>
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+        <table>
+            <theader>
+                <th>
+                    <h3>Factuur aanmaken</h3>
+                </th>
+            </theader>
+            <tbody>
+                <tr>
+                    <td>
+                        {{ form_label(form.firstName) }}
+                    </td>
+                    <td>
+                        {{ form_widget(form.firstName) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ form_label(form.lastName) }}
+                    </td>
+                    <td>
+                        {{ form_widget(form.lastName) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ form_label(form.date) }}
+                    </td>
+                    <td>
+                        {{ form_widget(form.date) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ form_label(form.description) }}
+                    </td>
+                    <td>
+                        {{ form_widget(form.description) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ form_label(form.invoiceNumber) }}
+                    </td>
+                    <td>
+                        {{ form_widget(form.invoiceNumber) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+            <input type="submit" value="Opslaan" class="button"/>
+        {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('invoice_index') }}">Overzicht</a>
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <a href="{{ path('invoice_index') }}">Overzicht</a>
+            </li>
+        </ul>
+ 
 {% endblock %}

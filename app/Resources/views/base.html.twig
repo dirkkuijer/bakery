@@ -18,6 +18,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+
+   
         <noscript>
             <div class="callout alert center">Activeer JavaScript in uw browser. Anders werkt 
                 deze site niet goed.
@@ -79,17 +81,17 @@
             <div class="dropdown">
                 <button class="button">Klanten</button>
                 <div class="dropdown-content">
-                   <a href="#" class="menu-item">Overzicht</a>
-                   <a href="#" class="menu-item">Nieuw</a>
-                   <a href="#" class="menu-item">Bewerken</a>
+                   <a href=" {{ path('customer_index') }} " class="menu-item">Overzicht</a>
+                   <a href=" {{ path('customer_new') }} " class="menu-item">Nieuw</a>
+                   <a href=" {{ path('customer_index') }} " class="menu-item">Bewerken</a>
                 </div>
             </div>
             <div class="dropdown">
                 <button class="button">Leveranciers</button>
                 <div class="dropdown-content">
-                   <a href="#" class="menu-item">Overzicht</a>
-                   <a href="#" class="menu-item">Nieuw</a>
-                   <a href="#" class="menu-item">Bewerken</a>
+                   <a href=" {{ path('supplier_index') }} " class="menu-item">Overzicht</a>
+                   <a href=" {{ path('supplier_new') }} " class="menu-item">Nieuw</a>
+                   <a href=" {{ path('supplier_index') }} " class="menu-item">Bewerken</a>
                 </div>
             </div>
 
@@ -101,7 +103,8 @@
                    <a href="#" class="menu-item">Bewerken</a>
                 </div>
             </div>
-        {% endif %}
-            <h5>Druk op "Inloggen".</h5>
+           {% endif %}
+    {% block body %}
+    {% endblock %}
     </body>
 </html>

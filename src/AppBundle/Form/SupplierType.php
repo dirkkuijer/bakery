@@ -5,32 +5,22 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class InvoiceType extends AbstractType
+class SupplierType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-        ->add('firstName')
-        ->add('lastName')
-        ->add('date', DateType::Class, [
-            'widget' => 'single_text'
-        ])
-        ->add('description')
-        ->add('invoiceNumber');
-    }
-    
-    /**
+        $builder->add('name')->add('email')->add('telephone')->add('extraInfo');
+    }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Invoice'
+            'data_class' => 'AppBundle\Entity\Supplier'
         ));
     }
 
@@ -39,7 +29,7 @@ class InvoiceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_invoice';
+        return 'appbundle_supplier';
     }
 
 

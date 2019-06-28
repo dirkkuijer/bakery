@@ -49,7 +49,8 @@ class InvoiceController extends Controller
             $em->persist($invoice);
             $em->flush();
 
-            return $this->redirectToRoute('invoice_show', array('id' => $invoice->getId()));
+            return $this->redirectToRoute('invoice_show', ['id' => $invoice->getId()
+        ]);
         }
 
         return $this->render('invoice/new.html.twig', [

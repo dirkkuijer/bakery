@@ -2,45 +2,45 @@
 
 {% block body %}
     <h3>Lijst facturen</h3>
+    {% if is_granted('ROLE_ADMIN') %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Voornaam</th>
+                    <th>Achternaam</th>
+                    <th>Datum</th>
+                    <th>Omschrijving</th>
+                    <th>Factuurnummer</th>
+                    <th>Bewerken</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for invoice in invoices %}
+                <tr>
+                    <td>{{ invoice.firstName }}</td>
+                    <td>{{ invoice.lastName }}</td>
+                    <td>{% if invoice.date %}{{ invoice.date|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ invoice.description }}</td>
+                    <td>{{ invoice.invoiceNumber }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('invoice_show', { 'id': invoice.id }) }}">Inzien</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Voornaam</th>
-                <th>Achternaam</th>
-                <th>Datum</th>
-                <th>Omschrijving</th>
-                <th>Factuurnummer</th>
-                <th>Bewerken</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for invoice in invoices %}
-            <tr>
-                <td><a href="{{ path('invoice_show', { 'id': invoice.id }) }}">{{ invoice.id }}</a></td>
-                <td>{{ invoice.firstName }}</td>
-                <td>{{ invoice.lastName }}</td>
-                <td>{% if invoice.date %}{{ invoice.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ invoice.description }}</td>
-                <td>{{ invoice.invoiceNumber }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('invoice_show', { 'id': invoice.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('invoice_new') }}">Create a new invoice</a>
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <a href="{{ path('invoice_new') }}">Factuur maken</a>
+            </li>
+        </ul>
+    {% endif %}
 {% endblock %}

@@ -1,5 +1,8 @@
+{% extends 'base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_group_show">
-    <p>{{ 'group.show.name'|trans }}: {{ group.getName() }}</p>
-</div>
+{% block body %}
+    <div class="fos_user_group_show">
+        <p>{{ 'group.show.name'|trans }}: {{ group.getName() }}</p>
+    </div>
+{% endblock %}
