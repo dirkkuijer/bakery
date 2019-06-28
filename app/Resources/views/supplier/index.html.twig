@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Suppliers list</h1>
+    <h3>Leveranciers</h3>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Telephone</th>
@@ -17,7 +16,6 @@
         <tbody>
         {% for supplier in suppliers %}
             <tr>
-                <td><a href="{{ path('supplier_show', { 'id': supplier.id }) }}">{{ supplier.id }}</a></td>
                 <td>{{ supplier.name }}</td>
                 <td>{{ supplier.email }}</td>
                 <td>{{ supplier.telephone }}</td>
@@ -25,10 +23,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('supplier_show', { 'id': supplier.id }) }}">show</a>
+                            <a href="{{ path('supplier_show', { 'id': supplier.id }) }}">Inzien</a>
                         </li>
                         <li>
-                            <a href="{{ path('supplier_edit', { 'id': supplier.id }) }}">edit</a>
+                            <a href="{{ path('supplier_edit', { 'id': supplier.id }) }}">Bewerken</a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('supplier_new') }}">Create a new supplier</a>
+            <a href="{{ path('supplier_new') }}">Nieuwe leverancier</a>
         </li>
     </ul>
 {% endblock %}

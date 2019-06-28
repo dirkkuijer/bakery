@@ -1,37 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Supplier</h1>
+    <h3>Leverancier</h3>
 
     <table>
         <tbody>
+            
             <tr>
-                <th>Id</th>
-                <td>{{ supplier.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Naam</th>
                 <td>{{ supplier.name }}</td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th>E-mail</th>
                 <td>{{ supplier.email }}</td>
             </tr>
             <tr>
-                <th>Telephone</th>
+                <th>Telefoonnummer</th>
                 <td>{{ supplier.telephone }}</td>
             </tr>
             <tr>
-                <th>Extrainfo</th>
+                <th>Extra informatie</th>
                 <td>{{ supplier.extraInfo }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('supplier_index') }}">Back to the list</a>
-        </li>
         <li>
             <a href="{{ path('supplier_edit', { 'id': supplier.id }) }}">Edit</a>
         </li>

@@ -2459,7 +2459,7 @@ ul.no-bullet, ol.no-bullet {
   margin: 0 0 1rem 0;
   padding: 0.85em 1em;
   border: 1px solid transparent;
-  border-radius: 0;
+  border-radius: 2px;
   -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
   font-family: inherit;
@@ -2474,6 +2474,7 @@ ul.no-bullet, ol.no-bullet {
     outline: 0; }
   .button:hover, .button:focus {
     background-color: #14679e;
+    border-radius: 2px;
     color: #fefefe; }
   .button.tiny {
     font-size: 0.6rem; }
@@ -2488,6 +2489,7 @@ ul.no-bullet, ol.no-bullet {
     margin-left: 0; }
   .button.primary {
     background-color: #1779ba;
+    border-radius: 2px;
     color: #fefefe; }
     .button.primary:hover, .button.primary:focus {
       background-color: #126195;
@@ -3021,7 +3023,8 @@ select {
     border-bottom: 1px solid #e6e6e6;
     border-radius: 0 0 0 0; }
   .accordion-title:hover, .accordion-title:focus {
-    background-color: #e6e6e6; }
+    background-color: #2377AF; 
+    color: white; }
   .accordion-title::before {
     position: absolute;
     top: 50%;
@@ -3034,12 +3037,12 @@ select {
 .accordion-content {
   display: none;
   padding: 1rem;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #2377AF;
   border-bottom: 0;
   background-color: #fefefe;
   color: #0a0a0a; }
   :last-child > .accordion-content:last-child {
-    border-bottom: 1px solid #e6e6e6; }
+    border-bottom: 1px solid #2377AF; }
 
 .accordion-menu li {
   width: 100%; }
@@ -3367,10 +3370,13 @@ select {
 
 .callout {
   position: relative;
-  margin: 0 0 1rem 0;
+  margin: 0 auto;
+  text-align: center;
   padding: 1rem;
-  border: 1px solid rgba(10, 10, 10, 0.25);
-  border-radius: 0;
+  border: 1px solid rgb(190, 0, 0);
+  box-shadow: 3px 3px 10px white inset;
+  width: 90%;
+  border-radius: 2px;
   background-color: white;
   color: #0a0a0a; }
   .callout > :first-child {
@@ -3390,8 +3396,8 @@ select {
     background-color: #fff3d9;
     color: #0a0a0a; }
   .callout.alert {
-    background-color: #f7e4e1;
-    color: #0a0a0a; }
+    background-color: red;
+    color: white; }
   .callout.small {
     padding-top: 0.5rem;
     padding-right: 0.5rem;
