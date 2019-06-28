@@ -14,16 +14,20 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
         
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        {% block body %}
-            <img src="../images/logo.png" style="width" />
+        <noscript>
+            <div class="callout alert center">Activeer JavaScript in uw browser. Anders werkt 
+                deze site niet goed.
+            </div>
+        </noscript> 
 
-            <a href="{{ path('invoice_new') }}" class="button">factuur invoeren</i></a>
-
-        
-        {% endblock %}
-
-
+        <h1>S J Home Bakery</h1>
+            <ul class="menu">
+                <li>Menu</li>
+                <li>
+            </ul>
     </body>
 </html>

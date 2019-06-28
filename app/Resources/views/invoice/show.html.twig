@@ -1,28 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Invoice</h1>
+    <h3>Factuur</h3>
 
     <table>
         <tbody>
             <tr>
-                <th>Firstname</th>
+                <th>Voornaam</th>
                 <td>{{ invoice.firstName }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Achternaam</th>
                 <td>{{ invoice.lastName }}</td>
             </tr>
             <tr>
-                <th>Date</th>
+                <th>Datum</th>
                 <td>{% if invoice.date %}{{ invoice.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>Omschrijving</th>
                 <td>{{ invoice.description }}</td>
             </tr>
             <tr>
-                <th>Invoicenumber</th>
+                <th>Factuurnummer</th>
                 <td>{{ invoice.invoiceNumber }}</td>
             </tr>
         </tbody>
@@ -30,10 +30,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('views/invoice/invoice_index') }}">Back to the list</a>
+            <a href="{{ path('views/invoice/invoice_index') }}">Overzicht</a>
         </li>
         <li>
-            <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edit</a>
+            <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+     
+  {% block stylesheet %}
+           {{ parent() }}
+    {% endblock %}
 
 {% block body %}
 
@@ -6,7 +10,7 @@
     <table>
         <theader>
             <th>
-                <h1>Factuur aanmaken</h1>
+                <h3>Factuur aanmaken</h3>
             </th>
         </theader>
         <tbody>

@@ -1,12 +1,26 @@
-.button {
-    background-color: blue;
-    color: white;
-}
-img {
-    width: 258px;
-    height: 258px;
-}
+$primary-color: #cbc0ff;
+$secondary-color: purple;
+
 body {
-    color: blue;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Arial', Courier, monospace;
+}
+
+.button {
+    background-color: $primary-color;
+    color: $secondary-color;
+    border-radius: 4px;
+    padding: 1rem 1rem;
+}
+.button:hover{
+    background-color: $secondary-color;
+    color: $primary-color;
+    box-shadow: 3px 3px 3px $secondary-color;
+}
+h1 {
+    justify-content: center;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
 }

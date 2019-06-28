@@ -26,7 +26,7 @@ class InvoiceController extends Controller
 
         $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
 
-        return $this->render('views/invoice/index.html.twig', array(
+        return $this->render('invoice/index.html.twig', array(
             'invoices' => $invoices,
         ));
     }
