@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Customer
@@ -63,10 +64,17 @@ class Customer
      */
     private $city;
 
-    /**
-     * @var int|null
+   /**
+     * @var int
      *
-     * @ORM\Column(name="telephone", type="integer", nullable=true)
+     * @ORM\Column(name="telephone", type="string", length=14)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min=8,
+     *      max=14,
+     *      minMessage = "Minimaal {{ limit }} cijfers invoeren aub.",
+     *      maxMessage = "Maximaal {{ limit }} cijfers invoeren aub."
+     * )
      */
     private $telephone;
 
@@ -76,6 +84,13 @@ class Customer
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
+   
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="bankaccountnumber", type="string", length=255, nullable=false)
+     */
+    private $bankAccountNumber;
 
     /**
      * @var string|null
@@ -309,5 +324,29 @@ class Customer
     public function getAllergies()
     {
         return $this->allergies;
+    }
+
+    /**
+     * Get the value of bankAccountNumber
+     *
+     * @return  string|null
+     */ 
+    public function getBankAccountNumber()
+    {
+        return $this->bankAccountNumber;
+    }
+
+    /**
+     * Set the value of bankAccountNumber
+     *
+     * @param  string|null  $bankAccountNumber
+     *
+     * @return  self
+     */ 
+    public function setBankAccountNumber($bankAccountNumber)
+    {
+        $this->bankAccountNumber = $bankAccountNumber;
+
+        return $this;
     }
 }

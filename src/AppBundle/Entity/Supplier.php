@@ -41,6 +41,13 @@ class Supplier
      * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     private $telephone;
+   
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="bankaccountnumber", type="string", length=255, nullable=false)
+     */
+    private $bankAccountNumber;
 
     /**
      * @var string|null
@@ -154,5 +161,29 @@ class Supplier
     public function getExtraInfo()
     {
         return $this->extraInfo;
+    }
+
+    /**
+     * Get the value of bankAccountNumber
+     *
+     * @return  string|null
+     */ 
+    public function getBankAccountNumber()
+    {
+        return $this->bankAccountNumber;
+    }
+
+    /**
+     * Set the value of bankAccountNumber
+     *
+     * @param  string|null  $bankAccountNumber
+     *
+     * @return  self
+     */ 
+    public function setBankAccountNumber($bankAccountNumber)
+    {
+        $this->bankAccountNumber = $bankAccountNumber;
+
+        return $this;
     }
 }
