@@ -90,7 +90,9 @@ class InvoiceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('invoice_edit', array('id' => $invoice->getId()));
+            return $this->redirectToRoute('invoice_edit', [
+                'id' => $invoice->getId()
+                ]);
         }
 
         return $this->render('invoice/edit.html.twig', array(
