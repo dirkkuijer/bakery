@@ -9,12 +9,14 @@ body {
     background-color: $primary-color;
     color: $secondary-color;
     border-radius: 4px;
+    border: 1px solid $secondary-color;
     padding: 0.5rem 0.5rem;
 }
 .button:hover{
     background-color: $secondary-color;
     color: $primary-color;
     box-shadow: 3px 3px 3px $secondary-color;
+    border: 1px solid $primary-color;
 }
 h1 {
     text-align: center;
@@ -56,6 +58,7 @@ ul {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px $secondary-color;
     z-index: 1;
+   
 
     a {
         color: $secondary-color;
@@ -66,6 +69,7 @@ ul {
       a:hover {
         background-color: $secondary-color;
         color: white;
+
       }
   }
 
@@ -75,6 +79,7 @@ ul {
 
   .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+    
   }
 
   input[type=tekst] input[type=number], input[type=password] {
