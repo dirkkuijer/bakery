@@ -1,4 +1,4 @@
-$primary-color: #d7cbe3;
+$primary-color: #f2e4fe;
 $secondary-color: purple;
 
 body {
@@ -33,13 +33,13 @@ a {
     display: flex;
     float:right;
 
+    .button-logout {
+        display:flex;
+        flex-shrink: 2;
+        padding: 0.5rem 0.5rem;
+    }
 }
-.button-logout {
-    display:flex;
-    flex-shrink: 2;
-    margin-top: 1%;
-}
-.userLoggedIn {
+#userLoggedIn {
     margin: 1rem 1rem;
 }
 ul {
@@ -86,4 +86,12 @@ ul {
       border-radius: 2px;
       height: 1rem;
       margin: 1rem 1rem;
+  }
+
+  .logo {
+    display: block;
+    margin-right: 57%;
+    margin-left: 43%;
+    width: 150px;
+    height: 150px;
   }

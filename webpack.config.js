@@ -5,7 +5,13 @@ Encore
 
     // directory where compiled assets will be stored
     .setOutputPath('web/build/')
-
+    .copyFiles({
+                  from: 'app/Resources/assets/images/',
+        
+                  // optional target path, relative to the output dir
+                   to: 'web/build/images/[path][name].[ext]',
+    })
+         
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
@@ -40,7 +46,9 @@ Encore
     .enableSassLoader()
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
+
+   
 ;
 
 module.exports = Encore.getWebpackConfig();

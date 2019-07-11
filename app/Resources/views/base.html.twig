@@ -27,15 +27,13 @@
         </noscript>
         
         <div class="container-user">
-            <div class="button-logout">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <div id="userLoggedIn">
                         {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
-                    </div>
-                        &nbsp;&nbsp;    
-                        <a class="button" href="{{ path('fos_user_security_logout') }}" title="Uitloggen">
-                            Uitloggen
+                        <a href="{{ path('fos_user_security_logout') }}" title="Uitloggen">
+                                <i class="far fa-edit"></i>Uitloggen
                         </a>
+                    </div>
                 {% else %} 
 
                     <a href="{{ path('fos_user_security_login') }}">
@@ -53,10 +51,11 @@
                         {% endfor %}
                     {% endfor %}
                 {% endif %}
-            </div>
         </div>
-        <br />
-<img src="{{ asset('build/images/logo.jpeg') }}">
+        <p>
+                <img src="{{ asset('build/images/logo.jpeg') }}" class="logo" align="midle">
+        </p>
+        
         <h1><nobr>S J Home Bakery<nobr></h1>
 
         <h3>Administratie</h3>
