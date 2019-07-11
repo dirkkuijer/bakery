@@ -52,12 +52,10 @@
                     {% endfor %}
                 {% endif %}
         </div>
-        <p>
-                <img src="{{ asset('build/images/logo.jpeg') }}" class="logo" align="midle">
-        </p>
-        
-        <h1><nobr>S J Home Bakery<nobr></h1>
-
+       
+            <img src="{{ asset('build/images/logo.jpeg') }}" class="logo" align="midle">
+         
+       
         <h3>Administratie</h3>
         
          {% if is_granted('ROLE_ADMIN') %}

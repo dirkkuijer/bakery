@@ -18,13 +18,18 @@ body {
     box-shadow: 3px 3px 3px $secondary-color;
     border: 1px solid $primary-color;
 }
-h1 {
-    text-align: center;
+
+h3 {
     background-color: $primary-color;
+    text-align: center;
+    width: 101vw;
+    margin-left: -1vw;
 }
-h3, h5 {
+
+h4 {
     text-align: center;
 }
+
 a {
     text-decoration: none;
 }
@@ -49,6 +54,7 @@ ul {
 .dropdown {
     position: relative;
     display: inline-block;
+    
     margin-left: 1rem;
 }
 .dropdown-content {
@@ -92,6 +98,6 @@ ul {
     display: block;
     margin-right: 57%;
     margin-left: 43%;
-    width: 150px;
-    height: 150px;
+    width: 15vw;
+    height: 15vw;
   }
