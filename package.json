@@ -12,5 +12,8 @@
     "nodemon": "^1.18.10",
     "sass-loader": "^7.1.0",
     "webpack-notifier": "^1.7.0"
+  },
+  "dependencies": {
+    "assets": "^3.0.1"
   }
 }
