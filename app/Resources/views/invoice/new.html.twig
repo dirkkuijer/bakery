@@ -11,56 +11,56 @@
 {% block body %}
 
         {{ form_start(form) }}
-        <table>
-            <theader>
-                <th>
-                    <h3>Factuur aanmaken</h3>
-                </th>
-            </theader>
-            <tbody>
-                <tr>
-                    <td>
-                        {{ form_label(form.firstName) }}
-                    </td>
-                    <td>
-                        {{ form_widget(form.firstName) }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {{ form_label(form.lastName) }}
-                    </td>
-                    <td>
-                        {{ form_widget(form.lastName) }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {{ form_label(form.date) }}
-                    </td>
-                    <td>
-                        {{ form_widget(form.date) }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {{ form_label(form.description) }}
-                    </td>
-                    <td>
-                        {{ form_widget(form.description) }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {{ form_label(form.invoiceNumber) }}
-                    </td>
-                    <td>
-                        {{ form_widget(form.invoiceNumber) }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-            <input type="submit" value="Opslaan" class="button"/>
+     
+        <h3>Factuur aanmaken</h3>
+        
+    <p>
+        {{ form_label(form.firstName) }}
+        {{ form_widget(form.firstName) }}
+        {{ form_errors(form.firstName) }}
+    </p>
+    <p>
+        {{ form_label(form.lastName) }}
+        {{ form_widget(form.lastName) }}
+        {{ form_errors(form.lastName) }}
+    </p>
+    <p>
+        {{ form_label(form.date) }}
+        {{ form_widget(form.date) }}
+        {{ form_errors(form.date) }}
+    </p>
+    <p>
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description) }}
+        {{ form_errors(form.description) }}
+    </p>
+    <p>
+        {{ form_label(form.invoiceNumber) }}
+        {{ form_widget(form.invoiceNumber) }}
+        {{ form_errors(form.invoiceNumber) }}
+    </p>
+    <p>
+        {{ form_label(form.amount) }}
+        {{ form_widget(form.amount) }}
+        {{ form_errors(form.amount) }}
+    </p>
+    <p>
+        {{ form_label(form.amountWithVat) }}
+        {{ form_widget(form.amountWithVat) }}
+        {{ form_errors(form.amountWithVat) }}
+    </p>
+    <p>
+        {{ form_label(form.vatAmount) }}
+        {{ form_widget(form.vatAmount) }}
+        {{ form_errors(form.vatAmount) }}
+    </p>
+    <p>
+        {{ form_label(form.vatPercentage) }}
+        {{ form_widget(form.vatPercentage) }}
+        {{ form_errors(form.vatPercentage) }}
+    </p>
+
+    <input type="submit" value="Opslaan" class="button"/>
         {{ form_end(form) }}
 
         <ul>

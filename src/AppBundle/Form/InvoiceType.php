@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class InvoiceType extends AbstractType
 {
@@ -15,13 +16,17 @@ class InvoiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('firstName')
+        ->add('firstName', TextType::Class)
         ->add('lastName')
         ->add('date', DateType::Class, [
             'widget' => 'single_text'
         ])
+        ->add('invoiceNumber')
         ->add('description')
-        ->add('invoiceNumber');
+        ->add('amount')
+        ->add('amountWithVat')
+        ->add('vatAmount')
+        ->add('vatPercentage');
     }
     
     /**

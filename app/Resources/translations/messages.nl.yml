@@ -15,4 +15,14 @@ Name: Naam
 Subject: Onderwerp
 Message: Bericht
 
-Invoice number : Factuurnummer
+Invoice number: Factuurnummer
+Amount: Bedrag
+Amount with vat: Bedrag incl. BTW
+Vat amount: BTW-bedrag
+Vat percentage: BTW-percentage
+
+Suppliers:
+    Name: Naam
+    Email: E-mail
+    Telephone: Telefoon
+    Extra info: Extra informatie

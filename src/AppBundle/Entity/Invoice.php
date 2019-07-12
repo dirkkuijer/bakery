@@ -56,6 +56,33 @@ class Invoice
      */
     private $invoiceNumber;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="amount", type="string", length=255)
+     */
+    private $amount;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="amountWithVat", type="string", length=255)
+     */
+    private $amountWithVat;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="vatAmount", type="string", length=255)
+     */
+    private $vatAmount;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="vatPercentage", type="string", length=255)
+     */
+    private $vatPercentage;
 
     /**
      * Get id
@@ -185,6 +212,102 @@ class Invoice
     public function getInvoiceNumber()
     {
         return $this->invoiceNumber;
+    }
+
+    /**
+     * Get the value of amount
+     *
+     * @return  string
+     */ 
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * Set the value of amount
+     *
+     * @param  string  $amount
+     *
+     * @return  self
+     */ 
+    public function setAmount(string $amount)
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of amountWithVat
+     *
+     * @return  string
+     */ 
+    public function getAmountWithVat()
+    {
+        return $this->amountWithVat;
+    }
+
+    /**
+     * Set the value of amountWithVat
+     *
+     * @param  string  $amountWithVat
+     *
+     * @return  self
+     */ 
+    public function setAmountWithVat(string $amountWithVat)
+    {
+        $this->amountWithVat = $amountWithVat;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of vatAmount
+     *
+     * @return  string
+     */ 
+    public function getVatAmount()
+    {
+        return $this->vatAmount;
+    }
+
+    /**
+     * Set the value of vatAmount
+     *
+     * @param  string  $vatAmount
+     *
+     * @return  self
+     */ 
+    public function setVatAmount(string $vatAmount)
+    {
+        $this->vatAmount = $vatAmount;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of vatPercentage
+     *
+     * @return  string
+     */ 
+    public function getVatPercentage()
+    {
+        return $this->vatPercentage;
+    }
+
+    /**
+     * Set the value of vatPercentage
+     *
+     * @param  string  $vatPercentage
+     *
+     * @return  self
+     */ 
+    public function setVatPercentage(string $vatPercentage)
+    {
+        $this->vatPercentage = $vatPercentage;
+
+        return $this;
     }
 }
 
