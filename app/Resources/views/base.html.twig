@@ -13,11 +13,12 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-        <!-- Compressed CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation.min.css" integrity="sha256-xpOKVlYXzQ3P03j397+jWFZLMBXLES3IiryeClgU5og= sha384-gP4DhqyoT9b1vaikoHi9XQ8If7UNLO73JFOOlQV1RATrA7D0O7TjJZifac6NwPps sha512-AKwIib1E+xDeXe0tCgbc9uSvPwVYl6Awj7xl0FoaPFostZHOuDQ1abnDNCYtxL/HWEnVOMrFyf91TDgLPi9pNg==" crossorigin="anonymous">
 
-<!-- Compressed JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js" integrity="sha256-/PFxCnsMh+nTuM0k3VJCRch1gwnCfKjaP8rJNq5SoBg= sha384-9ksAFjQjZnpqt6VtpjMjlp2S0qrGbcwF/rvrLUg2vciMhwc1UJJeAAOLuJ96w+Nj sha512-UMSn6RHqqJeJcIfV1eS2tPKCjzaHkU/KqgAnQ7Nzn0mLicFxaVhm9vq7zG5+0LALt15j1ljlg8Fp9PT1VGNmDw==" crossorigin="anonymous"></script>
+        <!-- Compressed CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation.min.css" integrity="sha256-xpOKVlYXzQ3P03j397+jWFZLMBXLES3IiryeClgU5og= sha384-gP4DhqyoT9b1vaikoHi9XQ8If7UNLO73JFOOlQV1RATrA7D0O7TjJZifac6NwPps sha512-AKwIib1E+xDeXe0tCgbc9uSvPwVYl6Awj7xl0FoaPFostZHOuDQ1abnDNCYtxL/HWEnVOMrFyf91TDgLPi9pNg==" crossorigin="anonymous">
+
+        <!-- Compressed JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js" integrity="sha256-/PFxCnsMh+nTuM0k3VJCRch1gwnCfKjaP8rJNq5SoBg= sha384-9ksAFjQjZnpqt6VtpjMjlp2S0qrGbcwF/rvrLUg2vciMhwc1UJJeAAOLuJ96w+Nj sha512-UMSn6RHqqJeJcIfV1eS2tPKCjzaHkU/KqgAnQ7Nzn0mLicFxaVhm9vq7zG5+0LALt15j1ljlg8Fp9PT1VGNmDw==" crossorigin="anonymous"></script>
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,32 +31,33 @@
                 deze site niet goed.
             </div>
         </noscript>
-        
-        <div class="container-user">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <div id="userLoggedIn">
-                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
-                        <a href="{{ path('fos_user_security_logout') }}" title="Uitloggen">
-                                <i class="far fa-edit"></i>Uitloggen
-                        </a>
-                    </div>
-                {% else %} 
+      
 
-                    <a href="{{ path('fos_user_security_login') }}">
-                        {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+        <div class="container-user">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <div id="userLoggedIn">
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                    | <a href="{{ path('fos_user_security_logout') }}" title="Uitloggen">
+                            Uitloggen
                     </a>
-                {% endif %}
-        
-                {% if app.request.hasPreviousSession %}
-                    {% for type, messages in app.session.flashbag.all() %}
-                        {% for message in messages %}
-                        <br />
-                            <div class="flash-{{ type }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
+                </div>
+            {% else %} 
+
+                <a href="{{ path('fos_user_security_login') }}">
+                    {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% endif %}
+    
+            {% if app.request.hasPreviousSession %}
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                    <br />
+                        <div class="flash-{{ type }}">
+                            {{ message }}
+                        </div>
                     {% endfor %}
-                {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
        
             <img src="{{ asset('build/images/logo.jpeg') }}" class="logo" align="midle">
@@ -64,8 +66,49 @@
          {% if is_granted('ROLE_ADMIN') %}
         <h3>Administratie</h3>
         
-        
-            <div class="dropdown">
+              
+        <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
+            <li>
+               <a href="#">Gebruikers</a>
+               <ul class="menu vertical nested">
+                   <li><a href=" {{ path('user_index') }} ">Overzicht</a></li>
+                    <li><a href=" {{ path('user_new') }} ">Nieuw</a></li>
+                </ul> 
+            </li>
+            <li>
+                <a href="#">Facturen</a>
+                <ul class="menu vertical nested">
+                    <li><a href=" {{ path('invoice_index') }} ">Overzicht</a></li>
+                    <li><a href=" {{ path('invoice_new') }} ">Nieuw</a></li>
+                    <li><a href=" {{ path('invoice_index') }} ">Nieuw</a>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Klanten</a>
+                <ul class="menu vertical nested">
+                    <li><a href=" {{ path('customer_index') }} ">Overzicht</a></li>
+                    <li><a href=" {{ path('customer_new') }} ">Nieuw</a></li>
+                    <li><a href=" {{ path('customer_index') }} ">Bewerken</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Leveranciers</a>
+                <ul class="menu vertical nested">
+                    <li><a href=" {{ path('supplier_index') }} ">Overzicht</a></li>
+                    <li><a href=" {{ path('supplier_new') }} ">Nieuw</a></li>
+                    <li><a href=" {{ path('supplier_index') }} ">Bewerken</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Belasting</a>
+                <ul class="menu vertical nested">
+                    <li><a href="#">Overzicht</a></li>
+                    <li><a href="#">Nieuw</a></li>
+                    <li><a href="#">Bewerken</a></li>
+                </ul>
+            </li>
+        </ul>
+            {# <div class="dropdown">
                 <button class="button">Gebruikers</button>
                 <div class="dropdown-content">
                    <a href=" {{ path('user_index') }} " class="menu-item">Overzicht</a>
@@ -79,15 +122,15 @@
                    <a href=" {{ path('invoice_new') }} " class="menu-item">Nieuw</a>
                    <a href=" {{ path('invoice_index') }} " class="menu-item">Bewerken</a>
                 </div>
-            </div>
-            <div class="dropdown">
+            </div> 
+             <div class="dropdown">
                 <button class="button">Klanten</button>
                 <div class="dropdown-content">
                    <a href=" {{ path('customer_index') }} " class="menu-item">Overzicht</a>
                    <a href=" {{ path('customer_new') }} " class="menu-item">Nieuw</a>
                    <a href=" {{ path('customer_index') }} " class="menu-item">Bewerken</a>
                 </div>
-            </div>
+            </div> 
             <div class="dropdown">
                 <button class="button">Leveranciers</button>
                 <div class="dropdown-content">
@@ -104,12 +147,8 @@
                    <a href="#" class="menu-item">Nieuw </a>
                    <a href="#" class="menu-item">Bewerken</a>
                 </div>
-            </div>
+            </div>#}
 
-            {% else %}
-            <p>
-                Druk op de knop <a href="{{ path("fos_user_security_login") }}">inloggen</a>.
-            </p>
            {% endif %}
     {% block body %}
     {% endblock %}

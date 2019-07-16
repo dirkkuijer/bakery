@@ -37,7 +37,7 @@ a {
 
 .container-user {
     display: flex;
-    float:right;
+
 
     .button-logout {
         display:flex;
@@ -93,6 +93,8 @@ ul {
     display: block;
     margin-right: 57%;
     margin-left: 43%;
+    margin-top: 2%;
+    margin-bottom: 2%;
     width: 15vw;
     height: 15vw;
   }
