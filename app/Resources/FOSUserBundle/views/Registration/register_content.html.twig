@@ -1,11 +1,30 @@
+
 {% extends 'base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-        {{ form_widget(form) }}
-        <div>
-            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+   
+<h4>Registreren</h4>
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}            
+
+
+
+<div class="grid-x grid-padding-x">
+    <div class="cell medium-6"></div>
+        <div class="cell medium-2">
+            <button class="button primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+                Opslaan
+            </button>
+            {{ form_end(form) }}
         </div>
-    {{ form_end(form) }}
+    <div class="cell medium-6"></div>
+</div>
+
 {% endblock %}

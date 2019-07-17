@@ -8,10 +8,11 @@
                 <tr>
                     <th>Voornaam</th>
                     <th>Achternaam</th>
+                    <th>KlantId</th>
                     <th>Datum</th>
                     <th>Omschrijving</th>
                     <th>Factuurnummer</th>
-                    <th>Bewerken</th>
+                    <th>Bewerking</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,18 +20,21 @@
                 <tr>
                     <td>{{ invoice.firstName }}</td>
                     <td>{{ invoice.lastName }}</td>
+                {% for customer in customers%}
+                    <td><a href=" {{ path('customer_show', { 'id' : customer.id}) }} ">{{ customer.id }}</a></td>
+                {% endfor %}
                     <td>{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
                     <td>{{ invoice.description }}</td>
                     <td>{{ invoice.invoiceNumber }}</td>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('invoice_show', { 'id': invoice.id }) }}">Inzien</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
-                            </li>
-                        </ul>
+                        {# <ul>
+                            <li> #}
+                                <a class="button" href="{{ path('invoice_show', { 'id': invoice.id }) }}">Bиди</a>
+                            {# </li>
+                            <li> #}
+                                <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Измени</a>
+                            {# </li>
+                        </ul> #}
                     </td>
                 </tr>
             {% endfor %}

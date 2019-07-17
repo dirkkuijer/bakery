@@ -1,8 +1,27 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% extends 'base.html.twig' %}
 
+{% block body %}
+<h3>Reset wachtwoord</h3>
+<br>
 {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+    {{ form_row(form.plainPassword.first, {
+                'attr' : { 'placeholder' : 'Minimaal 10 karakters'}
+            }) }}
+    {{ form_row(form.plainPassword.second, {
+                'attr' : { 'placeholder' : 'Minimaal 10 karakters'}
+            }) }}
+   
+
+   <div class="grid-x grid-padding-x">
+        <div class="cell medium-7"></div>
+        <div class="cell medium-2">  
+            <button class="button" type="submit" value="{{ 'resetting.reset.submit'|trans }}" >
+                Opslaan
+            </button>
+        </div> 
+        <div class="cell medium-3"></div>
     </div>
 {{ form_end(form) }}
+
+{% endblock %}

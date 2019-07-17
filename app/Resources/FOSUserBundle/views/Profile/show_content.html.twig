@@ -2,8 +2,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-    <div class="fos_user_user_show">
-        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    </div>
+  
+<h4>Gebruiker</h4>
+
+<div class="fos_user_user_show">
+    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    
+    <p>
+        <a class="button" href="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
+            Bewerken
+        </a>
+    </p>
+</div>
+
 {% endblock %}

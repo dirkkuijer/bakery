@@ -3,9 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Invoice;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -26,9 +26,11 @@ class InvoiceController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
+        $customers = $em->getRepository('AppBundle:Customer')->findAll();
 
         return $this->render('invoice/index.html.twig', [
             'invoices' => $invoices,
+            'customers' => $customers,
         ]);
     }
 
@@ -49,8 +51,12 @@ class InvoiceController extends Controller
             $em->persist($invoice);
             $em->flush();
 
-            return $this->redirectToRoute('invoice_show', ['id' => $invoice->getId()
-        ]);
+            // Added by Dirk
+            $state = 'Factuur is opgeslagen.';
+            $this->showFlash($state);
+
+            return $this->redirectToRoute('invoice_show', ['id' => $invoice->getId(),
+            ]);
         }
 
         return $this->render('invoice/new.html.twig', [
@@ -91,15 +97,15 @@ class InvoiceController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('invoice_edit', [
-                'id' => $invoice->getId()
-                ]);
+                'id' => $invoice->getId(),
+            ]);
         }
 
-        return $this->render('invoice/edit.html.twig', array(
+        return $this->render('invoice/edit.html.twig', [
             'invoice' => $invoice,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -122,6 +128,12 @@ class InvoiceController extends Controller
         return $this->redirectToRoute('invoice_index');
     }
 
+    // added by Dirk to show flash messages after submitting form
+    public function showFlash(String $state)
+    {
+        return $this->addFlash('success', $state);
+    }
+
     /**
      * Creates a form to delete a invoice entity.
      *
@@ -132,7 +144,7 @@ class InvoiceController extends Controller
     private function createDeleteForm(Invoice $invoice)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('invoice_delete', array('id' => $invoice->getId())))
+            ->setAction($this->generateUrl('invoice_delete', ['id' => $invoice->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

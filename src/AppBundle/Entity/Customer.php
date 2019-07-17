@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -14,6 +15,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Customer
 {
     /**
+     * @ORM\OneToMany(targetEntity="Invoice", mappedBy="customer")
+     */
+    private $invoices;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -23,7 +29,7 @@ class Customer
     private $id;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
      */
@@ -37,68 +43,72 @@ class Customer
     private $lastName;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="street", type="string", length=255, nullable=true)
      */
     private $street;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="houseNumber", type="string", length=255, nullable=true)
      */
     private $houseNumber;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="postalCode", type="string", length=255, nullable=true)
      */
     private $postalCode;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
-   /**
+    /**
      * @var int
      *
      * @ORM\Column(name="telephone", type="string", length=14)
      * @Assert\NotBlank
      * @Assert\Length(
-     *      min=8,
-     *      max=14,
-     *      minMessage = "Minimaal {{ limit }} cijfers invoeren aub.",
-     *      maxMessage = "Maximaal {{ limit }} cijfers invoeren aub."
+     *     min=8,
+     *     max=14,
+     *     minMessage="Minimaal {{ limit }} cijfers invoeren aub.",
+     *     maxMessage="Maximaal {{ limit }} cijfers invoeren aub."
      * )
      */
     private $telephone;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
-   
+
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="bankaccountnumber", type="string", length=255, nullable=false)
      */
     private $bankAccountNumber;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="allergies", type="string", length=255, nullable=true)
      */
     private $allergies;
 
+    public function __construct()
+    {
+        $this->{$invoices} = new ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -113,7 +123,7 @@ class Customer
     /**
      * Set firstName.
      *
-     * @param string|null $firstName
+     * @param null|string $firstName
      *
      * @return Customer
      */
@@ -127,7 +137,7 @@ class Customer
     /**
      * Get firstName.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getFirstName()
     {
@@ -159,9 +169,19 @@ class Customer
     }
 
     /**
+     * Get fullName.
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->getFirstName->getLastName;
+    }
+
+    /**
      * Set street.
      *
-     * @param string|null $street
+     * @param null|string $street
      *
      * @return Customer
      */
@@ -175,7 +195,7 @@ class Customer
     /**
      * Get street.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getStreet()
     {
@@ -185,7 +205,7 @@ class Customer
     /**
      * Set houseNumber.
      *
-     * @param string|null $houseNumber
+     * @param null|string $houseNumber
      *
      * @return Customer
      */
@@ -199,7 +219,7 @@ class Customer
     /**
      * Get houseNumber.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getHouseNumber()
     {
@@ -209,7 +229,7 @@ class Customer
     /**
      * Set postalCode.
      *
-     * @param string|null $postalCode
+     * @param null|string $postalCode
      *
      * @return Customer
      */
@@ -223,7 +243,7 @@ class Customer
     /**
      * Get postalCode.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getPostalCode()
     {
@@ -233,7 +253,7 @@ class Customer
     /**
      * Set city.
      *
-     * @param string|null $city
+     * @param null|string $city
      *
      * @return Customer
      */
@@ -247,7 +267,7 @@ class Customer
     /**
      * Get city.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getCity()
     {
@@ -257,7 +277,7 @@ class Customer
     /**
      * Set telephone.
      *
-     * @param int|null $telephone
+     * @param null|int $telephone
      *
      * @return Customer
      */
@@ -271,7 +291,7 @@ class Customer
     /**
      * Get telephone.
      *
-     * @return int|null
+     * @return null|int
      */
     public function getTelephone()
     {
@@ -281,7 +301,7 @@ class Customer
     /**
      * Set email.
      *
-     * @param string|null $email
+     * @param null|string $email
      *
      * @return Customer
      */
@@ -295,7 +315,7 @@ class Customer
     /**
      * Get email.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getEmail()
     {
@@ -305,7 +325,7 @@ class Customer
     /**
      * Set allergies.
      *
-     * @param string|null $allergies
+     * @param null|string $allergies
      *
      * @return Customer
      */
@@ -319,7 +339,7 @@ class Customer
     /**
      * Get allergies.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getAllergies()
     {
@@ -329,8 +349,8 @@ class Customer
     /**
      * Get the value of bankAccountNumber
      *
-     * @return  string|null
-     */ 
+     * @return null|string
+     */
     public function getBankAccountNumber()
     {
         return $this->bankAccountNumber;
@@ -339,13 +359,35 @@ class Customer
     /**
      * Set the value of bankAccountNumber
      *
-     * @param  string|null  $bankAccountNumber
+     * @param null|string $bankAccountNumber
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setBankAccountNumber($bankAccountNumber)
     {
         $this->bankAccountNumber = $bankAccountNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of invoices
+     */
+    public function getInvoices()
+    {
+        return $this->invoices;
+    }
+
+    /**
+     * Set the value of invoices
+     *
+     * @param mixed $invoices
+     *
+     * @return self
+     */
+    public function setInvoices($invoices)
+    {
+        $this->invoices = $invoices;
 
         return $this;
     }

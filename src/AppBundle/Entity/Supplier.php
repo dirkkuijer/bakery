@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Supplier
 {
     /**
+     * @ORM\OneToMany(targetEntity="Invoice", mappedBy="supplier")
+     */
+    private $invoices;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -36,26 +41,25 @@ class Supplier
     private $email;
 
     /**
-     * @var int|null
+     * @var null|int
      *
      * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     private $telephone;
-   
+
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="bankaccountnumber", type="string", length=255, nullable=false)
      */
     private $bankAccountNumber;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="extraInfo", type="string", length=255, nullable=true)
      */
     private $extraInfo;
-
 
     /**
      * Get id.
@@ -118,7 +122,7 @@ class Supplier
     /**
      * Set telephone.
      *
-     * @param int|null $telephone
+     * @param null|int $telephone
      *
      * @return Supplier
      */
@@ -132,7 +136,7 @@ class Supplier
     /**
      * Get telephone.
      *
-     * @return int|null
+     * @return null|int
      */
     public function getTelephone()
     {
@@ -142,7 +146,7 @@ class Supplier
     /**
      * Set extraInfo.
      *
-     * @param string|null $extraInfo
+     * @param null|string $extraInfo
      *
      * @return Supplier
      */
@@ -156,7 +160,7 @@ class Supplier
     /**
      * Get extraInfo.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getExtraInfo()
     {
@@ -166,8 +170,8 @@ class Supplier
     /**
      * Get the value of bankAccountNumber
      *
-     * @return  string|null
-     */ 
+     * @return null|string
+     */
     public function getBankAccountNumber()
     {
         return $this->bankAccountNumber;
@@ -176,13 +180,35 @@ class Supplier
     /**
      * Set the value of bankAccountNumber
      *
-     * @param  string|null  $bankAccountNumber
+     * @param null|string $bankAccountNumber
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setBankAccountNumber($bankAccountNumber)
     {
         $this->bankAccountNumber = $bankAccountNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of invoices
+     */
+    public function getInvoices()
+    {
+        return $this->invoices;
+    }
+
+    /**
+     * Set the value of invoices
+     *
+     * @param mixed $invoices
+     *
+     * @return self
+     */
+    public function setInvoices($invoices)
+    {
+        $this->invoices = $invoices;
 
         return $this;
     }

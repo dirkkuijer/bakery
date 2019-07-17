@@ -27,8 +27,8 @@
 
    
         <noscript>
-            <div class="callout alert center">Activeer JavaScript in uw browser. Anders werkt 
-                deze site niet goed.
+            <div class="callout alert center">Активирајте ЈаваСцрипт у свом претраживачу. Ради другачије
+                    овај сајт није добар.
             </div>
         </noscript>
       
@@ -38,7 +38,7 @@
                 <div id="userLoggedIn">
                     {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
                     | <a href="{{ path('fos_user_security_logout') }}" title="Uitloggen">
-                            Uitloggen
+                        лог оут
                     </a>
                 </div>
             {% else %} 
@@ -64,90 +64,52 @@
          
        
          {% if is_granted('ROLE_ADMIN') %}
-        <h3>Administratie</h3>
+        <h3>Администрација</h3>
         
         <div class="grid-x">
             <div class="cell medium-2">
-                <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
+                <ul class="vertical menu accordion-menu" data-accordion-menu data-allow-all-closed="true">
                     <li>
-                       <a href="#">Gebruikers</a>
+                       <a href="#">Kорисника</a>
                        <ul class="menu vertical nested">
-                           <li><a href=" {{ path('user_index') }} ">Overzicht</a></li>
-                            <li><a href=" {{ path('user_new') }} ">Nieuw</a></li>
+                           <li><a href=" {{ path('user_index') }} ">преглед</a></li>
+                            <li><a href=" {{ path('user_new') }} ">нев</a></li>
                         </ul> 
                     </li>
                     <li>
-                        <a href="#">Facturen</a>
+                        <a href="#">Фактуре</a>
                         <ul class="menu vertical nested">
-                            <li><a href=" {{ path('invoice_index') }} ">Overzicht</a></li>
-                            <li><a href=" {{ path('invoice_new') }} ">Nieuw</a></li>
+                            <li><a href=" {{ path('invoice_index') }} ">преглед</a></li>
+                            <li><a href=" {{ path('invoice_new') }} ">нев</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Klanten</a>
+                        <a href="#">Купци</a>
                         <ul class="menu vertical nested">
-                            <li><a href=" {{ path('customer_index') }} ">Overzicht</a></li>
-                            <li><a href=" {{ path('customer_new') }} ">Nieuw</a></li>
+                            <li><a href=" {{ path('customer_index') }} ">преглед</a></li>
+                            <li><a href=" {{ path('customer_new') }} ">нев</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Leveranciers</a>
+                        <a href="#">Добављачи</a>
                         <ul class="menu vertical nested">
-                            <li><a href=" {{ path('supplier_index') }} ">Overzicht</a></li>
-                            <li><a href=" {{ path('supplier_new') }} ">Nieuw</a></li>
+                            <li><a href=" {{ path('supplier_index') }} ">преглед</a></li>
+                            <li><a href=" {{ path('supplier_new') }} ">нев</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Belasting</a>
+                        <a href="#">Порез</a>
                         <ul class="menu vertical nested">
-                            <li><a href="#">Overzicht</a></li>
-                            <li><a href="#">Nieuw</a></li>
+                            <li><a href="#">преглед</a></li>
+                            <li><a href="#">нев</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <div class="cell medium-10">
-                content
             </div>
         </div>
         
-            {# <div class="dropdown">
-                <button class="button">Gebruikers</button>
-                <div class="dropdown-content">
-                   <a href=" {{ path('user_index') }} " class="menu-item">Overzicht</a>
-                   <a href=" {{ path('user_new') }} " class="menu-item">Nieuw</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="button">Facturen</button>
-                <div class="dropdown-content">
-                   <a href=" {{ path('invoice_index') }} " class="menu-item">Overzicht</a>
-                   <a href=" {{ path('invoice_new') }} " class="menu-item">Nieuw</a>
-                </div>
-            </div> 
-             <div class="dropdown">
-                <button class="button">Klanten</button>
-                <div class="dropdown-content">
-                   <a href=" {{ path('customer_index') }} " class="menu-item">Overzicht</a>
-                   <a href=" {{ path('customer_new') }} " class="menu-item">Nieuw</a>
-                </div>
-            </div> 
-            <div class="dropdown">
-                <button class="button">Leveranciers</button>
-                <div class="dropdown-content">
-                   <a href=" {{ path('supplier_index') }} " class="menu-item">Overzicht</a>
-                   <a href=" {{ path('supplier_new') }} " class="menu-item">Nieuw</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="button">Belasting</button>
-                <div class="dropdown-content">
-                   <a href="#" class="menu-item">Overzicht</a>
-                   <a href="#" class="menu-item">Nieuw </a>
-                   <a href="#" class="menu-item">Bewerken</a>
-                </div>
-            </div> #}
 
            {% endif %}
     {% block body %}

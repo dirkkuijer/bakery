@@ -1,51 +1,57 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h4>Klanten</h4>
+    {% for customer in customers %}
+    {% for invoice in invoices %}
+        <h4>Klanten ({{customer|length}})</h4>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Voornaam</th>
-                <th>Achternaam</th>
-                <th>Straat</th>
-                <th>Huisnummer</th>
-                <th>Postcode</th>
-                <th>Woonplaats</th>
-                <th>Telefoonnummer</th>
-                <th>E-mail</th>
-                <th>Rekeningnummer</th>
-                <th>Allergieën</th>
-                <th>Bewerkingen</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for customer in customers %}
-            <tr>
-                <td>{{ customer.firstName }}</td>
-                <td>{{ customer.lastName }}</td>
-                <td>{{ customer.street }}</td>
-                <td>{{ customer.houseNumber }}</td>
-                <td>{{ customer.postalCode }}</td>
-                <td>{{ customer.city }}</td>
-                <td>{{ customer.telephone }}</td>
-                <td>{{ customer.email }}</td>
-                <td>{{ customer.bankAccountNumber }}</td>
-                <td>{{ customer.allergies }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('customer_show', { 'id': customer.id }) }}">Inzien</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('customer_edit', { 'id': customer.id }) }}">Bewerken</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Voornaam</th>
+                    <th>Achternaam</th>
+                    <th>Straat</th>
+                    <th>Huisnummer</th>
+                    <th>Postcode</th>
+                    <th>Woonplaats</th>
+                    <th>Telefoonnummer</th>
+                    <th>E-mail</th>
+                    <th>Rekeningnummer</th>
+                    <th>Allergieën</th>
+                    <th>Facturen</th>
+                    <th>Bewerkingen</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ customer.firstName }}</td>
+                    <td>{{ customer.lastName }}</td>
+                    <td>{{ customer.street }}</td>
+                    <td>{{ customer.houseNumber }}</td>
+                    <td>{{ customer.postalCode }}</td>
+                    <td>{{ customer.city }}</td>
+                    <td>{{ customer.telephone }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.bankAccountNumber }}</td>
+                    <td>{{ customer.allergies|default('Geen info') }}</td>
+                    <td><a href=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.id }}</a></td>
+
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('customer_show', { 'id': customer.id }) }}">Inzien</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('customer_edit', { 'id': customer.id }) }}">Bewerken</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+    {% endfor %}
 
     <ul>
         <li>

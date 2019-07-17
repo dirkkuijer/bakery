@@ -13,6 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
 class Invoice
 {
     /**
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="invoice")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     */
+    private $customer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Supplier", inversedBy="invoice")
+     * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id")
+     */
+    private $supplier;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -56,7 +68,7 @@ class Invoice
      */
     private $invoiceNumber;
 
-     /**
+    /**
      * @var string
      *
      * @ORM\Column(name="amount", type="string", length=255)
@@ -65,21 +77,21 @@ class Invoice
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="amountWithVat", type="string", length=255)
      */
     private $amountWithVat;
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="vatAmount", type="string", length=255)
      */
     private $vatAmount;
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="vatPercentage", type="string", length=255)
      */
     private $vatPercentage;
@@ -217,8 +229,8 @@ class Invoice
     /**
      * Get the value of amount
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getAmount()
     {
         return $this->amount;
@@ -227,10 +239,10 @@ class Invoice
     /**
      * Set the value of amount
      *
-     * @param  string  $amount
+     * @param string $amount
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setAmount(string $amount)
     {
         $this->amount = $amount;
@@ -241,8 +253,8 @@ class Invoice
     /**
      * Get the value of amountWithVat
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getAmountWithVat()
     {
         return $this->amountWithVat;
@@ -251,10 +263,10 @@ class Invoice
     /**
      * Set the value of amountWithVat
      *
-     * @param  string  $amountWithVat
+     * @param string $amountWithVat
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setAmountWithVat(string $amountWithVat)
     {
         $this->amountWithVat = $amountWithVat;
@@ -265,8 +277,8 @@ class Invoice
     /**
      * Get the value of vatAmount
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getVatAmount()
     {
         return $this->vatAmount;
@@ -275,10 +287,10 @@ class Invoice
     /**
      * Set the value of vatAmount
      *
-     * @param  string  $vatAmount
+     * @param string $vatAmount
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setVatAmount(string $vatAmount)
     {
         $this->vatAmount = $vatAmount;
@@ -289,8 +301,8 @@ class Invoice
     /**
      * Get the value of vatPercentage
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getVatPercentage()
     {
         return $this->vatPercentage;
@@ -299,15 +311,58 @@ class Invoice
     /**
      * Set the value of vatPercentage
      *
-     * @param  string  $vatPercentage
+     * @param string $vatPercentage
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setVatPercentage(string $vatPercentage)
     {
         $this->vatPercentage = $vatPercentage;
 
         return $this;
     }
-}
 
+    /**
+     * Get the value of customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * Set the value of customer
+     *
+     * @param mixed $customer
+     *
+     * @return self
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of supplier
+     */
+    public function getSupplier()
+    {
+        return $this->supplier;
+    }
+
+    /**
+     * Set the value of supplier
+     *
+     * @param mixed $supplier
+     *
+     * @return self
+     */
+    public function setSupplier($supplier)
+    {
+        $this->supplier = $supplier;
+
+        return $this;
+    }
+}

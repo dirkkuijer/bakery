@@ -13,15 +13,27 @@ class CustomerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName')->add('lastName')->add('street')->add('houseNumber')->add('postalCode')->add('city')->add('telephone')->add('email')->add('allergies');
-    }/**
+        $builder
+            ->add('firstName')
+            ->add('lastName')
+            ->add('street')
+            ->add('houseNumber')
+            ->add('postalCode')
+            ->add('city')
+            ->add('telephone')
+            ->add('email')
+            ->add('allergies')
+        ;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Customer'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'AppBundle\Entity\Customer',
+        ]);
     }
 
     /**
@@ -31,6 +43,4 @@ class CustomerType extends AbstractType
     {
         return 'appbundle_customer';
     }
-
-
 }

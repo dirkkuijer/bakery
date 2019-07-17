@@ -3,9 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Customer;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Customer controller.
@@ -25,10 +26,12 @@ class CustomerController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $customers = $em->getRepository('AppBundle:Customer')->findAll();
+        $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
 
-        return $this->render('customer/index.html.twig', array(
+        return $this->render('customer/index.html.twig', [
             'customers' => $customers,
-        ));
+            'invoices' => $invoices,
+        ]);
     }
 
     /**
@@ -48,13 +51,13 @@ class CustomerController extends Controller
             $em->persist($customer);
             $em->flush();
 
-            return $this->redirectToRoute('customer_show', array('id' => $customer->getId()));
+            return $this->redirectToRoute('customer_show', ['id' => $customer->getId()]);
         }
 
-        return $this->render('customer/new.html.twig', array(
+        return $this->render('customer/new.html.twig', [
             'customer' => $customer,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -67,10 +70,10 @@ class CustomerController extends Controller
     {
         $deleteForm = $this->createDeleteForm($customer);
 
-        return $this->render('customer/show.html.twig', array(
+        return $this->render('customer/show.html.twig', [
             'customer' => $customer,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -88,14 +91,14 @@ class CustomerController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('customer_edit', array('id' => $customer->getId()));
+            return $this->redirectToRoute('customer_edit', ['id' => $customer->getId()]);
         }
 
-        return $this->render('customer/edit.html.twig', array(
+        return $this->render('customer/edit.html.twig', [
             'customer' => $customer,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -128,7 +131,7 @@ class CustomerController extends Controller
     private function createDeleteForm(Customer $customer)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('customer_delete', array('id' => $customer->getId())))
+            ->setAction($this->generateUrl('customer_delete', ['id' => $customer->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

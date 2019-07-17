@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <th>Datum</th>
-                <td>{% if invoice.date %}{{ invoice.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Omschrijving</th>
@@ -25,21 +25,42 @@
                 <th>Factuurnummer</th>
                 <td>{{ invoice.invoiceNumber }}</td>
             </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('views/invoice/invoice_index') }}">Overzicht</a>
-        </li>
-        <li>
-            <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <tr>
+                <th>Bedrag</th>
+                <td>{{ invoice.amount }}</td>
+            </tr>
+            <tr>
+                <th>Bedrag met BTW</th>
+                <td>{{ invoice.amountWithVat }}</td>
+            </tr>
+            <tr>
+                <th>BTW-bedrag</th>
+                <td>{{ invoice.vatAmount }}</td>
+            </tr>
+            <tr>
+                <th>BTW-percentage</th>
+                <td>{{ invoice.vatPercentage }}</td>
+            </tr>
+            <tr>
+                <th>Totaal</th>
+                <td>{{ invoice.vatAmount|default('Nog aanpassen')}}</td>
+            </tr>
+        </table>
+    </tbody>
+           
+            <div class="grid-x grid-padding-x">
+                <div class="cell small-6"></div>
+                <div class="cell small-2">
+                    <a class="button" href="{{ path('invoice_index') }}">Overzicht</a>
+                    <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
+                </div>
+                    {{ form_start(delete_form) }}
+                        <button class="button" type="submit" title="Verwijderen">
+                            Verwijderen
+                        </button>
+                    {{ form_end(delete_form) }}
+                    <div class="cell small-4"></div>
+                </div>
+     
     {% endif %}
 {% endblock %}

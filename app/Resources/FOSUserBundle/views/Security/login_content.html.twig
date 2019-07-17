@@ -3,24 +3,60 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
+
+    <h4>Лог ин</h4>
+
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div style="text-align:center;color:red;size:18pt">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path("fos_user_security_check") }}" method="post">
+    <form action="{{ path("fos_user_security_check") }}" method="post" data-abide novalidate="novalidate">
+
         {% if csrf_token %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         {% endif %}
+            
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-4"></div>
+            <div class="cell medium-1">
+                <label for="username">{{ 'security.login.username'|trans }}</label>
+            </div>
+            <div class="cell medium-3">
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" autofocus/>
+                <span class="form-error">
+                    Dit veld is verplicht.
+            </span>
+            </div>
+            <div class="cell medium-3"></div>
+        </div>
 
-        <label for="username">{{ 'security.login.username'|trans }}</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
-
-        <label for="password">{{ 'security.login.password'|trans }}</label>
-        <input type="password" id="password" name="_password" required="required" autocomplete="current-password" />
-
-        {# <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label> #}
-
-        <input type="submit" id="_submit" class="button" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-4"></div>
+            <div class="cell medium-1">
+                <label for="password">{{ 'security.login.password'|trans }}</label>
+            </div>
+            <div class="cell medium-3">
+                <input type="password" id="password" name="_password" required="required" autocomplete="current-password" required pattern="password"/>
+                <span class="form-error">
+                    Dit veld is verplicht.
+                </span>
+            </div>
+            <div class="cell medium-3"></div>
+        </div>
+        
+        <div class="grid-x grid-padding-x">
+                <div class="cell medium-6"></div> 
+                <div class="cell medium-1">
+                    <a href=" {{ path('fos_user_resetting_request') }} ">пассворд?</a>
+                </div> 
+                <div class="cell medium-3">
+                    {# Dit was eerst een input button samen met de waarde met "value" #}
+                    <button class="button" type="submit" id="_submit" name="_submit" title="Inloggen" />
+                    Лог ин
+                    </button>
+                </div>
+                <div class="cell medium-2"></div> 
+            </div>
     </form>
+
 {% endblock %}
