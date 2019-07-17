@@ -3,9 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -27,9 +27,9 @@ class UserController extends Controller
 
         $users = $em->getRepository('AppBundle:User')->findAll();
 
-        return $this->render('user/index.html.twig', array(
+        return $this->render('user/index.html.twig', [
             'users' => $users,
-        ));
+        ]);
     }
 
     /**
@@ -58,18 +58,18 @@ class UserController extends Controller
             $user->setEnabled(true);
             $em->persist($user);
             $em->flush();
-            
+
             // Added by Dirk
-            $state = "Gebruiker is toegevoegd.";
+            $state = 'Gebruiker is toegevoegd.';
             $this->showFlash($state);
 
-            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
+            return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
         }
 
-        return $this->render('user/content.html.twig', array(
+        return $this->render('user/content.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -82,10 +82,10 @@ class UserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
 
-        return $this->render('user/show.html.twig', array(
+        return $this->render('user/show.html.twig', [
             'user' => $user,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -102,21 +102,21 @@ class UserController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            
-             // added by Dirk
-             $state = "Gebruiker is aangepast.";
-            
-             $this->showFlash($state);
+
+            // added by Dirk
+            $state = 'Gebruiker is aangepast.';
+
+            $this->showFlash($state);
 
             //  , array('id' => $user->getId()) stond achter 'user_index'
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/content.html.twig', array(
+        return $this->render('user/content.html.twig', [
             'user' => $user,
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -127,11 +127,10 @@ class UserController extends Controller
      */
     public function deleteAction(Request $request, User $user)
     {
-        if ($user->getSystem()) 
-        {
+        if ($user->getSystem()) {
             return $this->redirectToRoute('user_index');
         }
-        
+
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -139,13 +138,18 @@ class UserController extends Controller
             $em->remove($user);
             $em->flush();
         }
-        
-        $state = "Gebruiker is verwijderd.";
+
+        $state = 'Gebruiker is verwijderd.';
         // added by Dirk
         $this->showFlash($state);
-        
+
         return $this->redirectToRoute('user_index');
-        
+    }
+
+    // added by Dirk to show flash messages after submitting form
+    public function showFlash(String $state)
+    {
+        return $this->addFlash('success', $state);
     }
 
     /**
@@ -158,14 +162,9 @@ class UserController extends Controller
     private function createDeleteForm(User $user)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
+            ->setAction($this->generateUrl('user_delete', ['id' => $user->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;
-    }
-
-      // added by Dirk to show flash messages after submitting form
-      public function showFlash(String $state) {
-        return $this->addFlash('success', $state);
     }
 }

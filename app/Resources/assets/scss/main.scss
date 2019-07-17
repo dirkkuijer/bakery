@@ -1,6 +1,16 @@
+@charset 'utf-8';
 
-$primary-color: #f2e4fe;
-$secondary-color: purple;
+@import 'settings';
+@import '~foundation-sites/scss/foundation';
+
+@import "utils/utils";
+@import "init";
+
+$flex: true;
+@include foundation-everything($flex);
+
+$primary-color: purple;
+$secondary-color:  #f2e4fe;
 
 body {
     font-family: Calibri;
@@ -25,6 +35,7 @@ h3 {
     text-align: center;
     width: 101vw;
     margin-left: -1vw;
+    color: white;
 }
 
 h4 {
@@ -75,7 +86,7 @@ ul {
       }
       a:hover {
         background-color: $secondary-color;
-        color: white;
+        color: $primary-color;
 
       }
   }
@@ -84,17 +95,16 @@ ul {
     display: block;
   }
 
-  .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-    
-  }
 
   .logo {
     display: block;
     margin-right: 57%;
     margin-left: 43%;
-    margin-top: 2%;
     margin-bottom: 2%;
     width: 15vw;
     height: 15vw;
+    border-radius: 100px;
+    border: 1px $primary-color solid;
+    box-shadow: 1px 1px 5px $primary-color;
   }
+

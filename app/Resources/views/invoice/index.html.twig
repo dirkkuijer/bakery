@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{ invoice.firstName }}</td>
                     <td>{{ invoice.lastName }}</td>
-                    <td>{% if invoice.date %}{{ invoice.date|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
                     <td>{{ invoice.description }}</td>
                     <td>{{ invoice.invoiceNumber }}</td>
                     <td>
