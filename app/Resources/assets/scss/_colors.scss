@@ -1,0 +1,69 @@
+// color variables
+$color-white: #ffffff;
+$color-offwhite: #efefef;
+$color-black: #000000;
+$color-dark-grey: #555555;
+$color-light-grey: #9d9d9d;
+$color-bluegreen: #147e8e;
+$color-dark-bluegreen: #424748;
+$color-red: #e52328;
+$color-orange: #f28c00;
+$color-yellow: #f9b044;
+
+// global color palette
+$global-color-palette: (
+	primary: (
+        base: purple,
+        lighter: lighten(#800080, 35),
+        light: lighten(#800080, 10),
+        dark: darken(#800080, 10),
+    ),
+	secondary: (
+        base: #f2e4fe,
+        lighter: lighten(#f2e4fe, 35),
+        light: lighten(#f2e4fe, 10),
+        dark: darken(#f2e4fe, 10),
+    ),
+	tertiary: (
+        base: #424748,
+        lighter: lighten(#424748, 35),
+        light: lighten(#424748, 10),
+        dark: darken(#424748, 10),
+    ) ,
+	quaternary: (
+        base: #239fb2,
+        lighter: lighten(#239fb2, 35),
+        light: lighten(#239fb2, 10),
+        dark: darken(#239fb2, 10),
+    ),
+	success: #3adb76,
+	warning: #239fb2,
+	alert: #e52328,
+);
+
+// quotation color palette
+$quotation-color-palette: (
+	primary: (
+        base: #147e8e,
+        light: lighten(#147e8e, 10),
+        dark: darken(#147e8e, 10),
+    ),
+	secondary: (
+        base: #555555,
+        light: lighten(#555555, 10),
+        dark: darken(#555555, 10),
+    ),
+	tertiary: (
+        base: #424748,
+        light: lighten(#424748, 10),
+        dark: darken(#424748, 10),
+    ) ,
+	quaternary: (
+        base: #239fb2,
+        light: lighten(#239fb2, 10),
+        dark: darken(#239fb2, 10),
+    ),
+	success: #3adb76,
+	warning: #239fb2,
+	alert: #e52328,
+);

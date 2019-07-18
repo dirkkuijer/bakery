@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+    {% block stylsheet %}
+        {{ parent() }}
+
+    {% endblock %}
+
+    {% block Javascript %}
+        {{ parent() }}
+    {% endblock %}
+{% block body %}
+
+    <h4>Gebruikers</h4>
+
+{% if is_granted('ROLE_ADMIN') %}
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2">
+                <a class="button" href="{{ path('user_new') }}"  title="Gebruiker toevoegen">
+                    + Toevoegen
+                </a>
+            </div>
+            <div class="cell medium-10"></div>
+        </div>
+    
+{% endif %}
+
+<div class="grid-x padding-grid-x">
+    <div class="cell medium-1"></div>
+    <div class="cell medium-10">
+
+        <table class="stack">
+            <thead>
+                <tr>
+                    <th>Gebruiker</th>
+                    <th>E-mail</th>
+                    <th>Rol</th>
+                    <th>Laatste login</th>
+                    {# <th>Actief</th> #}
+                    <th>Acties</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            {% for user in users %}
+                {% if user.username != "dirk" %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('user_show', { 'id': user.id }) }}" title="Gebruiker bekijken">
+                            {{ user.username }}
+                            </a>
+                        </td>
+                        <td>{{ user.email }}</td>
+                        <td>{% for role in user.roles %}
+                                        {% if role == 'ROLE_ADMIN' %}
+                                            Admin
+                                        {% endif %}
+                                        {% if role == 'ROLE_USER' %}
+                                            Gebruiker
+                                        {% endif %}
+                                    {% endfor %}  
+                        </td>
+                        <td>{{ user.lastLogin | date('j-m-Y H:m:s') }}</td>
+
+                        <td>
+    
+                    
+                        {# {% if user.system == false %} #}
+                        <a class="button" href="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
+                            Bewerken
+                        </a>
+                        <a class="button" href="{{ path('user_delete', { 'id': user.id }) }}" title="Verwijderen">
+                                Verwijderen
+                            </a>
+                        {# {% endif %} #}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+{% endblock %}

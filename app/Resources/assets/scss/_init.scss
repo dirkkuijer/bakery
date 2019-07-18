@@ -1,0 +1,45 @@
+@import "colors";
+
+$primary-color: find-color(primary);
+$secondary-color: find-color(secondary);
+$tertiary-color: find-color(primary, 'dark');
+
+$cta-default: find-color(quaternary);
+$cta-alert: find-color(alert);
+$cta-greyed: find-color(secondary, 'light');
+
+$callout-primary: $color-bluegreen;
+$callout-primary-border: darken($color-bluegreen, 10);
+$callout-primary-font: $color-offwhite;
+$callout-alert: lighten($color-red, 10);
+$callout-alert-border: $color-red;
+$callout-alert-font: $color-offwhite;
+
+$label-primary-color: $color-bluegreen;
+$label-secondary-color: $color-dark-grey;
+$label-info-color: $color-offwhite;
+$label-success-color: $color-bluegreen;
+$label-warning-color: $color-orange;
+$label-alert-color: $color-red;
+
+$default-font-family: Lato, Helvetica, Arial, sans-serif;
+$default-heading-font-family: Lato, Helvetica, Arial, sans-serif;
+
+$default-font-color: find-color(primary, 'dark');
+$default-inverted-font-color: $color-white;
+
+$link-color: $color-white;
+$link-color-active: darken($link-color, 20);
+$link-color-hover: darken($link-color, 10);
+
+$badge-default-color: find-color(primary);
+$badge-success-color: find-color(success);
+$badge-warning-color: find-color(warning);
+$badge-alert-color: find-color(alert);
+$badge-info-color: find-color(primary, 'dark');
+
+/* -- toolbar variables -- */
+$toolbar-height: 55px;
+
+/* -- titlebar variables -- */
+$titlebar-height: 55px;

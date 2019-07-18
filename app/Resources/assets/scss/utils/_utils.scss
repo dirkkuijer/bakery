@@ -1,0 +1,16 @@
+@function find-color($color, $shade: 'base', $map: $global-color-palette){
+
+    @if (map-has-key($map, $color)) {
+
+        $value: map-get($map, unquote($color));
+
+        @if type-of($value) == color {
+            @return $value;
+        }
+
+        @if (map-has-key($value, $shade)) {
+            @return map-get($value, $shade);
+        }
+    }
+    @return null;
+  }

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+     
+  {% block stylesheet %}
+           {{ parent() }}
+    {% endblock %}
+{% block body %}
+    
+    <h3>
+        {% if user.id is not null %}
+            Gebruiker bewerken
+        {% else %}
+            Nieuwe gebruiker
+        {% endif %}
+    </h3>
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3">
+            <a class="button" href="{{ path('user_index') }}" title="Overzicht">
+                Overzicht
+            </a>
+        </div>
+            <div class="cell medium-9"></div>   
+    </div>
+
+    {{ form_start(form, {
+            'attr': {
+                'novalidate': 'novalidate',
+                'data-abide': 'data-abide'
+            }
+        })
+    }}
+
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }} 
+        {{ form_row(form.username) }}
+                   
+        {{ form_row(form.email) }}
+ 
+        {% if user.id is null %}
+            {{ form_row(form.plainPassword.first) }}
+
+            {{ form_row(form.plainPassword.second) }}
+        
+        {% endif %}
+        {{ form_row(form.roles) }}
+    
+    </div></div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell large-6"></div>
+        <div class="cell large-6">
+        <button class="button" type="submit" title="Opslaan">
+            Opslaan
+        </button>
+        </div>   
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}
