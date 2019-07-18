@@ -107,7 +107,7 @@ class Customer
 
     public function __construct()
     {
-        $this->{$invoices} = new ArrayCollection();
+        $this->invoices = new ArrayCollection();
     }
 
     /**

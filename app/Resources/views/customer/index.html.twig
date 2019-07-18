@@ -2,60 +2,130 @@
 
 {% block body %}
     {% for customer in customers %}
-    {% for invoice in invoices %}
+
+    
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-10"></div>
+                <div class="cell medium-2">
+                    <a class="button" href="{{ path('customer_new') }}">Nieuwe klant</a>
+                </div>
+            </div>
+
         <h4>Klanten ({{customer|length}})</h4>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Voornaam</th>
-                    <th>Achternaam</th>
-                    <th>Straat</th>
-                    <th>Huisnummer</th>
-                    <th>Postcode</th>
-                    <th>Woonplaats</th>
-                    <th>Telefoonnummer</th>
-                    <th>E-mail</th>
-                    <th>Rekeningnummer</th>
-                    <th>Allergieën</th>
-                    <th>Facturen</th>
-                    <th>Bewerkingen</th>
+        <br>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ customer.firstName }}</td>
-                    <td>{{ customer.lastName }}</td>
-                    <td>{{ customer.street }}</td>
-                    <td>{{ customer.houseNumber }}</td>
-                    <td>{{ customer.postalCode }}</td>
-                    <td>{{ customer.city }}</td>
-                    <td>{{ customer.telephone }}</td>
-                    <td>{{ customer.email }}</td>
-                    <td>{{ customer.bankAccountNumber }}</td>
-                    <td>{{ customer.allergies|default('Geen info') }}</td>
-                    <td><a href=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.id }}</a></td>
-
-                    <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('customer_show', { 'id': customer.id }) }}">Inzien</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('customer_edit', { 'id': customer.id }) }}">Bewerken</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Voornaam            
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.firstname }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Achternaam
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.lastname }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Straat
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.street }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Huisnummer
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.houseNumber }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Postcode
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.postalCode }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Woonplaats
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.city }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Telefoonnummer
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.telephone }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    E-mail
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.email }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Rekeningnummer
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.bankaccountNumber }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Allergieën
+                </div>
+                <div class="cell medium-6">
+                    {{ customer.allergies }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Facturen
+                </div>
+                <div class="cell medium-6">
+                    {% for invoice in invoices %}
+                        <a href=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.invoiceNumber }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-6"></div>
+                <div class="cell medium-2">
+                    <a class="button" href="{{ path('customer_show', { 'id': customer.id }) }}">Inzien</a>
+                    <a class="button" href="{{ path('customer_edit', { 'id': customer.id }) }}">Bewerken</a>
+                </div>
+                <div class="cell medium-4"></div>
+            </div>
+            
+               
     {% endfor %}
-    {% endfor %}
 
-    <ul>
-        <li>
-            <a href="{{ path('customer_new') }}">Nieuwe klant</a>
-        </li>
-    </ul>
 {% endblock %}

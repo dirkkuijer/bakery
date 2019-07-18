@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    
     {% if is_granted('ROLE_ADMIN') %}
   
     <h4>Factuur</h4>
-        
+
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
@@ -83,7 +84,7 @@
                 BTW-percentage
             </div>
             <div class="cell medium-6">
-                {{ invoice.vatPercentage }}
+                {{ invoice.vatPercentage }} %
             </div>
         </div>
         <div class="grid-x grid-padding-x">
@@ -92,7 +93,7 @@
                 Totaal
             </div>
             <div class="cell medium-6">
-                In entity methode toevoegen om alle waarden op te tellen.
+                {# {{ invoice.totalAmount }} #}
             </div>
         </div>
            
@@ -102,13 +103,17 @@
                     <a class="button" href="{{ path('invoice_index') }}">Overzicht</a>
                     <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
                 </div>
-                    {{ form_start(delete_form) }}
-                        <button class="button" type="submit" title="Verwijderen">
-                            Verwijderen
-                        </button>
-                    {{ form_end(delete_form) }}
-                    <div class="cell small-4"></div>
-                </div>
-     
+                {{ form_start(delete_form) }}
+                <a class="button" href="{{ path('invoice_delete', { 'id': invoice.id }) }}" title="Verwijderen">
+                    Verwijderen
+                </a>
+                {# <button class="button" type="submit" title="Verwijderen">
+                    Verwijderen
+                </button> #}
+                {{ form_end(delete_form) }}
+                
+                <div class="cell small-4"></div>
+            </div>
+            
     {% endif %}
 {% endblock %}

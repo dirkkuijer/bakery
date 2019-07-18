@@ -13,13 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class Invoice
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="invoice")
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="invoices")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     private $customer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Supplier", inversedBy="invoice")
+     * @ORM\ManyToOne(targetEntity="Supplier", inversedBy="invoices")
      * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id")
      */
     private $supplier;

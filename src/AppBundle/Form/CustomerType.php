@@ -23,6 +23,8 @@ class CustomerType extends AbstractType
             ->add('telephone')
             ->add('email')
             ->add('allergies')
+            ->add('bankaccountNumber')
+
         ;
     }
 
