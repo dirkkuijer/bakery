@@ -1,43 +1,77 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% for supplier in suppliers %}
+    
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a class="button" href="{{ path('supplier_new') }}">Nieuwe leverancier</a>
+        </div>
+    </div>
+
     <h4>Leveranciers</h4>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Naam</th>
-                <th>E-mail</th>
-                <th>Telefoon</th>
-                <th>Extra informatie</th>
-                <th>Acties</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for supplier in suppliers %}
-            <tr>
-                <td>{{ supplier.name }}</td>
-                <td>{{ supplier.email }}</td>
-                <td>{{ supplier.telephone }}</td>
-                <td>{{ supplier.extraInfo }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('supplier_show', { 'id': supplier.id }) }}">Inzien</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('supplier_edit', { 'id': supplier.id }) }}">Bewerken</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <br>
 
-    <ul>
-        <li>
-            <a href="{{ path('supplier_new') }}">Nieuwe leverancier</a>
-        </li>
-    </ul>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            Naam
+        </div>
+        <div class="cell medium-3">
+            {{ supplier.name }}
+        </div>
+        <div class="cell medium-3"></div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            E-mail
+        </div>
+        <div class="cell medium-3">
+            {{ supplier.email }}
+        </div>
+        <div class="cell medium-3"></div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            Telefoon
+        </div>
+        <div class="cell medium-3">
+            {{ supplier.telephone }}
+        </div>
+        <div class="cell medium-3"></div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            Rekeningnummer
+        </div>
+        <div class="cell medium-3">
+            {{ supplier.bankaccountNumber }}
+        </div>
+        <div class="cell medium-3"></div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            Extra informatie
+        </div>
+        <div class="cell medium-3">
+            {{ supplier.extraInfo }}
+        </div>
+        <div class="cell medium-3"></div>
+    </div>
+    <br>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-6"></div>
+        <div class="cell medium-3">
+            <a class="button" href="{{ path('supplier_show', { 'id': supplier.id }) }}">Inzien</a>
+            <a class="button" href="{{ path('supplier_edit', { 'id': supplier.id }) }}">Bewerken</a>
+        </div>
+        <div class="cell medium-3 text-right"></div>
+    </div>
+                {% endfor %}
 {% endblock %}

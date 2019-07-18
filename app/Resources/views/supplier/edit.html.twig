@@ -1,21 +1,107 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{{ form_start(edit_form) }}
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a class="button" href="{{ path('supplier_index') }}">Overzicht</a>
+        </div>
+    </div>
+
     <h4>Leverancier bewerken</h4>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <br>
 
-    <ul>
-        <li>
-            <a href="{{ path('supplier_index') }}">Overzicht</a>
-        </li>
-        <li>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.name) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.name) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.name) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.email) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.email) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.email) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.telephone) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.telephone) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.telephone) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.bankaccountNumber) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.bankaccountNumber) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.bankaccountNumber) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.extraInfo) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.extraInfo) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.extraInfo) }}
+        </div>
+    </div>
+    
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3 text-right">
+            <input type="reset" value="Annuleren" class="button" />
+            <input type="submit" value="Opslaan" class="button" />
+    {{ form_end(edit_form) }}
+        </div>
+        <div class="cell medium-1"></div>
+        <div class="cell medium-2">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Verwijderen" class="button text-right">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
+
+    {# <div class="grid-x grid-padding-x">
+        <div class="cell medium-6"></div>
+        <div class="cell medium-3 text-right">
+            <input class="button" type="submit" value="Bewerken" />
+            {{ form_end(edit_form) }}
+            {{ form_start(delete_form) }}
+            <input class="button" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        <div class="cell medium-3"></div>
+        </div>
+    </div> #}
+        
+     
 {% endblock %}
