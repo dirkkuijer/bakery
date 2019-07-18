@@ -1,50 +1,91 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h4>Lijst facturen</h4>
-    {% if is_granted('ROLE_ADMIN') %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Voornaam</th>
-                    <th>Achternaam</th>
-                    <th>KlantId</th>
-                    <th>Datum</th>
-                    <th>Omschrijving</th>
-                    <th>Factuurnummer</th>
-                    <th>Bewerking</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for invoice in invoices %}
-                <tr>
-                    <td>{{ invoice.firstName }}</td>
-                    <td>{{ invoice.lastName }}</td>
-                {% for customer in customers%}
-                    <td><a href=" {{ path('customer_show', { 'id' : customer.id}) }} ">{{ customer.id }}</a></td>
-                {% endfor %}
-                    <td>{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
-                    <td>{{ invoice.description }}</td>
-                    <td>{{ invoice.invoiceNumber }}</td>
-                    <td>
-                        {# <ul>
-                            <li> #}
-                                <a class="button" href="{{ path('invoice_show', { 'id': invoice.id }) }}">Bиди</a>
-                            {# </li>
-                            <li> #}
-                                <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Измени</a>
-                            {# </li>
-                        </ul> #}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
 
-        <ul>
-            <li>
-                <a href="{{ path('invoice_new') }}">Factuur maken</a>
-            </li>
-        </ul>
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a class="button" href="{{ path('invoice_new') }}">Factuur maken</a>
+        </div>
+    </div>
+
+    <h4>Lijst facturen</h4>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        {% for invoice in invoices %}   
+    
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Voornaam            
+                </div>
+                <div class="cell medium-6">
+                    {{ invoice.firstname }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Achternaam            
+                </div>
+                <div class="cell medium-6">
+                    {{ invoice.lastName }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    KlantId            
+                </div>
+                <div class="cell medium-6">
+                    {% for customer in customers%}
+                        <td><a href=" {{ path('customer_show', { 'id' : customer.id}) }} ">{{ customer.id }}</a></td>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Datum            
+                </div>
+                <div class="cell medium-6">
+                    {% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Omschrijving            
+                </div>
+                <div class="cell medium-6">
+                    {{ invoice.description }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Factuurnummer            
+                </div>
+                <div class="cell medium-6">
+                    {{ invoice.invoiceNumber }}
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-5"></div>
+                <div class="cell medium-1"></div>
+                    <a class="button" href="{{ path('invoice_show', { 'id': invoice.id }) }}">
+                        Bиди
+                    </a>
+                    <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">
+                        Измени
+                    </a>
+                </div>
+                <div class="cell medium-6">
+                </div>
+            </div>
+        {% endfor %}
+
+        
     {% endif %}
 {% endblock %}

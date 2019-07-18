@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,8 +23,12 @@ class InvoiceType extends AbstractType
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('invoiceNumber')
-            ->add('description')
+            ->add('invoiceNumber', TextType::class, [
+                'attr' => ['placeholder' => 'jaartal-opvolgnummer'],
+            ])
+            ->add('description', TextareaType::class, [
+                'attr' => ['placeholder' => 'Omschrijving bestelling'],
+            ])
             ->add('amount')
             ->add('amountWithVat')
             ->add('vatAmount')

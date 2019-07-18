@@ -1,52 +1,100 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+  
     <h4>Factuur</h4>
-     {% if is_granted('ROLE_ADMIN') %}
-    <table>
-        <tbody>
-            <tr>
-                <th>Voornaam</th>
-                <td>{{ invoice.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Achternaam</th>
-                <td>{{ invoice.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Datum</th>
-                <td>{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Omschrijving</th>
-                <td>{{ invoice.description }}</td>
-            </tr>
-            <tr>
-                <th>Factuurnummer</th>
-                <td>{{ invoice.invoiceNumber }}</td>
-            </tr>
-            <tr>
-                <th>Bedrag</th>
-                <td>{{ invoice.amount }}</td>
-            </tr>
-            <tr>
-                <th>Bedrag met BTW</th>
-                <td>{{ invoice.amountWithVat }}</td>
-            </tr>
-            <tr>
-                <th>BTW-bedrag</th>
-                <td>{{ invoice.vatAmount }}</td>
-            </tr>
-            <tr>
-                <th>BTW-percentage</th>
-                <td>{{ invoice.vatPercentage }}</td>
-            </tr>
-            <tr>
-                <th>Totaal</th>
-                <td>{{ invoice.vatAmount|default('Nog aanpassen')}}</td>
-            </tr>
-        </table>
-    </tbody>
+        
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                Voornaam            
+            </div>
+            <div class="cell medium-6">
+                {{ invoice.firstname }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                Achternaam            
+            </div>
+            <div class="cell medium-6">
+                {{ invoice.lastName }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                Datum
+            </div>
+            <div class="cell medium-6">
+                {% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                Omschrijving
+            </div>
+            <div class="cell medium-6">
+                {{ invoice.description }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                    Factuurnummer
+            </div>
+            <div class="cell medium-6">
+                {{ invoice.invoiceNumber }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                    Bedrag
+            </div>
+            <div class="cell medium-6">
+                {{ invoice.amount }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                    Bedrag incl. BTW
+            </div>
+            <div class="cell medium-6">
+                {{ invoice.amountWithVat }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                BTW-bedrag
+            </div>
+            <div class="cell medium-6">
+                {{ invoice.vatAmount }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                BTW-percentage
+            </div>
+            <div class="cell medium-6">
+                {{ invoice.vatPercentage }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                Totaal
+            </div>
+            <div class="cell medium-6">
+                In entity methode toevoegen om alle waarden op te tellen.
+            </div>
+        </div>
            
             <div class="grid-x grid-padding-x">
                 <div class="cell small-6"></div>

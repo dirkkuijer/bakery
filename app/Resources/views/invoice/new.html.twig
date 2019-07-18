@@ -10,63 +10,150 @@
 
 {% block body %}
 
-        {{ form_start(form) }}
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a href="{{ path('invoice_index') }}" class="button">Overzicht</a>
+        </div>
+    </div>
+    {{ form_start(form) }}
      
         <h4>Factuur aanmaken</h4>
         
-    <p>
-        {{ form_label(form.firstName) }}
-        {{ form_widget(form.firstName) }}
-        {{ form_errors(form.firstName) }}
-    </p>
-    <p>
-        {{ form_label(form.lastName) }}
-        {{ form_widget(form.lastName) }}
-        {{ form_errors(form.lastName) }}
-    </p>
-    <p>
-        {{ form_label(form.date) }}
-        {{ form_widget(form.date) }}
-        {{ form_errors(form.date) }}
-    </p>
-    <p>
-        {{ form_label(form.description) }}
-        {{ form_widget(form.description) }}
-        {{ form_errors(form.description) }}
-    </p>
-    <p>
-        {{ form_label(form.invoiceNumber) }}
-        {{ form_widget(form.invoiceNumber) }}
-        {{ form_errors(form.invoiceNumber) }}
-    </p>
-    <p>
-        {{ form_label(form.amount) }}
-        {{ form_widget(form.amount) }}
-        {{ form_errors(form.amount) }}
-    </p>
-    <p>
-        {{ form_label(form.amountWithVat) }}
-        {{ form_widget(form.amountWithVat) }}
-        {{ form_errors(form.amountWithVat) }}
-    </p>
-    <p>
-        {{ form_label(form.vatAmount) }}
-        {{ form_widget(form.vatAmount) }}
-        {{ form_errors(form.vatAmount) }}
-    </p>
-    <p>
-        {{ form_label(form.vatPercentage) }}
-        {{ form_widget(form.vatPercentage) }}
-        {{ form_errors(form.vatPercentage) }}
-    </p>
+    <br>
 
-    <input type="submit" value="Opslaan" class="button"/>
-        {{ form_end(form) }}
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.firstName) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.firstName) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.firstName) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.lastName) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.lastName) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.lastName) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.date) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.date) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.date) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.description) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.description) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.invoiceNumber) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.invoiceNumber) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.invoiceNumber) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.amount) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.amount) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.amount) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.amountWithVat) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.amountWithVat) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.amountWithVat) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.vatAmount) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.vatAmount) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.vatAmount) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.vatPercentage) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.vatPercentage) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.vatPercentage) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.customer) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.customer) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.customer) }}
+        </div>
+    </div>
 
-        <ul>
-            <li>
-                <a href="{{ path('invoice_index') }}">Overzicht</a>
-            </li>
-        </ul>
+    
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3 text-right">
+            <input type="reset" value="Annuleren" class="button" />
+            <input type="submit" value="Opslaan" class="button" />
+        </div>
+        <div class="cell medium-3"></div>
+    </div>
+    
+    {{ form_end(form) }}
  
 {% endblock %}
