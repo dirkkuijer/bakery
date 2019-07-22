@@ -2,131 +2,62 @@
 
 {% block body %}
 
-        <div class="grid-x grid-padding-x">
-            <div class="cell medium-10"></div>
-            <div class="cell medium-2">
-                <a class="button" href="{{ path('customer_new') }}">+ Nieuwe klant</a>
-            </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a class="button" href="{{ path('customer_new') }}">+ Nieuwe klant</a>
         </div>
+    </div>
 
-        <h4>Klanten</h4>
-    {% for customer in customers %}
-
-        <br>
-
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Voornaam            
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.firstname }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Achternaam
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.lastname }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Straat
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.street }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Huisnummer
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.houseNumber }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Postcode
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.postalCode }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Woonplaats
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.city }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Telefoonnummer
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.telephone }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    E-mail
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.email }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Rekeningnummer
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.bankaccountNumber }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Allergieën
-                </div>
-                <div class="cell medium-6">
-                    {{ customer.allergies }}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-2"></div>
-                <div class="cell medium-4">
-                    Facturen
-                </div>
-                <div class="cell medium-6">
-                    {% for invoice in invoices %}
-                        {% if customer.id == invoice.customer.id %}
-                            <a href=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.invoiceNumber|default('Geen factuur') }}</a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="grid-x grid-padding-x">
-                <div class="cell medium-6"></div>
-                <div class="cell medium-2">
-                    <!-- <a class="button" href="{{ path('customer_show', { 'id': customer.id }) }}">Inzien</a> -->
-                    <a class="button" href="{{ path('customer_edit', { 'id': customer.id }) }}">Bewerken</a>
-                </div>
-                <div class="cell medium-4"></div>
-            </div>
+    <h4>Klanten</h4>
+    
+    <br>
+    
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-12">
             
-               
-    {% endfor %}
-
+            <table class="stack">
+                <thead>
+                    <tr>
+                        <th>Voornaam</th>
+                        <th>Achternaam</th>
+                        <th>Straat</th>
+                        <th>Huisnummer</th>
+                        <th>Postcode</th>
+                        <th>Woonplaats</th>
+                        <th>Telefoon</th>
+                        <th>E-mail</th>
+                        <th>Rekening</th>
+                        <th>Allergieën</th>
+                        <th>Facturen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.firstname }}</td>
+                        <td>{{ customer.lastname }}</td>
+                        <td>{{ customer.street }}</td>
+                        <td>{{ customer.housenumber }}</td>
+                        <td>{{ customer.postalcode }}</td>
+                        <td>{{ customer.city }}</td>
+                        <td>{{ customer.telephone }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.bankaccountNumber }}</td>
+                        <td>{{ customer.allergies }}</td>
+                        <td>
+                            {% for invoice in invoices %}
+                                {% if customer.id == invoice.customer.id %}
+                                    <a class="button" href=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.invoiceNumber|default('Geen factuur') }}</a>
+                                {% endif %}
+                            {% endfor %}
+                            <a class="button" href="{{ path('customer_edit', { 'id': customer.id }) }}">Bewerken</a>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 {% endblock %}

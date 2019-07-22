@@ -109,7 +109,7 @@
                 Totaal
             </div>
             <div class="cell medium-6">
-                {# {{ invoice.totalAmount }} #}
+                {{ invoice.amount + ((invoice.amount / 100) * invoice.vatPercentage) }}
             </div>
         </div>
            
