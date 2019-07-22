@@ -1,11 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheet %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block javascript %}
+        {{ parent() }}
+{% endblock %}
+
 {% block body %}
-    
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a class="button" href="{{ path('invoice_index') }}">Overzicht</a>
+        </div>
+    </div>
     {% if is_granted('ROLE_ADMIN') %}
   
     <h4>Factuur</h4>
 
+    <br> 
+    
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
@@ -97,23 +113,22 @@
             </div>
         </div>
            
-            <div class="grid-x grid-padding-x">
-                <div class="cell small-6"></div>
-                <div class="cell small-2">
-                    <a class="button" href="{{ path('invoice_index') }}">Overzicht</a>
-                    <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
-                </div>
-                {{ form_start(delete_form) }}
-                <a class="button" href="{{ path('invoice_delete', { 'id': invoice.id }) }}" title="Verwijderen">
-                    Verwijderen
-                </a>
-                {# <button class="button" type="submit" title="Verwijderen">
-                    Verwijderen
-                </button> #}
-                {{ form_end(delete_form) }}
-                
-                <div class="cell small-4"></div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell small-6"></div>
+            <div class="cell small-2 text-right">
+                <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
             </div>
+
+            {{ form_start(delete_form) }}
+                {#<input type="submit" class="button" value="Verwijderen" href="{{ path('invoice_delete', { 'id': invoice.id }) }}" title="Verwijderen" />#}
+                    
+                <button class="button" type="submit" title="Verwijderen">
+                    Verwijderen
+                </button> 
+            {{ form_end(delete_form) }}
+            
+            <div class="cell small-4"></div>
+        </div>
             
     {% endif %}
 {% endblock %}

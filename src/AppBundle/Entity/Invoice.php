@@ -69,30 +69,30 @@ class Invoice
     private $invoiceNumber;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="amount", type="string", length=255)
+     * @ORM\Column(name="amount", type="float", length=255)
      */
     private $amount;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="amountWithVat", type="string", length=255)
+     * @ORM\Column(name="amountWithVat", type="float", length=255)
      */
     private $amountWithVat;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="vatAmount", type="string", length=255)
+     * @ORM\Column(name="vatAmount", type="float", length=255)
      */
     private $vatAmount;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="vatPercentage", type="string", length=255)
+     * @ORM\Column(name="vatPercentage", type="integer", length=255)
      */
     private $vatPercentage;
 

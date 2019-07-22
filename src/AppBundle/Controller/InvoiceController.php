@@ -111,7 +111,7 @@ class InvoiceController extends Controller
     /**
      * Deletes a invoice entity.
      *
-     * @Route("/{id}", name="invoice_delete")
+     * @Route("/delete/item/{id}", name="invoice_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Invoice $invoice)

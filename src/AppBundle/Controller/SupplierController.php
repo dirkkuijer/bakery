@@ -3,9 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Supplier;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Supplier controller.
@@ -26,9 +27,9 @@ class SupplierController extends Controller
 
         $suppliers = $em->getRepository('AppBundle:Supplier')->findAll();
 
-        return $this->render('supplier/index.html.twig', array(
+        return $this->render('supplier/index.html.twig', [
             'suppliers' => $suppliers,
-        ));
+        ]);
     }
 
     /**
@@ -48,13 +49,13 @@ class SupplierController extends Controller
             $em->persist($supplier);
             $em->flush();
 
-            return $this->redirectToRoute('supplier_show', array('id' => $supplier->getId()));
+            return $this->redirectToRoute('supplier_show', ['id' => $supplier->getId()]);
         }
 
-        return $this->render('supplier/new.html.twig', array(
+        return $this->render('supplier/new.html.twig', [
             'supplier' => $supplier,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -67,10 +68,10 @@ class SupplierController extends Controller
     {
         $deleteForm = $this->createDeleteForm($supplier);
 
-        return $this->render('supplier/show.html.twig', array(
+        return $this->render('supplier/show.html.twig', [
             'supplier' => $supplier,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -88,20 +89,20 @@ class SupplierController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('supplier_edit', array('id' => $supplier->getId()));
+            return $this->redirectToRoute('supplier_edit', ['id' => $supplier->getId()]);
         }
 
-        return $this->render('supplier/edit.html.twig', array(
+        return $this->render('supplier/edit.html.twig', [
             'supplier' => $supplier,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
      * Deletes a supplier entity.
      *
-     * @Route("/{id}", name="supplier_delete")
+     * @Route("/delete/item/{id}", name="supplier_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Supplier $supplier)
@@ -128,7 +129,7 @@ class SupplierController extends Controller
     private function createDeleteForm(Supplier $supplier)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('supplier_delete', array('id' => $supplier->getId())))
+            ->setAction($this->generateUrl('supplier_delete', ['id' => $supplier->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -3,6 +3,8 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,8 +22,12 @@ class CustomerType extends AbstractType
             ->add('houseNumber')
             ->add('postalCode')
             ->add('city')
-            ->add('telephone')
-            ->add('email')
+            ->add('telephone', TextType::class, [
+                'attr' => ['placeholder' => '123-4567890'],
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => ['placeholder' => 'naam@mail.nl'],
+            ])
             ->add('allergies')
             ->add('bankaccountNumber')
 

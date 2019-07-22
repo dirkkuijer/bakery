@@ -5,26 +5,66 @@
 {% endblock %}
 
 {% block body %}
-    <h3>Gebruiker bewerken</h3>
+{{ form_start(edit_form) }}
+    
+<h3>Gebruiker bewerken</h3>
 
     <div class="grid-x grid-padding-x">
         <div class="cell medium-2">
             <a href="{{ path('user_index') }}"
                 <a href="{{ path('user_index') }}" class="button" title="Overzicht">
-               <i class="fas fa-clipboard-list medium"></i>
+               Overzicht
             </a>
         </div>
         <div class="cell medium-10"></div>
     </div>
 
-    {{ form_start(edit_form) }}
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.username) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.username) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.username) }}
+        </div>
+    </div>
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.email) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.email) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.email) }}
+        </div>
+    </div>
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.roles) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.roles) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.roles) }}
+        </div>
+    </div>
+
         {{ form_errors(edit_form._token) }}
 
     <div class="grid-x grid-padding-x">
         <div class="cell medium-7"></div>
         <div class="cell medium-2">  
             <button class="button" type="submit" title="Opslaan">
-                <i class="far fa-save"></i>
             </button>
         </div> 
         <div class="cell medium-3"></div>

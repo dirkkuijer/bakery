@@ -1,43 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a class="button" href="{{ path('supplier_index') }}">Overzicht</a>
+        </div>
+    </div>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
     <h4>Leverancier</h4>
 
     <br>
+    
     <div class="grid-x grid-padding-x">
-            <div class="cell medium-3"></div>
-            <div class="cell medium-3">
-                Naam
-            </div>
-            <div class="cell medium-3">
-            
-                <th>Naam</th>
-                <td>{{ supplier.name }}</td>
-            </tr>
-            <tr>
-                <th>E-mail</th>
-                <td>{{ supplier.email }}</td>
-            </tr>
-            <tr>
-                <th>Telefoonnummer</th>
-                <td>{{ supplier.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Extra informatie</th>
-                <td>{{ supplier.extraInfo }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="cell medium-2"></div>
+        <div class="cell medium-4">
+            Naam
+        </div>
+        <div class="cell medium-6">
+            {{ supplier.name }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-2"></div>
+        <div class="cell medium-4">
+            E-mail
+        </div>
+        <div class="cell medium-6">
+            {{ supplier.email }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-2"></div>
+        <div class="cell medium-4">
+            Telefoonnummer
+        </div>
+        <div class="cell medium-6">
+            {{ supplier.telephone }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-2"></div>
+        <div class="cell medium-4">
+                Extra informatie
+        </div>
+        <div class="cell medium-6">
+            {{ supplier.extraInfo }}
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('supplier_edit', { 'id': supplier.id }) }}">Edit</a>
-        </li>
-        <li>
+    <div class="grid-x grid-padding-x">
+        <div class="cell small-6"></div>
+        <div class="cell small-2 text-right">
+            <a class="button" href="{{ path('supplier_edit', { 'id': supplier.id }) }}">Bewerken</a>
+        </div>
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Verwijderen" class="button" />
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <div class="cell small-4"></div>
+    </div>
+    {% endif %}
 {% endblock %}

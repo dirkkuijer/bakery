@@ -68,40 +68,44 @@
         
         <div class="grid-x cell shrink">    
             <div class="cell medium-2">
-                <ul class="vertical menu accordion-menu" data-accordion-menu data-allow-all-closed="true">
-                    <li>
-                       <a href="#">Kорисника</a>
-                       <ul class="menu vertical nested">
-                           <li><a href=" {{ path('user_index') }} ">преглед</a></li>
-                            <li><a href=" {{ path('user_new') }} ">нев</a></li>
-                        </ul> 
-                    </li>
-                    <li>
-                        <a href="#">Фактуре</a>
-                        <ul class="menu vertical nested">
-                            <li><a href=" {{ path('invoice_index') }} ">преглед</a></li>
-                            <li><a href=" {{ path('invoice_new') }} ">нев</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Купци</a>
-                        <ul class="menu vertical nested">
-                            <li><a href=" {{ path('customer_index') }} ">преглед</a></li>
-                            <li><a href=" {{ path('customer_new') }} ">нев</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Добављачи</a>
-                        <ul class="menu vertical nested">
-                            <li><a href=" {{ path('supplier_index') }} ">преглед</a></li>
-                            <li><a href=" {{ path('supplier_new') }} ">нев</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Порез</a>
-                        <ul class="menu vertical nested">
-                            <li><a href="#">преглед</a></li>
-                            <li><a href="#">нев</a></li>
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <li><a href="#"><strong>Мени</strong></a>
+                        <ul>
+                            <li>
+                            <a href="#">Kорисника</a>
+                            <ul class="menu vertical nested">
+                                <li><a href=" {{ path('user_index') }} ">преглед</a></li>
+                                    <li><a href=" {{ path('user_new') }} ">нев</a></li>
+                                </ul> 
+                            </li>
+                            <li>
+                                <a href="#">Фактуре</a>
+                                <ul class="menu vertical nested">
+                                    <li><a href=" {{ path('invoice_index') }} ">преглед</a></li>
+                                    <li><a href=" {{ path('invoice_new') }} ">нев</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Купци</a>
+                                <ul class="menu vertical nested">
+                                    <li><a href=" {{ path('customer_index') }} ">преглед</a></li>
+                                    <li><a href=" {{ path('customer_new') }} ">нев</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Добављачи</a>
+                                <ul class="menu vertical nested">
+                                    <li><a href=" {{ path('supplier_index') }} ">преглед</a></li>
+                                    <li><a href=" {{ path('supplier_new') }} ">нев</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Порез</a>
+                                <ul class="menu vertical nested">
+                                    <li><a href="#">преглед</a></li>
+                                    <li><a href="#">нев</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>

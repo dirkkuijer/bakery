@@ -25,6 +25,7 @@ class InvoiceType extends AbstractType
             ])
             ->add('invoiceNumber', TextType::class, [
                 'attr' => ['placeholder' => 'jaartal-opvolgnummer'],
+                'empty_data' => '19-005',
             ])
             ->add('description', TextareaType::class, [
                 'attr' => ['placeholder' => 'Omschrijving bestelling'],

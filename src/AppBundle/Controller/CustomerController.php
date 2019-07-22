@@ -104,7 +104,7 @@ class CustomerController extends Controller
     /**
      * Deletes a customer entity.
      *
-     * @Route("/{id}", name="customer_delete")
+     * @Route("/delete/item/{id}", name="customer_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Customer $customer)

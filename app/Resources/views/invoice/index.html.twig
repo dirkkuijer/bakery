@@ -6,7 +6,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" href="{{ path('invoice_new') }}">Factuur maken</a>
+            <a class="button" href="{{ path('invoice_new') }}">+ Factuur maken</a>
         </div>
     </div>
 
@@ -14,7 +14,16 @@
 
     {% if is_granted('ROLE_ADMIN') %}
         {% for invoice in invoices %}   
-    
+
+            <div class="grid-x grid-padding-x">
+                <div class="cell medium-2"></div>
+                <div class="cell medium-4">
+                    Factuur id:            
+                </div>
+                <div class="cell medium-6">
+                    {{ invoice.id }}
+                </div>
+            </div>
             <div class="grid-x grid-padding-x">
                 <div class="cell medium-2"></div>
                 <div class="cell medium-4">
@@ -39,8 +48,10 @@
                     KlantId            
                 </div>
                 <div class="cell medium-6">
-                    {% for customer in customers%}
-                        <td><a href=" {{ path('customer_show', { 'id' : customer.id}) }} ">{{ customer.id }}</a></td>
+                    {% for customer in customers %}
+                        {% if invoice.customer.id == customer.id %}
+                            <a href=" {{ path('customer_show', { 'id' : customer.id}) }} ">{{ customer.id }}</a>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

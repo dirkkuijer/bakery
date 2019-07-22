@@ -2,6 +2,7 @@ First name: Voornaam
 Last name: Achternaam
 Email: E-mail
 Street:	Straat
+Allergies: Allergiën
 House number: Huisnummer
 House number addition: Toevoeging
 Postal code: Postcode
@@ -21,6 +22,7 @@ Amount with vat: Bedrag incl. BTW
 Vat amount: BTW-bedrag
 Vat percentage: BTW-percentage
 fullName: Klant
+
 Suppliers:
     Name: Naam
     Email: E-mail
