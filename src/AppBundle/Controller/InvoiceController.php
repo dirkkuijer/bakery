@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Invoice;
+use Ps\PdfBundle\Annotation\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -132,6 +133,21 @@ class InvoiceController extends Controller
     public function showFlash(String $state)
     {
         return $this->addFlash('success', $state);
+    }
+
+    /**
+     * begin van pdf toevoegingen
+     *
+     * @Route("/pdf/{id}", defaults={ "_format" = "pdf" }, name="invoice.pdf")
+     * @Pdf(stylesheet="invoice/pdf/invoice.pdf.style.twig")
+     * @Method({"GET"})
+     */
+    public function pdfPowerplanAction(Request $request, Invoice $invoice)
+    {
+        return $this->render('invoice/pdf/invoice.pdf.twig', [
+            'invoice' => $invoice,
+            'customer' => $invoice->getCustomer(),
+        ]);
     }
 
     /**

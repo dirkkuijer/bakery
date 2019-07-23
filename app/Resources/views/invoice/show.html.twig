@@ -120,14 +120,15 @@
             <div class="cell small-2 text-right">
                 <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
             </div>
-
+            
             {{ form_start(delete_form) }}
-                {#<input type="submit" class="button" value="Verwijderen" href="{{ path('invoice_delete', { 'id': invoice.id }) }}" title="Verwijderen" />#}
-                    
-                <button class="button" type="submit" title="Verwijderen">
-                    Verwijderen
-                </button> 
+            {#<input type="submit" class="button" value="Verwijderen" href="{{ path('invoice_delete', { 'id': invoice.id }) }}" title="Verwijderen" />#}
+            
+            <button class="button" type="submit" title="Verwijderen">
+                Verwijderen
+            </button> 
             {{ form_end(delete_form) }}
+            <a class="button" href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">PDF</a>
             
             <div class="cell small-4"></div>
         </div>
