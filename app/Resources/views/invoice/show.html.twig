@@ -46,7 +46,8 @@
                 Datum
             </div>
             <div class="cell medium-6">
-                {% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
+                {# {% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %} #}
+                {% if invoice.date %}{{ invoice.date|localizeddate('short', 'none', 'locale') }}{% endif %}
             </div>
         </div>
         <div class="grid-x grid-padding-x">
@@ -73,10 +74,10 @@
                     Bedrag
             </div>
             <div class="cell medium-6">
-                {{ invoice.amount }}
+                {{ invoice.amount|localizedcurrency('EUR')  }}
             </div>
         </div>
-        <div class="grid-x grid-padding-x">
+        {# <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
                     Bedrag incl. BTW
@@ -84,14 +85,14 @@
             <div class="cell medium-6">
                 {{ invoice.amountWithVat }}
             </div>
-        </div>
+        </div> #}
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
                 BTW-bedrag
             </div>
             <div class="cell medium-6">
-                {{ invoice.vatAmount }}
+                {{ invoice.vatAmount|localizedcurrency('EUR')  }}
             </div>
         </div>
         <div class="grid-x grid-padding-x">
@@ -100,7 +101,7 @@
                 BTW-percentage
             </div>
             <div class="cell medium-6">
-                {{ invoice.vatPercentage }} %
+                {{ invoice.vatPercentage|number_format(2, ',' ,'.') }} %
             </div>
         </div>
         <div class="grid-x grid-padding-x">
@@ -109,7 +110,8 @@
                 Totaal
             </div>
             <div class="cell medium-6">
-                {{ invoice.amount + ((invoice.amount / 100) * invoice.vatPercentage) }}
+                {# {% set totalAmount = invoice.amount + ((invoice.amount / 100) * invoice.vatPercentage) %} #}
+                {{ invoice.amountWithVat|localizedcurrency('EUR') }}
             </div>
         </div>
            

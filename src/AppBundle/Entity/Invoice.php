@@ -257,6 +257,8 @@ class Invoice
      */
     public function getAmountWithVat()
     {
+        $this->getAmountWithVat = $this->getAmount() + $this->getVatAmount();
+
         return $this->amountWithVat;
     }
 
@@ -281,6 +283,10 @@ class Invoice
      */
     public function getVatAmount()
     {
+        $amount = $this->getAmount();
+        $vat = $this->getVatPercentage();
+        $vatAmount = ($amount / 100) * $vat;
+
         return $this->vatAmount;
     }
 

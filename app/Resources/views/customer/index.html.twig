@@ -8,28 +8,27 @@
             <a class="button" href="{{ path('customer_new') }}">+ Nieuwe klant</a>
         </div>
     </div>
-
+    
     <h4>Klanten</h4>
     
     <br>
     
     <div class="grid-x grid-padding-x">
-        <div class="cell medium-12">
+        <div class="cell medium-1"></div>
+        <div class="cell medium-10">
             
-            <table class="stack">
+            <table class="stack hover">
                 <thead>
                     <tr>
                         <th>Voornaam</th>
                         <th>Achternaam</th>
-                        <th>Straat</th>
-                        <th>Huisnummer</th>
-                        <th>Postcode</th>
                         <th>Woonplaats</th>
                         <th>Telefoon</th>
                         <th>E-mail</th>
                         <th>Rekening</th>
                         <th>Allergieën</th>
                         <th>Facturen</th>
+                        <th colspan="2" class="text-center">Acties</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,9 +36,6 @@
                     <tr>
                         <td>{{ customer.firstname }}</td>
                         <td>{{ customer.lastname }}</td>
-                        <td>{{ customer.street }}</td>
-                        <td>{{ customer.housenumber }}</td>
-                        <td>{{ customer.postalcode }}</td>
                         <td>{{ customer.city }}</td>
                         <td>{{ customer.telephone }}</td>
                         <td>{{ customer.email }}</td>
@@ -48,9 +44,14 @@
                         <td>
                             {% for invoice in invoices %}
                                 {% if customer.id == invoice.customer.id %}
-                                    <a class="button" href=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.invoiceNumber|default('Geen factuur') }}</a>
-                                {% endif %}
+                                    <a class="button" href=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.invoiceNumber }}</a>
+                                    
+                                    {% endif %}
                             {% endfor %}
+                        <td>
+                            <a class="button" href="{{ path('customer_show', { 'id': customer.id }) }}">Inzien</a>
+                        </td>
+                        <td>
                             <a class="button" href="{{ path('customer_edit', { 'id': customer.id }) }}">Bewerken</a>
                         </td>
                         
@@ -58,6 +59,7 @@
                 </tbody>
                 {% endfor %}
             </table>
+        <div class="cell medium-1"></div>
         </div>
     </div>
 {% endblock %}
