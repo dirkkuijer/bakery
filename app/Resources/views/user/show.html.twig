@@ -69,9 +69,9 @@
             </div>
             <div class="cell small-4">
                 {{ form_start(delete_form) }}
-                <a href="{{ path('user_delete', { 'id' : user.id}) }}" class="button">
-                    Verwijderen
-                </a>
+                    <button class="button" type="submit" title="Verwijderen">
+                        Verwijderen
+                    </button>
                 {{ form_end(delete_form) }}
             </div>
         </div>                
