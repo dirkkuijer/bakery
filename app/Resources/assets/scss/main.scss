@@ -97,15 +97,19 @@ ul {
 
 
   .logo {
-    display: block;
-    margin-right: 57%;
-    margin-left: 43%;
+    // display: block;
+    // margin-right: 57%;
+    // margin-left: 43%;
     margin-bottom: 2%;
+    margin-top: 1%;
     width: 15vw;
     height: 15vw;
     border-radius: 150px;
     border: 1px $primary-color solid;
     box-shadow: 1px 1px 5px $primary-color;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .flash-success {
@@ -131,4 +135,5 @@ ul {
         color: black;
         padding: 2rem;
     }
+
 }

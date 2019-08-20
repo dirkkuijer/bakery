@@ -1,9 +1,14 @@
 // search field in index.html.twig
+
+module.export = require("functions");
+
+console.log("Functions loaded");
+
 function emptyForm() {
     document.getElementById("zoeken").reset();
     }
 
-
+   
 $(document).ready(function(){
   
     $("#myInput").on("keyup", function() {
@@ -21,5 +26,4 @@ setTimeout(function() {
     $('.flash-success').fadeOut('slow');
     }, 5000); // <-- time in milliseconds
 
-
-
+ 

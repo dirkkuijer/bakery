@@ -12,13 +12,8 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('functions') }}
         {% endblock %}
-
-        <!-- Compressed CSS -->
-        {# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation.min.css" integrity="sha256-xpOKVlYXzQ3P03j397+jWFZLMBXLES3IiryeClgU5og= sha384-gP4DhqyoT9b1vaikoHi9XQ8If7UNLO73JFOOlQV1RATrA7D0O7TjJZifac6NwPps sha512-AKwIib1E+xDeXe0tCgbc9uSvPwVYl6Awj7xl0FoaPFostZHOuDQ1abnDNCYtxL/HWEnVOMrFyf91TDgLPi9pNg==" crossorigin="anonymous"> #}
-
-        <!-- Compressed JavaScript -->
-        {# <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js" integrity="sha256-/PFxCnsMh+nTuM0k3VJCRch1gwnCfKjaP8rJNq5SoBg= sha384-9ksAFjQjZnpqt6VtpjMjlp2S0qrGbcwF/rvrLUg2vciMhwc1UJJeAAOLuJ96w+Nj sha512-UMSn6RHqqJeJcIfV1eS2tPKCjzaHkU/KqgAnQ7Nzn0mLicFxaVhm9vq7zG5+0LALt15j1ljlg8Fp9PT1VGNmDw==" crossorigin="anonymous"></script> #}
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,11 +36,11 @@
                         Ођављивање
                     </a>
                 </div>
-            {% else %} 
+            {# {% else %} 
 
                 <a href="{{ path('fos_user_security_login') }}">
                     {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
-                </a>
+                </a> #}
             {% endif %}
     
             {% if app.request.hasPreviousSession %}
@@ -59,9 +54,7 @@
                 {% endfor %}
             {% endif %}
         </div>
-       
-            <img src="{{ asset('build/images/logo.jpeg') }}" class="logo">
-         
+                <img src="{{ asset('build/images/logo.jpeg') }}" class="logo">
        
          {% if is_granted('ROLE_ADMIN') %}
         <h3>Администрација</h3>
@@ -72,46 +65,29 @@
                     <li><a href="#"><strong>Мени</strong></a>
                         <ul>
                             <li>
-                            <a href="#">Kорисника</a>
-                            <ul class="menu vertical nested">
-                                <li><a href=" {{ path('user_index') }} ">преглед</a></li>
-                                    <li><a href=" {{ path('user_new') }} ">нев</a></li>
-                                </ul> 
+                                <a href="#">Преглед</a>
+                                    <ul class="menu vertical nested">
+                                        <li><a href=" {{ path('user_index') }} ">Kорисника</a></li>
+                                        <li><a href=" {{ path('invoice_index') }} ">Фактура</a></li>
+                                        <li><a href=" {{ path('relation_index') }} ">однос</a></li>
+                                        <li><a href=" {{ path('file_index') }} ">Фајлови</a></li>
+                                        <li><a href=" {{ path('tax_index') }} ">Порез</a></li>
+                                    </ul> 
                             </li>
                             <li>
-                                <a href="#">Фактуре</a>
-                                <ul class="menu vertical nested">
-                                    <li><a href=" {{ path('invoice_index') }} ">преглед</a></li>
-                                    <li><a href=" {{ path('invoice_new') }} ">нев</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Купци</a>
-                                <ul class="menu vertical nested">
-                                    <li><a href=" {{ path('customer_index') }} ">преглед</a></li>
-                                    <li><a href=" {{ path('customer_new') }} ">нев</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Добављачи</a>
-                                <ul class="menu vertical nested">
-                                    <li><a href=" {{ path('supplier_index') }} ">преглед</a></li>
-                                    <li><a href=" {{ path('supplier_new') }} ">нев</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Порез</a>
-                                <ul class="menu vertical nested">
-                                    <li><a href="#">преглед</a></li>
-                                    <li><a href="#">нев</a></li>
-                                </ul>
+                                <a href="#">Heb</a>
+                                    <ul class="menu vertical nested">
+                                        <li><a href=" {{ path('user_new') }} ">Kорисника</a></li>
+                                        <li><a href=" {{ path('invoice_new') }} ">Фактура</a></li>
+                                        <li><a href=" {{ path('relation_new') }} ">однос</a></li>
+                                        <li><a href=" {{ path('file_new') }} ">Фајлови</a></li>
+                                    </ul>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <div class="cell medium-10">
-            </div>
+            <div class="cell medium-10"></div>
         </div>
         
 

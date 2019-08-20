@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+
+
 /**
  * InvoiceRepository
  *
@@ -10,4 +13,4 @@ namespace AppBundle\Repository;
  */
 class InvoiceRepository extends \Doctrine\ORM\EntityRepository
 {
-}
+   }

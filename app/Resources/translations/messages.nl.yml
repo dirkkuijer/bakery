@@ -1,10 +1,7 @@
-First name: Voornaam
-Last name: Achternaam
 Email: E-mail
 Street:	Straat
 Allergies: Allergieën
 House number: Huisnummer
-House number addition: Toevoeging
 Postal code: Postcode
 City: Woonplaats
 Telephone: Telefoon
@@ -15,16 +12,16 @@ Roles: Rol gebruiker
 Name: Naam
 Subject: Onderwerp
 Message: Bericht
-Bankaccount number: Rekeningnummer
+Bank account number: Rekeningnummer
 Invoice number: Factuurnummer
 Amount: Bedrag
 Amount with vat: Bedrag incl. BTW
 Vat amount: BTW-bedrag
 Vat percentage: BTW-percentage
 fullName: Klant
-
-Suppliers:
-    Name: Naam
-    Email: E-mail
-    Telephone: Telefoon
-    Extra info: Extra informatie
+Kind of invoice customer: Type
+Kind of relation: Relatie
+Invoice send: Factuur verzonden op
+Status payment: Status betaling
+Extra info: Extra informatie
+Period: Kwartaal

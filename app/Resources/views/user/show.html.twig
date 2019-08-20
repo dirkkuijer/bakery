@@ -19,21 +19,13 @@
             </a>
         </div>
     </div>
-
-    <h4>Gebruikerslijst</h4>
+     {% if is_granted('ROLE_ADMIN') %}
+    
+    <h4>Gebruiker {{ user.username }}</h4>
             
     <br>
 
 
-        <div class="grid-x grid-padding-x">
-            <div class="cell medium-2"></div>
-            <div class="cell medium-4">
-                Gebruiker            
-            </div>
-            <div class="cell medium-6">
-                {{ user.username }}
-            </div>
-        </div>
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
@@ -70,10 +62,10 @@
             <div class="cell small-4">
                 {{ form_start(delete_form) }}
                     <button class="button" type="submit" title="Verwijderen">
-                        Verwijderen
-                    </button>
+                         Verwijderen
+                    </button> 
                 {{ form_end(delete_form) }}
             </div>
         </div>                
-
+    {% endif %}
 {% endblock %}

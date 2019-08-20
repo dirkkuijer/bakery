@@ -25,29 +25,19 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Voornaam            
+                Naam            
             </div>
             <div class="cell medium-6">
-                {{ invoice.firstname }}
+                {{ invoice.relation.name }}
             </div>
-        </div>
-        <div class="grid-x grid-padding-x">
-            <div class="cell medium-2"></div>
-            <div class="cell medium-4">
-                Achternaam            
-            </div>
-            <div class="cell medium-6">
-                {{ invoice.lastName }}
-            </div>
-        </div>
+         </div>
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
                 Datum
             </div>
             <div class="cell medium-6">
-                {# {% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %} #}
-                {% if invoice.date %}{{ invoice.date|localizeddate('short', 'none', 'locale') }}{% endif %}
+                {% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}
             </div>
         </div>
         <div class="grid-x grid-padding-x">
@@ -65,7 +55,9 @@
                     Factuurnummer
             </div>
             <div class="cell medium-6">
-                {{ invoice.invoiceNumber }}
+                <a class="button" href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">
+                    {{ invoice.invoiceNumber }}
+                (PDF)</a>
             </div>
         </div>
         <div class="grid-x grid-padding-x">
@@ -74,7 +66,7 @@
                     Bedrag
             </div>
             <div class="cell medium-6">
-                {{ invoice.amount|localizedcurrency('EUR')  }}
+               &#8364; {{ invoice.amount|number_format(2, ',','.')  }}
             </div>
         </div>
         {# <div class="grid-x grid-padding-x">
@@ -92,7 +84,7 @@
                 BTW-bedrag
             </div>
             <div class="cell medium-6">
-                {{ invoice.vatAmount|localizedcurrency('EUR')  }}
+                &#8364; {{ invoice.vatAmount|number_format(2, ',','.')  }}
             </div>
         </div>
         <div class="grid-x grid-padding-x">
@@ -111,10 +103,36 @@
             </div>
             <div class="cell medium-6">
                 {# {% set totalAmount = invoice.amount + ((invoice.amount / 100) * invoice.vatPercentage) %} #}
-                {{ invoice.amountWithVat|localizedcurrency('EUR') }}
+                <strong>&#8364; {{ invoice.amountWithVat|number_format(2, ',','.') }}</strong>
             </div>
         </div>
-           
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                Factuur verzonden op
+            </div>
+            <div class="cell medium-6">
+                {% if invoice.invoiceSend is not null %}
+                    {{ invoice.invoiceSend|date("d-m-Y") }}
+                {% else %}
+                    N.v.t.
+                {% endif %}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-2"></div>
+            <div class="cell medium-4">
+                Status
+            </div>
+            <div class="cell medium-6">
+                {% if invoice.statusPayment == 1 %}
+                    Betaald
+                {% else %}
+                    Niet betaald
+                {% endif %}
+            </div>
+        </div>
+        
         <div class="grid-x grid-padding-x">
             <div class="cell small-6"></div>
             <div class="cell small-2 text-right">
@@ -128,7 +146,6 @@
                 Verwijderen
             </button> 
             {{ form_end(delete_form) }}
-            <a class="button" href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">PDF</a>
             
             <div class="cell small-4"></div>
         </div>

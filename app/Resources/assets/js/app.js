@@ -1,8 +1,10 @@
 // require('../css/app.css');
 // import 'foundation-sites';
 
-import jQuery from 'jquery'
+require('../js/calculate');
 
+
+import jQuery from 'jquery'
 window.jQuery = jQuery
 window.$ = jQuery
 

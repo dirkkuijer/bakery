@@ -82,10 +82,10 @@ class UserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
 
-        return $this->render('user/show.html.twig', [
+        return $this->render('user/show.html.twig', array(
             'user' => $user,
             'delete_form' => $deleteForm->createView(),
-        ]);
+        ));
     }
 
     /**
@@ -122,30 +122,36 @@ class UserController extends Controller
     /**
      * Deletes a user entity.
      *
-     * @Route("/{id}", name="user_delete")
+     * @Route("delete/item/{id}", name="user_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, User $user)
     {
-        if ($user->getSystem()) {
+        if ($user->getSystem()) 
+        {
             return $this->redirectToRoute('user_index');
         }
-
+        
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
+       
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
         }
-
-        $state = 'Gebruiker is verwijderd.';
+        
+        return $this->redirectToRoute('user_index');
+        
+        $state = "Gebruiker is verwijderd.";
         // added by Dirk
         $this->showFlash($state);
-
-        return $this->redirectToRoute('user_index');
+        
+        
     }
 
+
+    
     // added by Dirk to show flash messages after submitting form
     public function showFlash(String $state)
     {

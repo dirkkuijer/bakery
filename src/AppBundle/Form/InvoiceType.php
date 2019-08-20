@@ -4,11 +4,14 @@ namespace AppBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use AppBundle\Entity\Invoice;
 
 class InvoiceType extends AbstractType
 {
@@ -16,16 +19,18 @@ class InvoiceType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {   
+        
+
+        $invoice = new Invoice();
+        $year = date('y');
+
         $builder
-            ->add('firstName', TextType::class)
-            ->add('lastName')
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
             ])
             ->add('invoiceNumber', TextType::class, [
-                'attr' => ['placeholder' => 'jaartal-opvolgnummer'],
-                'empty_data' => '19-005',
+                'attr' => ['value' => $year.'-000' ],
             ])
             ->add('description', TextareaType::class, [
                 'attr' => ['placeholder' => 'Omschrijving bestelling'],
@@ -34,13 +39,23 @@ class InvoiceType extends AbstractType
             ->add('amountWithVat')
             ->add('vatAmount')
             ->add('vatPercentage')
-            ->add('customer', EntityType::class, [
-                'class' => 'AppBundle:Customer',
-                'choice_label' => 'fullName',
-                'label' => 'fullName',
+            ->add('relation', EntityType::class, [
+                'class' => 'AppBundle:Relation',
+                'choice_label' => 'name',
+                'label' => 'Name',
+                ])
+            ->add('invoiceSend', DateType::class, [
+                'widget' => 'single_text',
+                'required' => false,
+            ])
+            ->add('statusPayment', ChoiceType::class, [
+                'choices' => [ 'Betaald' => true, 'Niet betaald' => false ],
+                'expanded' => true,
+                'multiple' => false
             ])
         ;
     }
+    
 
     /**
      * {@inheritdoc}
@@ -50,6 +65,7 @@ class InvoiceType extends AbstractType
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\Invoice',
         ]);
+
     }
 
     /**

@@ -3,11 +3,15 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Invoice;
+use AppBundle\Form\InvoiceType;
+use AppBundle\Entity\Relation;
 use Ps\PdfBundle\Annotation\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Query;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * Invoice controller.
@@ -27,31 +31,34 @@ class InvoiceController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
-        $customers = $em->getRepository('AppBundle:Customer')->findAll();
-
+        $relations = $em->getRepository('AppBundle:Relation')->findAll();
+        
         return $this->render('invoice/index.html.twig', [
             'invoices' => $invoices,
-            'customers' => $customers,
+            'relations' => $relations,
         ]);
     }
 
-    /**
+     /**
      * Creates a new invoice entity.
      *
      * @Route("/new", name="invoice_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
-    {
+    {   
         $invoice = new Invoice();
+        
         $form = $this->createForm('AppBundle\Form\InvoiceType', $invoice);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($invoice);
             $em->flush();
-
+            
             // Added by Dirk
             $state = 'Factuur is opgeslagen.';
             $this->showFlash($state);
@@ -72,15 +79,15 @@ class InvoiceController extends Controller
      * @Route("/{id}", name="invoice_show")
      * @Method("GET")
      */
-    public function showAction(Invoice $invoice)
+    public function showAction(Invoice $invoice, Request $request)
     {
         $deleteForm = $this->createDeleteForm($invoice);
-
-        return $this->render('invoice/show.html.twig', [
-            'invoice' => $invoice,
-            'delete_form' => $deleteForm->createView(),
-        ]);
-    }
+            return $this->render('invoice/show.html.twig', [
+                'invoice' => $invoice,
+                'relation' => $invoice->getRelation(),
+                'delete_form' => $deleteForm->createView(),
+            ]);
+        }
 
     /**
      * Displays a form to edit an existing invoice entity.
@@ -93,15 +100,20 @@ class InvoiceController extends Controller
         $deleteForm = $this->createDeleteForm($invoice);
         $editForm = $this->createForm('AppBundle\Form\InvoiceType', $invoice);
         $editForm->handleRequest($request);
-
+        
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('invoice_edit', [
-                'id' => $invoice->getId(),
-            ]);
+            // Added by Dirk
+            $state = 'Factuur is aangepast.';
+            $this->showFlash($state);
+            
+            return $this->redirectToRoute('invoice_index');
+            // return $this->redirectToRoute('invoice_index', [
+            //     'id' => $invoice->getId(),
+            // ]);
         }
-
+        
         return $this->render('invoice/edit.html.twig', [
             'invoice' => $invoice,
             'edit_form' => $editForm->createView(),
@@ -124,6 +136,11 @@ class InvoiceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($invoice);
             $em->flush();
+
+            
+            // Added by Dirk
+            $state = 'Factuur is verwijderd.';
+            $this->showFlash($state);
         }
 
         return $this->redirectToRoute('invoice_index');
@@ -146,7 +163,7 @@ class InvoiceController extends Controller
     {
         return $this->render('invoice/pdf/invoice.pdf.twig', [
             'invoice' => $invoice,
-            'customer' => $invoice->getCustomer(),
+            'relation' => $invoice->getRelation(),
         ]);
     }
 

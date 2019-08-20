@@ -14,31 +14,19 @@
     <h4>Factuur bewerken</h4>
     
     <br>
-
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>
         <div class="cell medium-3">
-            {{ form_label(edit_form.firstName) }}
+            {{ form_label(edit_form.relation) }}
         </div>
         <div class="cell medium-3">
-            {{ form_widget(edit_form.firstName) }}
+            {{ form_widget(edit_form.relation) }}
         </div>
         <div class="cell medium-3">
-            {{ form_errors(edit_form.firstName) }}
+            {{ form_errors(edit_form.relation) }}
         </div>
     </div>
-    <div class="grid-x grid-padding-x">
-        <div class="cell medium-3"></div>
-        <div class="cell medium-3">
-            {{ form_label(edit_form.lastName) }}
-        </div>
-        <div class="cell medium-3">
-            {{ form_widget(edit_form.lastName) }}
-        </div>
-        <div class="cell medium-3">
-            {{ form_errors(edit_form.lastName) }}
-        </div>
-    </div>
+   
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>
         <div class="cell medium-3">
@@ -123,19 +111,30 @@
             {{ form_errors(edit_form.vatPercentage) }}
         </div>
     </div>
+     <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.invoiceSend) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.invoiceSend) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.invoiceSend) }}
+        </div>
+    </div>
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>
         <div class="cell medium-3">
-            {{ form_label(edit_form.customer) }}
+            {{ form_label(edit_form.statusPayment) }}
         </div>
         <div class="cell medium-3">
-            {{ form_widget(edit_form.customer) }}
+            {{ form_widget(edit_form.statusPayment) }}
         </div>
         <div class="cell medium-3">
-            {{ form_errors(edit_form.customer) }}
+            {{ form_errors(edit_form.statusPayment) }}
         </div>
     </div>
-
     
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>

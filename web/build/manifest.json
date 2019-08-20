@@ -1,7 +1,8 @@
 {
-  "build/app.js": "/build/app.37321d8e.js",
-  "build/app_style.css": "/build/app_style.7dbfbb7f.css",
-  "build/runtime.js": "/build/runtime.e2e05b59.js",
+  "build/app.js": "/build/app.556df8a4.js",
+  "build/app_style.css": "/build/app_style.caaca7b4.css",
+  "build/functions.js": "/build/functions.02f73c32.js",
+  "build/runtime.js": "/build/runtime.6e3f3c3a.js",
   "build/images/logo.jpeg": "/build/images/logo.671c9907.jpeg",
   "build/web/build/images/logo.jpeg": "/build/web/build/images/logo.jpeg"
 }

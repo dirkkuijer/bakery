@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
-<pdf Title="{{ invoice.invoicenumber }} {{ customer.fullname }}">
+<pdf Title="{{ invoice.invoicenumber }} {{ relation.name }}">
     <dynamic-page>
 
         {# <img src="{{ asset('assets/images/logo.jpeg') }}" class="logo" width="100px" height="100px"/> #}
@@ -16,13 +16,13 @@
                     <td height="50px" width="300px">
                         <div height="15px">Naam</div>
                     </td>
-                    <td><div height="15px">{{ customer.fullname }}</div></td>
+                    <td><div height="15px">{{ relation.name }}</div></td>
                 </tr>
                 <tr>
                     <td height="50px" width="300px">
                         <div height="15px">E-mail</div>
                     </td>
-                    <td><div height="15px">{{ customer.email }}</div></td>
+                    <td><div height="15px">{{ relation.email }}</div></td>
                 </tr>
                 <tr>
                     <td height="50px" width="300px">
@@ -30,10 +30,10 @@
                     </td>
                     <td>
                         <div height="15px">
-                            {{ customer.street }} 
-                            {{ customer.housenumber }}, 
-                            {{ customer.postalcode }} 
-                            {{ customer.city }}
+                            {{ relation.street }} 
+                            {{ relation.housenumber }}, 
+                            {{ relation.postalcode }} 
+                            {{ relation.city }}
                         </div>
                     </td>
                 </tr>
@@ -42,7 +42,7 @@
                         <div height="15px">Besteldatum</div>
                     </td>
                     <td>
-                        <div height="15px">{{ invoice.date|localizeddate('long', 'none', 'locale') }}</div>
+                        <div height="15px">{{ invoice.date|date("d-m-Y") }}</div>
                     </td>
                 </tr>
                 <tr>
@@ -64,7 +64,7 @@
                         <div height="15px">Allergie</div>
                     </td>
                     <td>
-                        <div height="15px">{{ customer.allergies|default('Niet bekend.') }}</div>
+                        <div height="15px">{{ relation.allergies|default('Niet bekend.') }}</div>
                     </td>
                 </tr>
                 <tr>
@@ -72,7 +72,7 @@
                         <div height="15px">Contactgegevens</div>
                     </td>
                     <td>
-                        <div height="15px">{{ customer.email }}</div>
+                        <div height="15px">{{ relation.email }}</div>
                     </td>
                 </tr>
             </table>
@@ -83,7 +83,7 @@
                 <tr>            
                     <td height="15px">Bedrag</td>
                     <td text-align="right">
-                        {{ invoice.amount|localizedcurrency('EUR') }}
+                        &#8364; {{ invoice.amount|number_format(2,',','.') }}
                     </td>
                 </tr>
                 <tr>
@@ -95,13 +95,13 @@
                 <tr>
                     <td height="15px">BTW</td>
                     <td text-align="right">
-                        {{ invoice.vatAmount|localizedcurrency('EUR') }}
+                        &#8364; {{ invoice.vatAmount|number_format(2,',','.') }}
                     </td>
                 </tr>
                 <tr border-color="black" padding="2px">
                     <td>Totaal</td>
                     <td text-align="right" margin="5px">
-                        <strong>{{ invoice.amountWithVat|localizedcurrency('EUR') }}</strong>
+                        <strong> &#8364; {{ invoice.amountWithVat|number_format(2,',','.')  }}</strong>
                     </td>
                 </tr>
             </table>

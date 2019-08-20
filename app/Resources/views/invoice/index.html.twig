@@ -1,66 +1,87 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
 
 
     <div class="grid-x grid-padding-x">
-        <div class="cell medium-10"></div>
+        <div class="cell medium-8"></div>
+        <div class="cell medium-2">
+            <div class="wrapper_searchField">
+                <input id="myInput" class="myInput" placeholder="Zoeken" />
+            </div>
+        </div>
         <div class="cell medium-2">
             <a class="button" href="{{ path('invoice_new') }}">+ Нова фактура</a>
         </div>
     </div>
+    
 
+    
     <h4>Фактуре</h4>
 
     <br>
 
     {% if is_granted('ROLE_ADMIN') %}
-    
-    <div class="grid-x grid-padding-x">
-        <div class="cell medium-1"></div>
-        <div class="cell medium-10">
+   
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-1"></div>
+            <div class="cell medium-10">
 
-            <table class="stack hover">
-                <thead>
-                    <tr>
-                        <th>Број фактуре</th>
-                        <th>Име</th>
-                        <th>Презиме</th>
-                        <th>Датум</th>
-                        <th>Објашњење</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for invoice in invoices %}   
-                    <tr>
-                        <td>{{ invoice.invoiceNumber }}</td>
-                        <td>{{ invoice.firstname }}</td>
-                        <td>
-                            {% for customer in customers %}
-                            
-                            {% if invoice.customer.id == customer.id %}
-                                <a href=" {{ path('customer_show', { 'id' : customer.id}) }} ">{{ invoice.lastname }}</a>
-                            {% endif %}
-                        {% endfor %}
-                        </td>
-                        <td>{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
-                        <td>{{ invoice.description }}</td>
-                        <td>
-                            <a class="button" href="{{ path('invoice_show', { 'id': invoice.id }) }}">
-                                Bиди
-                            </a>
-                            <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">
-                                Измени
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}    
-                </tbody>
-            </table>
-            <div clas="cell medium-1"></div>
+                <table class="stack hover" id="table">
+                    <thead>
+                        <tr>
+                            <th>Број фактуре</th>
+                            <th>Име и Презиме</th>
+                            <th>Датум</th>
+                            <th>Објашњење</th>
+                            <th>Verzonden</th>
+                            <th>Status</th>
+                            <th>Acties</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        {% for invoice in invoices %}   
+                        <tr id="tr">
+                            <td id="td">{{ invoice.invoiceNumber }}</td>
+                            {# <td>{{ invoice.firstname }}</td> #}
+                            <td id="td">
+                                {% for relation in relations %}
+                                
+                                {% if invoice.relation.id == relation.id %}
+                                    <a href=" {{ path('relation_show', { 'id' : relation.id}) }} ">{{ invoice.relation.name }}</a>
+                                {% endif %}
+                            {% endfor %}
+                            </td id="td">
+                            <td id="td">{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
+                            <td id="td">{{ invoice.description }}</td>
+                            <td id="td">
+                                {% if invoice.invoiceSend is not null %}
+                                    {{ invoice.invoiceSend|date("d-m-Y") }}
+                                {% else %}
+                                    N.v.t.
+                                {% endif %}
+                            </td>
+                            <td id="td">
+                                {% if invoice.statusPayment == 1 %}
+                                    Betaald
+                                {% else %}
+                                    Niet betaald
+                                {% endif %}
+                            </td>
+                            <td id="td">
+                                <a class="button" href="{{ path('invoice_show', { 'id': invoice.id }) }}">
+                                    Bиди
+                                </a>
+                                <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">
+                                    Измени
+                                </a>
+                            </td>
+                        </tr id="tr">
+                    {% endfor %}    
+                    </tbody>
+                </table>
+                <div clas="cell medium-1"></div>
+            </div>
         </div>
-    </div>
 
-        
     {% endif %}
 {% endblock %}

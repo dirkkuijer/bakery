@@ -66,12 +66,12 @@
     
                     
                         {# {% if user.system == false %} #}
+                        <a class="button" href="{{ path('user_show', { 'id': user.id }) }}" title="Inzien">
+                            Inzien
+                        </a>
                         <a class="button" href="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
                             Bewerken
                         </a>
-                        <a class="button" href="{{ path('user_delete', { 'id': user.id }) }}" title="Verwijderen">
-                                Verwijderen
-                            </a>
                         {# {% endif %} #}
                         </td>
                     </tr>

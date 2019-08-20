@@ -3,27 +3,26 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use AppBundle\Entity\Relation;
+
 
 /**
  * Invoice
  *
  * @ORM\Table(name="invoice")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\InvoiceRepository")
+ * @UniqueEntity("invoiceNumber")
  */
 class Invoice
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="invoices")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Relation", inversedBy="Invoice")
+     * @ORM\JoinColumn(name="relation_id", referencedColumnName="id")
      */
-    private $customer;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Supplier", inversedBy="invoices")
-     * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id")
-     */
-    private $supplier;
-
+    private $relation;
+   
     /**
      * @var int
      *
@@ -33,19 +32,19 @@ class Invoice
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="firstname", type="string", length=255)
-     */
-    private $firstName;
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="firstname", type="string", length=255)
+    //  */
+    // private $firstName;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastName", type="string", length=255)
-     */
-    private $lastName;
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="lastName", type="string", length=255)
+    //  */
+    // private $lastName;
 
     /**
      * @var \DateTime
@@ -64,10 +63,12 @@ class Invoice
     /**
      * @var string
      *
-     * @ORM\Column(name="invoiceNumber", type="string", length=255)
+     * @ORM\Column(name="invoiceNumber", type="string", length=255, unique=true)
      */
     private $invoiceNumber;
+   
 
+    
     /**
      * @var float
      *
@@ -95,6 +96,22 @@ class Invoice
      * @ORM\Column(name="vatPercentage", type="integer", length=255)
      */
     private $vatPercentage;
+    
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="invoiceSend", type="date", nullable=true)
+     * @Assert\Date
+     */
+    private $invoiceSend;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="statusPayment", type="boolean")
+     */
+    private $statusPayment;
 
     /**
      * Get id
@@ -106,53 +123,6 @@ class Invoice
         return $this->id;
     }
 
-    /**
-     * Set firstname
-     *
-     * @param string $firstName
-     *
-     * @return Invoice
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstname
-     *
-     * @return string
-     */
-    public function getFirstname()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return Invoice
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
 
     /**
      * Set date
@@ -215,8 +185,8 @@ class Invoice
 
         return $this;
     }
-
-    /**
+    
+     /**
      * Get invoiceNumber
      *
      * @return string
@@ -225,8 +195,8 @@ class Invoice
     {
         return $this->invoiceNumber;
     }
-
-    /**
+   
+     /**
      * Get the value of amount
      *
      * @return string
@@ -329,45 +299,72 @@ class Invoice
     }
 
     /**
-     * Get the value of customer
+     * Get the value of relation
      */
-    public function getCustomer()
+    public function getRelation()
     {
-        return $this->customer;
+        return $this->relation;
     }
 
     /**
-     * Set the value of customer
+     * Set the value of relation
      *
-     * @param mixed $customer
+     * @param mixed $relation
      *
      * @return self
      */
-    public function setCustomer($customer)
+    public function setRelation($relation)
     {
-        $this->customer = $customer;
+        $this->relation = $relation;
+
+        return $this;
+    }
+
+   
+    /**
+     * Get the value of invoiceSend
+     *
+     * @return  date
+     */ 
+    public function getInvoiceSend()
+    {
+        return $this->invoiceSend;
+    }
+
+    /**
+     * Set the value of invoiceSend
+     *
+     * @param  date  $invoiceSend
+     *
+     * @return  self
+     */ 
+    public function setInvoiceSend($invoiceSend)
+    {
+        $this->invoiceSend = $invoiceSend;
 
         return $this;
     }
 
     /**
-     * Get the value of supplier
-     */
-    public function getSupplier()
+     * Get the value of statusPayment
+     *
+     * @return  boolean
+     */ 
+    public function getStatusPayment()
     {
-        return $this->supplier;
+        return $this->statusPayment;
     }
 
     /**
-     * Set the value of supplier
+     * Set the value of status
      *
-     * @param mixed $supplier
+     * @param  boolean  $status
      *
-     * @return self
-     */
-    public function setSupplier($supplier)
+     * @return  self
+     */ 
+    public function setStatusPayment($statusPayment)
     {
-        $this->supplier = $supplier;
+        $this->statusPayment = $statusPayment;
 
         return $this;
     }
