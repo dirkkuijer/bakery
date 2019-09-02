@@ -26,6 +26,8 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
+
+    .addEntry('formLoad', ['./app/Resources/assets/js/formLoad.js'])
     .addEntry('app', './app/Resources/assets/js/app.js')
     .addEntry('functions', './app/Resources/assets/js/functions.js')
     //.addEntry('page1', './assets/js/page1.js')

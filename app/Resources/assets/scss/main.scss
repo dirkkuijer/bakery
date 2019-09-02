@@ -31,7 +31,8 @@ body {
 }
 
 h3 {
-    background-color: $primary-color;
+    // background-color: $primary-color;
+    background-image: linear-gradient(to right, #6e97f0, $primary-color);
     text-align: center;
     width: 101vw;
     margin-left: -1vw;
@@ -66,7 +67,7 @@ ul {
 .dropdown {
     position: relative;
     display: inline-block;
-    
+    color: $primary-color;
     margin-left: 1rem;
 }
 .dropdown-content {
