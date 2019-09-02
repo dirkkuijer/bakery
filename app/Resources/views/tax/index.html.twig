@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h4>Belastingen</h4>
+
+    <br>
+     <div class="grid-x grid-padding-x">
+        <div class="cell medium-12">
+            <h5>Baten</h5>
+
+            <table class="stack hover">
+                <thead>
+                    <tr>
+                        <th>Relatie</th>
+                        <th>Naam</th>
+                        <th>Factuurnummer</th>
+                        <th>Datum</th>
+                        <th>Bedrag</th>
+                        <th>BTW (%)</th>
+                        <th>Bedrag BTW</th>
+                        <th>Totaal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {# {% for relation in relations %} #}
+                        {% for invoice in invoices|sort %}
+                    <tr>
+                        <td>
+                            {% if invoice.relation.kindOfRelation == 1 %}
+                                Klant                   
+                            {% else %}     
+                                Leverancier
+                            {% endif %}                        
+                        </td>
+                        <td>{{ invoice.relation.name }}</td>
+                        <td>{{ invoice.invoiceNumber }}</td>
+                        <td>{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
+                        <td>{{ invoice.amount }}</td>
+                        <td>{{ invoice.vatPercentage }}</td>
+                        <td>{{ invoice.vatAmount }}</td>
+                        <td>{{ invoice.amountWithVat }}</td>
+                    </tr>  
+                       
+                        {% endfor %}
+                 </tbody>
+                    {# {% endfor %} #}
+            </table>
+        </div>
+    </div>
+{% endblock %}
