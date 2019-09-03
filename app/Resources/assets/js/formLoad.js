@@ -19,7 +19,47 @@ function Reveal(size, origin) {
         return false;
     });
 }
+function changeFormResult() {
 
+    $('form[formresult="json"]').submit(function(e) {
+
+        var formElm = $(this);
+        var reveal = $(this).closest('.reveal').get(0).revealobject;
+        e.preventDefault();
+
+        try {
+
+            var formUrl = $(formElm).attr('action');
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: "POST",
+                url: formUrl,
+                data: formData,
+                async: true,
+                success: function(response)
+                {
+                    var selectElm = $(reveal.origin).closest('.form-collection-add').find('select').first();
+                    selectElm.append(
+                        $('<option>', { value: response.id }).text(response.name)
+                    );
+                    selectElm.val(response.id);
+
+                    formElm.closest('.reveal').foundation('close');
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown)
+                {
+
+                },
+            });
+        }
+        catch(ex) {
+            alert(ex.message);
+        }
+
+        return false;
+    });
+}
 function eventListeners(scope) {
     scope = scope || document;
     var dateFormat = 'dd-mm-yy';

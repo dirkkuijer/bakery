@@ -3,9 +3,14 @@
 {% block body %}
      
      <div class="grid-x grid-padding-x">
-        <div class="cell medium-10"></div>
+        <div class="cell medium-8"></div>
         <div class="cell medium-2">
-            <a class="button" href="{{ path('relation_new') }}">+ Nieuwe relatie</a>
+            <div class="wrapper_searchField">
+                <input id="myInput" class="myInput" placeholder="Zoeken" />
+            </div>
+        </div>
+        <div class="cell medium-2">
+            <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('relation_new') }}">+ Nieuwe relatie</a>
         </div>
     </div>
     
@@ -17,7 +22,7 @@
 
     <div class="grid-x grid-padding-x">
         <div class="cell medium-12">
-            <table class="stack hover">
+            <table class="stack hover" id="table">
                 <thead>
                     <tr>
                         <th>Naam</th>
@@ -29,40 +34,38 @@
                         <th>Allergiën</th>
                         <th>Rekeningnummer</th>
                         <th>Facturen</th>
-
                         <th colspan="2">Acties</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                     {% for relation in relations %}
-                    <tr>
-                        <td>{{ relation.name }}
-                        <td>{{ relation.street }}</td>
-                        <td>{{ relation.houseNumber }}</td>
-                        <td>{{ relation.postalCode }}</td>
-                        <td>{{ relation.telephone }}</td>
-                        <td>{{ relation.email }}</td>
-                        <td>
+                    <tr id="tr">
+                        <td id="td">{{ relation.name }}
+                        <td id="td">{{ relation.street }}</td>
+                        <td id="td">{{ relation.houseNumber }}</td>
+                        <td id="td">{{ relation.postalCode }}</td>
+                        <td id="td">{{ relation.telephone }}</td>
+                        <td id="td">{{ relation.email }}</td>
+                        <td id="td">
                             {% if relation.allergies is not null %}
                                 {{ relation.allergies }}
                             {% else %}
                                 Niet bekend
                             {% endif %}
                         </td>
-                        <td>{{ relation.bankAccountNumber }}</td>
-                        <td>
+                        <td id="td">{{ relation.bankAccountNumber }}</td>
+                        <td id="td">
                             {% for invoice in invoices %}
                                 {% if relation.id == invoice.relation.id %}
-                                    <a class="button" href=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.invoiceNumber }}</a>
-                                    
-                                    {% endif %}
+                                    <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.invoiceNumber }}</a>
+                                {% endif %}
                             {% endfor %}
-                        <td>
-                        <td>
-                           <a class="button" href="{{ path('relation_show', { 'id': relation.id }) }}">
+                        </td>
+                        <td id="td">
+                           <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path="{{ path('relation_show', { 'id': relation.id }) }}">
                                 Bиди
                             </a>
-                            <a class="button" href="{{ path('relation_edit', { 'id': relation.id }) }}">
+                            <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path="{{ path('relation_edit', { 'id': relation.id }) }}">
                                 Измени
                             </a>
                         </td>

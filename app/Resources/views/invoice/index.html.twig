@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block head %}
+{# {% block head %}
     {{ encore_entry_script_tags('formLoad') }}
-{% endblock %}
+{% endblock %} #}
 
 {% block body %}
 
@@ -18,7 +18,7 @@
             <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_new') }}">+ Нова фактура</a>
         </div>
     </div>
-
+{# 
     <div class="large reveal" id="exampleModal1" data-reveal>
         Testing.
         <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -26,7 +26,7 @@
         </button>
     </div>
 
-    <p><button class="button" data-open="exampleModal1">+ Venster</button></p>
+    <p><button class="button" data-open="exampleModal1">+ Venster</button></p> #}
 
     <h4>Фактуре</h4>
 
@@ -41,7 +41,7 @@
                 <table class="stack hover" id="table">
                     <thead>
                         <tr>
-                            <th>Број фактуре</th>
+                            <th>Број</th>
                             <th>Име и Презиме</th>
                             <th>Датум</th>
                             <th>Објашњење</th>
@@ -62,7 +62,7 @@
                                     <a href=" {{ path('relation_show', { 'id' : relation.id}) }} ">{{ invoice.relation.name }}</a>
                                 {% endif %}
                             {% endfor %}
-                            </td id="td">
+                            </td>
                             <td id="td">{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
                             <td id="td">{{ invoice.description }}</td>
                             <td id="td">
@@ -83,11 +83,11 @@
                                 <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_show', { 'id': invoice.id }) }}">
                                     Bиди
                                 </a>
-                                <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">
+                                <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">
                                     Измени
                                 </a>
                             </td>
-                        </tr id="tr">
+                        </tr>
                     {% endfor %}    
                     </tbody>
                 </table>

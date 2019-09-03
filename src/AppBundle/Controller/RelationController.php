@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\Relation;
+use AppBundle\Form\RelationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -45,7 +46,9 @@ class RelationController extends Controller
     public function newAction(Request $request)
     {
         $relation = new Relation();
-        $form = $this->createForm('AppBundle\Form\RelationType', $relation);
+        $form = $this->createForm(RelationType::class, $relation, [
+            'action' => $this->generateUrl('relation_new'),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,7 +59,7 @@ class RelationController extends Controller
             return $this->redirectToRoute('relation_index');
         }
 
-        return $this->render('relation/new.html.twig', [
+        return $this->render('relation/content.html.twig', [
             'relation' => $relation,
             'form' => $form->createView(),
         ]);
@@ -87,18 +90,20 @@ class RelationController extends Controller
     public function editAction(Request $request, Relation $relation)
     {
         $deleteForm = $this->createDeleteForm($relation);
-        $editForm = $this->createForm('AppBundle\Form\RelationType', $relation);
+        $editForm = $this->createForm(RelationType::class, $relation, [
+            'action' => $this->generateUrl('relation_edit', ['id' => $relation->getId()]),
+        ]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('relation_show', ['id' => $relation->getId()]);
+            return $this->redirectToRoute('relation_index', ['id' => $relation->getId()]);
         }
 
-        return $this->render('relation/edit.html.twig', [
+        return $this->render('relation/content.html.twig', [
             'relation' => $relation,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }

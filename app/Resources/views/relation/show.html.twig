@@ -1,6 +1,10 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block body %} #}
+
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
 
      <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
@@ -107,7 +111,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell small-6"></div>
             <div class="cell small-2 text-right">
-                <a class="button" href="{{ path('relation_edit', { 'id': relation.id }) }}">Bewerken</a>
+                <a class="button" href="javascript:void(0)" data-path="{{ path('relation_edit', { 'id': relation.id }) }}">Bewerken</a>
             </div>
             {{ form_start(delete_form) }}
             {# <a class="button" href="{{ path('relation_delete', { 'id': relation.id }) }}" title="Verwijderen">
@@ -121,4 +125,4 @@
             <div class="cell small-4"></div>
         </div>
     {% endif %}
-{% endblock %}
+{# {% endblock %} #}

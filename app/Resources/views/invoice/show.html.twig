@@ -129,7 +129,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell small-6"></div>
             <div class="cell small-2 text-right">
-                <a class="button" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
+                <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
             </div>
             
             {{ form_start(delete_form) }}
