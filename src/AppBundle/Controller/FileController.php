@@ -3,16 +3,16 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\File;
-use AppBundle\Entity\FileTypeType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Form\FileTypeType;
+use AppBundle\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Service\FileUploader;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\File as PDF;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
 /**
  * File controller.
  *
@@ -32,9 +32,9 @@ class FileController extends Controller
 
         $files = $em->getRepository('AppBundle:File')->findAll();
 
-        return $this->render('file/index.html.twig', array(
+        return $this->render('file/index.html.twig', [
             'files' => $files,
-        ));
+        ]);
     }
 
     /**
@@ -46,17 +46,18 @@ class FileController extends Controller
     public function newAction(Request $request, FileUploader $fileUploader)
     {
         $file = new File();
-        $form = $this->createForm('AppBundle\Form\FileTypeType', $file);
+        $form = $this->createForm(FileTypeType::class, $file, [
+            'action' => $this->generateUrl('file_new'),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-          
             $fileName = $form['filename']->getData();
             if ($fileName) {
                 $name = $fileUploader->upload($fileName);
                 $file->setFilename($name);
             }
-            
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($file);
             $em->flush();
@@ -64,10 +65,10 @@ class FileController extends Controller
             return $this->redirectToRoute('file_index');
         }
 
-        return $this->render('file/new.html.twig', array(
+        return $this->render('file/content.html.twig', [
             'file' => $file,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -80,10 +81,10 @@ class FileController extends Controller
     {
         $deleteForm = $this->createDeleteForm($file);
 
-        return $this->render('file/show.html.twig', array(
+        return $this->render('file/show.html.twig', [
             'file' => $file,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     // /**
@@ -98,7 +99,6 @@ class FileController extends Controller
     //     $editForm = $this->createForm('AppBundle\Form\FileTypeType', $file);
     //     $editForm->handleRequest($request);
 
-        
     //     if ($editForm->isSubmitted() && $editForm->isValid()) {
 
     //         $this->getDoctrine()->getManager()->flush();
@@ -125,21 +125,32 @@ class FileController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $filename = $file->getFilename();
-      
+
             // $path = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/invoices/'.$filename);
             // $id = $file->getId();
             // $fileSystem->remove(['/web/uploads/invoices/', $filename]);
-      
-                unlink('../web/uploads/invoices/'.$filename);
-          
+
+            unlink('../web/uploads/invoices/' . $filename);
+
             $em = $this->getDoctrine()->getManager();
             $em->remove($file);
             $em->flush();
         }
 
         return $this->redirectToRoute('file_index');
+    }
+
+    /**
+     * @Route("/download/{id}", name="download_file")
+     */
+    public function downloadFileAction(File $file)
+    {
+        $file = $file->getFilename();
+        $response = new BinaryFileResponse('../web/uploads/invoices/' . $file . '');
+        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'factuur.pdf');
+
+        return $response;
     }
 
     /**
@@ -152,20 +163,9 @@ class FileController extends Controller
     private function createDeleteForm(File $file)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('file_delete', array('id' => $file->getId())))
+            ->setAction($this->generateUrl('file_delete', ['id' => $file->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;
-    }
-
-    /**
-     * @Route("/download/{id}", name="download_file")
-    **/
-    public function downloadFileAction(File $file){
-        $file = $file->getFilename();
-        $response = new BinaryFileResponse('../web/uploads/invoices/'.$file.'');
-        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'pdf.pdf');
-        return $response;
-    
     }
 }

@@ -22,9 +22,7 @@ $(document).ready(function(){
 
 // flash message
 setTimeout(function() {
-    $('.flash-success').fadeOut('slow');
+    $('.flash-succes').fadeOut('slow');
 }, 5000); // <-- time in milliseconds
-
-
 
 console.log("Functions loaded");

@@ -59,7 +59,7 @@
                                 {% for relation in relations %}
                                 
                                 {% if invoice.relation.id == relation.id %}
-                                    <a href=" {{ path('relation_show', { 'id' : relation.id}) }} ">{{ invoice.relation.name }}</a>
+                                    <a href="javascript:void(0)" data-path=" {{ path('relation_show', { 'id' : relation.id}) }} ">{{ invoice.relation.name }}</a>
                                 {% endif %}
                             {% endfor %}
                             </td>

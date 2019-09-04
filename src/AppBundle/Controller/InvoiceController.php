@@ -8,6 +8,7 @@ use Ps\PdfBundle\Annotation\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -42,32 +43,43 @@ class InvoiceController extends Controller
      * @Route("/new", name="invoice_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, InvoiceType $invoiceType)
     {
-        $invoice = new Invoice();
-
-        $form = $this->createForm(InvoiceType::class, $invoice, [
-            'action' => $this->generateUrl('invoice_new'),
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($invoice);
-            $em->flush();
-
-            // Added by Dirk
-            $state = 'Factuur is opgeslagen.';
-            $this->showFlash($state);
-
-            return $this->redirectToRoute('invoice_show', ['id' => $invoice->getId(),
+        try {
+            $invoice = new Invoice();
+            $form = $this->createForm(InvoiceType::class, $invoice, [
+                'action' => $this->generateUrl('invoice_new'),
             ]);
-        }
+            $form->handleRequest($request);
 
-        return $this->render('invoice/content.html.twig', [
-            'invoice' => $invoice,
-            'form' => $form->createView(),
-        ]);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($invoice);
+                $em->flush();
+
+                // Added by Dirk
+                $state = 'Factuur is opgeslagen.';
+                $succes = 'succes';
+                $this->showFlash($succes, $state);
+
+                $route = 'invoice_index';
+
+                return new JsonResponse(['redirectToRoute' => $this->generateUrl($route, ['type' => $invoiceType])], 200);
+
+                return $this->redirectToRoute('invoice_index');
+            }
+
+            if ($form->isSubmitted() && !$form->isValid()) {
+                return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
+            }
+
+            return $this->render('invoice/content.html.twig', [
+                'invoice' => $invoice,
+                'form' => $form->createView(),
+            ]);
+        } catch (\Exception $ex) {
+            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
+        }
     }
 
     /**
@@ -93,32 +105,43 @@ class InvoiceController extends Controller
      * @Route("/{id}/edit", name="invoice_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Invoice $invoice)
+    public function editAction(Request $request, Invoice $invoice, InvoiceType $invoiceType)
     {
-        $deleteForm = $this->createDeleteForm($invoice);
-        $editForm = $this->createForm(InvoiceType::class, $invoice, [
-            'action' => $this->generateUrl('invoice_edit', ['id' => $invoice->getId()]),
-        ]);
-        $editForm->handleRequest($request);
+        try {
+            $deleteForm = $this->createDeleteForm($invoice);
+            $editForm = $this->createForm(InvoiceType::class, $invoice, [
+                'action' => $this->generateUrl('invoice_edit', ['id' => $invoice->getId()]),
+            ]);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
 
-            // Added by Dirk
-            $state = 'Factuur is aangepast.';
-            $this->showFlash($state);
+                // Added by Dirk
+                $state = 'Factuur is aangepast.';
+                $this->showFlash('succes', $state);
 
-            return $this->redirectToRoute('invoice_index');
-            // return $this->redirectToRoute('invoice_index', [
-            //     'id' => $invoice->getId(),
-            // ]);
+                $route = 'invoice_index';
+
+                return new JsonResponse(['redirectToRoute' => $this->generateUrl($route, ['type' => $invoiceType])], 200);
+
+                return $this->redirectToRoute('invoice_index');
+                // return $this->redirectToRoute('invoice_index', [
+                //     'id' => $invoice->getId(),
+                // ]);
+            }
+            if ($editForm->isSubmitted() && !$editForm->isValid()) {
+                return new JsonResponse(['message' => (string) $editForm->getErrors(true, false)], 500);
+            }
+
+            return $this->render('invoice/content.html.twig', [
+                'invoice' => $invoice,
+                'form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ]);
+        } catch (\Exception $ex) {
+            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
-
-        return $this->render('invoice/content.html.twig', [
-            'invoice' => $invoice,
-            'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ]);
     }
 
     /**
@@ -139,16 +162,16 @@ class InvoiceController extends Controller
 
             // Added by Dirk
             $state = 'Factuur is verwijderd.';
-            $this->showFlash($state);
+            $this->showFlash('succes', $state);
         }
 
         return $this->redirectToRoute('invoice_index');
     }
 
     // added by Dirk to show flash messages after submitting form
-    public function showFlash(String $state)
+    public function showFlash(String $status, String $state)
     {
-        return $this->addFlash('success', $state);
+        return $this->addFlash($status, $state);
     }
 
     /**

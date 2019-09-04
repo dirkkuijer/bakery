@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -50,7 +51,9 @@ class UserController extends Controller
     public function newAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form = $this->createForm(UserType::class, $user, [
+            'action' => $this->generateUrl('user_new'),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -82,10 +85,10 @@ class UserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
 
-        return $this->render('user/show.html.twig', array(
+        return $this->render('user/show.html.twig', [
             'user' => $user,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -97,7 +100,9 @@ class UserController extends Controller
     public function editAction(Request $request, User $user)
     {
         $deleteForm = $this->createDeleteForm($user);
-        $editForm = $this->createForm('AppBundle\Form\UserType', $user);
+        $editForm = $this->createForm(UserType::class, $user, [
+            'action' => $this->generateUrl('user_edit', ['id' => $user->getId()]),
+        ]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -127,35 +132,29 @@ class UserController extends Controller
      */
     public function deleteAction(Request $request, User $user)
     {
-        if ($user->getSystem()) 
-        {
+        if ($user->getSystem()) {
             return $this->redirectToRoute('user_index');
         }
-        
+
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
-       
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
         }
-        
+
         return $this->redirectToRoute('user_index');
-        
-        $state = "Gebruiker is verwijderd.";
+        $state = 'Gebruiker is verwijderd.';
         // added by Dirk
         $this->showFlash($state);
-        
-        
     }
 
-
-    
     // added by Dirk to show flash messages after submitting form
     public function showFlash(String $state)
     {
-        return $this->addFlash('success', $state);
+        return $this->addFlash('succes', $state);
     }
 
     /**

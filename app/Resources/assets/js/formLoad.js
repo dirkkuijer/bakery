@@ -135,6 +135,64 @@ $(document).ready(function(){
             pathTouchMoved = false;
         });
 
-});
+   /* Ajaxify form required the following properties:
+            - attribute 'data-async' on form
+            - div in the form with id 'formBody'
+            - div above the form with id 'formMessage'
+         */
+        $('body').on('submit', 'form[data-async]', function (e) {
+            e.preventDefault();
+
+            console.log("werkt");
+
+            var redirect = $('button[type=submit][clicked="true"]').attr('redirect');
+            var formData = new FormData(this);
+            formData.append('saveAndClose', (redirect ? '1' : '0'));
+
+            $.ajax({
+
+                processData: false,
+                cache: false,
+                contentType: false,
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: formData
+            })
+            .done(function(data) {
+
+                if (typeof data.redirectToRoute !== 'undefined') {
+                    window.location = data.redirectToRoute;
+                }
+                if (typeof data.message !== 'undefined') {
+                    $('#formMessage').html(data.message).fadeIn().removeClass('alert').addClass('success');
+
+                    setTimeout(function() {
+                        $("#formMessage").fadeOut('slow')
+                    }, 7000);
+                }
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+
+                if (typeof jqXHR.responseJSON !== 'undefined') {
+                    if (jqXHR.responseJSON.hasOwnProperty('form')) {
+                        $('#formBody').html(jqXHR.responseJSON.form);
+                    }
+                    $('#formMessage').html(jqXHR.responseJSON.message).fadeIn().removeClass('success').addClass('alert');
+
+                    setTimeout(function() {
+                        $("#formMessage").fadeOut('slow')
+                    }, 5000);
+
+                } else {
+                    alert(errorThrown);
+                }
+            });
+        });
+
+        $('body').on('click', 'form[data-async] button[type=submit]', function() {
+            $('button[type=submit]', $(this).parents('form[data-async]')).removeAttr('clicked');
+            $(this).attr('clicked', true);
+        });
+    });
 
     console.log("formLoad loaded");

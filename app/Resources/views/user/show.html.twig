@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block stylesheet %}
     {{ parent() }}
@@ -8,7 +8,7 @@
         {{ parent() }}
 {% endblock %}
 
-{% block body %}
+{% block body %} #}
 
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
@@ -55,7 +55,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell small-6"></div>
             <div class="cell small-2 text-right">
-                <a class="button" href="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
+                <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
                     Bewerken
                 </a>
             </div>
@@ -68,4 +68,4 @@
             </div>
         </div>                
     {% endif %}
-{% endblock %}
+{# {% endblock %} #}

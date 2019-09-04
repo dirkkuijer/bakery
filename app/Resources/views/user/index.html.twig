@@ -14,7 +14,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-10"></div>
                 <div class="cell medium-2">
-                <a class="button" href="{{ path('user_new') }}"  title="Gebruiker toevoegen">
+                <a class="button" href="javascript:void(0);" data-path="{{ path('user_new') }}"  title="Gebruiker toevoegen">
                     + Toevoegen
                 </a>
             </div>
@@ -66,10 +66,10 @@
     
                     
                         {# {% if user.system == false %} #}
-                        <a class="button" href="{{ path('user_show', { 'id': user.id }) }}" title="Inzien">
+                        <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_show', { 'id': user.id }) }}" title="Inzien">
                             Inzien
                         </a>
-                        <a class="button" href="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
+                        <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
                             Bewerken
                         </a>
                         {# {% endif %} #}

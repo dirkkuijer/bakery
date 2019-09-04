@@ -114,9 +114,36 @@ ul {
     margin-right: auto;
   }
   
-  .flash-success {
+  .flash-succes {
     background-color: rgba(134, 226, 213, 0.5);
     border-radius: 5px;
+    padding: 1rem 2rem;
+    position: fixed;
+    right: 0;
+    top: 45%;
+    box-shadow: -5px 5px 5px 0px rgba(0,0,0,0.25);
+}
+
+.flash-succes msg {
+    color: black;
+}
+
+@media only screen and (max-width: 600px) {
+.flash-succes {
+    overflow: auto;
+    }
+
+.flash-succes msg {
+        color: black;
+        padding: 2rem;
+    }
+  
+}
+  
+.form-message {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
     padding: 1rem 2rem;
     position: fixed;
     right: 0;
@@ -124,18 +151,18 @@ ul {
     box-shadow: -5px 5px 5px 0px rgba(0,0,0,0.25);
 }
 
-.flash-success msg {
-    color: black;
+.form-message msg {
+    color: white;
 }
 
 @media only screen and (max-width: 600px) {
-.flash-success {
+.form-message {
     overflow: auto;
     }
 
-.flash-success msg {
-        color: black;
+.form-message msg {
+        color: white;
         padding: 2rem;
     }
-
+  
 }

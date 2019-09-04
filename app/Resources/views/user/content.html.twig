@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
      
   {% block stylesheet %}
            {{ parent() }}
     {% endblock %}
-{% block body %}
+{% block body %} #}
 
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
@@ -102,8 +102,10 @@
     <div class="grid-x grid-padding-x">
         <div class="cell large-6"></div>
         <div class="cell large-3 text-right">
-            <input type="reset" class="button" value="Annuleren" />
-            <button class="button" type="submit" title="Opslaan">
+            {% if user.id == null %}
+                <input type="reset" class="button" value="Annuleren" />
+            {% endif %}
+                <button class="button" type="submit" title="Opslaan">
                 Opslaan
             </button>
         </div>   
@@ -112,4 +114,4 @@
 
     {{ form_end(form) }}
 
-{% endblock %}
+{# {% endblock %} #}
