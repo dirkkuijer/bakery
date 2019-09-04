@@ -1,0 +1,76 @@
+{# {% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+{% endblock %}
+
+{% block Javascript %}
+   {{ parent() }}
+{% endblock %}
+
+{% block body %} #}
+     <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a href="{{ path('file_index') }}" class="button">Overzicht</a>
+        </div>
+    </div>
+<div>
+
+    {{ form_start(form) }}
+    
+    <h4>{% if file.id == null %}Nieuw{% else %}Wijzig{% endif %} bestand</h4>
+
+    <br>
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.filename) }}
+        </div>
+        <div class="cell medium-4">
+            {{ form_widget(form.filename) }}
+        </div>
+        <div class="cell medium-2">
+            {{ form_errors(form.filename) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.date) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.date) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.date) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(form.period) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(form.period) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(form.period) }}
+        </div>
+    </div>
+        {# {{ form_widget(form) }} #}
+    
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3 text-right">
+            <input type="reset" value="Reset" class="button" />
+            <input type="submit" value="Opslaan" class="button" />
+        </div>
+        <div class="cell medium-3"></div>
+    </div>
+
+    {{ form_end(form) }}
+
+{# {% endblock %} #}

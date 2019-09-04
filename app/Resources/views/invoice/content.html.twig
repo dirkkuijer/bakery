@@ -1,0 +1,192 @@
+{# {% extends 'base.html.twig' %} #}
+{#      
+{% block stylesheet %}
+    {{ parent() }}
+{% endblock %}
+
+{% block Javascript %}
+   {{ parent() }}
+{% endblock %}
+
+{% block body %} #}
+{% set typeInvoice = invoice.id == null %}
+
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-10"></div>
+        <div class="cell medium-2">
+            <a href="{{ path('invoice_index') }}" class="button">Afsluiten</a>
+        </div>
+    </div>
+
+<div>
+    
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
+    {{ form_start(form, { 'attr': {
+        'data-async': '',
+    } } ) }}
+
+        <h4>Factuur {% if typeInvoice  %}aanmaken{% else %}wijzigen{% endif %}</h4>
+
+        <br>
+
+        <!-- message -->
+        <div id="formMessage" class="form-message" style="display:none"></div>
+        
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.relation) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.relation) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.relation) }}
+            </div>
+        </div>
+    
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.date) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.date) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.date) }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.description) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.description) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.description) }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.invoiceNumber) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.invoiceNumber) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.invoiceNumber) }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.amount) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.amount)}}
+            </div> 
+            <div class="cell medium-3">
+                {{ form_errors(form.amount) }}
+                <span id="amountError" style="display:none">Vul een waarde in!</span>
+            </div>
+        </div>
+        
+        {# Percentage Vat#}
+        <datalist id="percentage">
+            <option>9</option>
+            <option>21</option>
+        </datalist>
+
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.vatPercentage) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.vatPercentage, { 
+                    'attr' : {
+                        'list' : 'percentage'
+                        } 
+                    }) 
+                }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.vatPercentage) }}
+                <a href="JavaScript:Void(0)" onClick="calculate()" class="button">Bereken</a>
+            </div>
+        </div>
+        
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.vatAmount) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.vatAmount) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.vatAmount) }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.amountWithVat) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.amountWithVat) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.amountWithVat) }}
+            </div>
+        </div>
+
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.invoiceSend) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.invoiceSend) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.invoiceSend) }}
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3">
+                {{ form_label(form.statusPayment) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_widget(form.statusPayment) }}
+            </div>
+            <div class="cell medium-3">
+                {{ form_errors(form.statusPayment) }}
+            </div>
+        </div>
+    
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3"></div>
+            <div class="cell medium-3 text-right">
+            {% if invoice.id == null%}
+                <input type="reset" value="Reset" class="button" />
+            {% endif %}
+                {# <input type="submit" value="Opslaan" class="button" /> #}
+                {{ form_widget(form.save) }}
+            </div>
+            <div class="cell medium-3"></div>
+        </div>
+    
+    {{ form_end(form) }}
+{# 
+{% endblock %} #}

@@ -26,9 +26,6 @@
                 <thead>
                     <tr>
                         <th>Naam</th>
-                        <th>Straat</th>
-                        <th>Huisnummer</th>
-                        <th>Postcode</th>
                         <th>Telefoon</th>
                         <th>E-mail</th>
                         <th>Allergiën</th>
@@ -41,9 +38,6 @@
                     {% for relation in relations %}
                     <tr id="tr">
                         <td id="td">{{ relation.name }}
-                        <td id="td">{{ relation.street }}</td>
-                        <td id="td">{{ relation.houseNumber }}</td>
-                        <td id="td">{{ relation.postalCode }}</td>
                         <td id="td">{{ relation.telephone }}</td>
                         <td id="td">{{ relation.email }}</td>
                         <td id="td">
