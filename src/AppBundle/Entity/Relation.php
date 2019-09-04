@@ -2,8 +2,9 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use AppBUndle\Entity\Invoice;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Relation
@@ -13,13 +14,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Relation
 {
-    
-    
-    public function __construct()
-    {
-        $this->invoices = new ArrayCollection();
-    }
-
     /**
      * @var int
      *
@@ -30,6 +24,13 @@ class Relation
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="Invoice", mappedBy="relation")
+     */
+    private $invoice;
+
+    /**
+     * private $invoices;
+     *
      * @var bool
      *
      * @ORM\Column(name="kindOfRelation", type="boolean")
@@ -44,49 +45,49 @@ class Relation
     private $name;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="street", type="string", length=255, nullable=true)
      */
     private $street;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="houseNumber", type="string", length=255, nullable=true)
      */
     private $houseNumber;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="postalCode", type="string", length=255, nullable=true)
      */
     private $postalCode;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
      */
     private $telephone;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="allergies", type="string", length=255, nullable=true)
      */
@@ -100,13 +101,17 @@ class Relation
     private $bankAccountNumber;
 
     /**
-     * @var string|null
+     * @var null|string
      *
      * @ORM\Column(name="extraInfo", type="string", length=255, nullable=true)
      */
     private $extraInfo;
 
-    
+    public function __construct()
+    {
+        $this->invoices = new ArrayCollection();
+    }
+
     /**
      * Get id.
      *
@@ -131,7 +136,6 @@ class Relation
         return $this;
     }
 
-    
     /**
      * Get kindOfRelation.
      *
@@ -169,7 +173,7 @@ class Relation
     /**
      * Set street.
      *
-     * @param string|null $street
+     * @param null|string $street
      *
      * @return Relation
      */
@@ -183,7 +187,7 @@ class Relation
     /**
      * Get street.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getStreet()
     {
@@ -193,7 +197,7 @@ class Relation
     /**
      * Set houseNumber.
      *
-     * @param string|null $houseNumber
+     * @param null|string $houseNumber
      *
      * @return Relation
      */
@@ -207,7 +211,7 @@ class Relation
     /**
      * Get houseNumber.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getHouseNumber()
     {
@@ -217,7 +221,7 @@ class Relation
     /**
      * Set postalCode.
      *
-     * @param string|null $postalCode
+     * @param null|string $postalCode
      *
      * @return Relation
      */
@@ -231,7 +235,7 @@ class Relation
     /**
      * Get postalCode.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getPostalCode()
     {
@@ -241,7 +245,7 @@ class Relation
     /**
      * Set city.
      *
-     * @param string|null $city
+     * @param null|string $city
      *
      * @return Relation
      */
@@ -255,7 +259,7 @@ class Relation
     /**
      * Get city.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getCity()
     {
@@ -265,7 +269,7 @@ class Relation
     /**
      * Set telephone.
      *
-     * @param string|null $telephone
+     * @param null|string $telephone
      *
      * @return Relation
      */
@@ -279,7 +283,7 @@ class Relation
     /**
      * Get telephone.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getTelephone()
     {
@@ -289,7 +293,7 @@ class Relation
     /**
      * Set email.
      *
-     * @param string|null $email
+     * @param null|string $email
      *
      * @return Relation
      */
@@ -303,7 +307,7 @@ class Relation
     /**
      * Get email.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getEmail()
     {
@@ -313,7 +317,7 @@ class Relation
     /**
      * Set allergies.
      *
-     * @param string|null $allergies
+     * @param null|string $allergies
      *
      * @return Relation
      */
@@ -327,7 +331,7 @@ class Relation
     /**
      * Get allergies.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getAllergies()
     {
@@ -361,7 +365,7 @@ class Relation
     /**
      * Set extraInfo.
      *
-     * @param string|null $extraInfo
+     * @param null|string $extraInfo
      *
      * @return Relation
      */
@@ -375,13 +379,13 @@ class Relation
     /**
      * Get extraInfo.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getExtraInfo()
     {
         return $this->extraInfo;
     }
-     
+
     /**
      * Get the value of invoices
      */
@@ -403,5 +407,4 @@ class Relation
 
         return $this;
     }
-
 }

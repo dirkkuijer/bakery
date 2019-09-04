@@ -3,10 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use AppBundle\Entity\Relation;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Invoice
@@ -18,11 +16,11 @@ use AppBundle\Entity\Relation;
 class Invoice
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Relation", inversedBy="Invoice")
+     * @ORM\ManyToOne(targetEntity="Relation", inversedBy="invoice")
      * @ORM\JoinColumn(name="relation_id", referencedColumnName="id")
      */
     private $relation;
-   
+
     /**
      * @var int
      *
@@ -66,9 +64,7 @@ class Invoice
      * @ORM\Column(name="invoiceNumber", type="string", length=255, unique=true)
      */
     private $invoiceNumber;
-   
 
-    
     /**
      * @var float
      *
@@ -96,8 +92,7 @@ class Invoice
      * @ORM\Column(name="vatPercentage", type="integer", length=255)
      */
     private $vatPercentage;
-    
-    
+
     /**
      * @var \DateTime
      *
@@ -105,7 +100,7 @@ class Invoice
      * @Assert\Date
      */
     private $invoiceSend;
-    
+
     /**
      * @var boolean
      *
@@ -122,7 +117,6 @@ class Invoice
     {
         return $this->id;
     }
-
 
     /**
      * Set date
@@ -185,8 +179,8 @@ class Invoice
 
         return $this;
     }
-    
-     /**
+
+    /**
      * Get invoiceNumber
      *
      * @return string
@@ -195,8 +189,8 @@ class Invoice
     {
         return $this->invoiceNumber;
     }
-   
-     /**
+
+    /**
      * Get the value of amount
      *
      * @return string
@@ -320,12 +314,11 @@ class Invoice
         return $this;
     }
 
-   
     /**
      * Get the value of invoiceSend
      *
-     * @return  date
-     */ 
+     * @return date
+     */
     public function getInvoiceSend()
     {
         return $this->invoiceSend;
@@ -334,10 +327,10 @@ class Invoice
     /**
      * Set the value of invoiceSend
      *
-     * @param  date  $invoiceSend
+     * @param date $invoiceSend
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setInvoiceSend($invoiceSend)
     {
         $this->invoiceSend = $invoiceSend;
@@ -348,8 +341,8 @@ class Invoice
     /**
      * Get the value of statusPayment
      *
-     * @return  boolean
-     */ 
+     * @return boolean
+     */
     public function getStatusPayment()
     {
         return $this->statusPayment;
@@ -358,10 +351,11 @@ class Invoice
     /**
      * Set the value of status
      *
-     * @param  boolean  $status
+     * @param bool  $status
+     * @param mixed $statusPayment
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setStatusPayment($statusPayment)
     {
         $this->statusPayment = $statusPayment;
