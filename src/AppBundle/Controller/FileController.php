@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
@@ -43,32 +44,48 @@ class FileController extends Controller
      * @Route("/new", name="file_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request, FileUploader $fileUploader, FileTypeType $fileType)
     {
-        $file = new File();
-        $form = $this->createForm(FileTypeType::class, $file, [
-            'action' => $this->generateUrl('file_new'),
-        ]);
-        $form->handleRequest($request);
+        try {
+            $file = new File();
+            $form = $this->createForm(FileTypeType::class, $file, [
+                'action' => $this->generateUrl('file_new'),
+            ]);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $fileName = $form['filename']->getData();
-            if ($fileName) {
-                $name = $fileUploader->upload($fileName);
-                $file->setFilename($name);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $fileName = $form['filename']->getData();
+                if ($fileName) {
+                    $name = $fileUploader->upload($fileName);
+                    $file->setFilename($name);
+                }
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($file);
+                $em->flush();
+
+                // Added by Dirk
+                $state = 'Bestand is opgeslagen.';
+                $succes = 'succes';
+                $this->showFlash($succes, $state);
+
+                $route = 'file_index';
+
+                return new JsonResponse(['redirectToRoute' => $this->generateUrl($route, ['type' => $fileType])], 200);
+
+                return $this->redirectToRoute('file_index');
+            }
+            if ($form->isSubmitted() && !$form->isValid()) {
+                return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
             }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($file);
-            $em->flush();
-
-            return $this->redirectToRoute('file_index');
+            return $this->render('file/content.html.twig', [
+                'file' => $file,
+                'form' => $form->createView(),
+            ]);
+        } catch (\Expetion $ex) {
+            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
-
-        return $this->render('file/content.html.twig', [
-            'file' => $file,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -85,6 +102,12 @@ class FileController extends Controller
             'file' => $file,
             'delete_form' => $deleteForm->createView(),
         ]);
+    }
+
+    // added by Dirk to show flash messages after submitting form
+    public function showFlash(String $status, String $state)
+    {
+        return $this->addFlash($status, $state);
     }
 
     // /**
@@ -121,24 +144,57 @@ class FileController extends Controller
      */
     public function deleteAction(Request $request, File $file, Filesystem $fileSystem)
     {
-        $form = $this->createDeleteForm($file);
-        $form->handleRequest($request);
+        try {
+            $form = $this->createDeleteForm($file);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $filename = $file->getFilename();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $filename = $file->getFilename();
 
-            // $path = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/invoices/'.$filename);
-            // $id = $file->getId();
-            // $fileSystem->remove(['/web/uploads/invoices/', $filename]);
+                $dateToday = date('d-m-Y');
+                $dateToday = substr($dateToday, 6, 4);
 
-            unlink('../web/uploads/invoices/' . $filename);
+                $dateFile = $file->getDate();
+                $dateFile = $this->CheckYear($dateFile);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($file);
-            $em->flush();
+                // $dateFile = (int) $dateFile;
+                // $dateToday = (int) $dateToday;
+
+                dump($dateFile);
+                dump($dateToday);
+                die();
+                if ($dateToday == $dateFile) {
+                    unlink('../web/uploads/invoices/' . $filename);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->remove($file);
+                    $em->flush();
+
+                    // Added by Dirk
+                    $state = 'Bestand is verwijderd.';
+                    $succes = 'succes';
+                    $this->showFlash($succes, $state);
+                } else {
+                    $state = 'Niet ouder dan 7 jaar. Bestand wordt niet verwijderd.';
+                    $succes = 'succes';
+                    $this->showFlash($succes, $state);
+
+                    return $this->redirectToRoute('file_index');
+                }
+            }
+
+            return $this->redirectToRoute('file_index');
+        } catch (\Exception $ex) {
+            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
+    }
 
-        return $this->redirectToRoute('file_index');
+    public function CheckYear($dateFile)
+    {
+        $dateFile = date_add($dateFile, date_interval_create_from_date_string('7 years'));
+        $dateFile = date_format($dateFile, 'd-m-Y');
+
+        return substr($dateFile, 6, 4);
     }
 
     /**
@@ -148,7 +204,7 @@ class FileController extends Controller
     {
         $file = $file->getFilename();
         $response = new BinaryFileResponse('../web/uploads/invoices/' . $file . '');
-        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'factuur.pdf');
+        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, '' . $file . '.pdf');
 
         return $response;
     }

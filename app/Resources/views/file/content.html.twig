@@ -17,24 +17,48 @@
     </div>
 <div>
 
-    {{ form_start(form) }}
+    {{ form_start(form, { 'attr': {
+        'data-async': '',
+    } } ) }}
     
     <h4>{% if file.id == null %}Nieuw{% else %}Wijzig{% endif %} bestand</h4>
 
-    <br>
+    <br>    
 
+    <!-- message -->
+    <div id="formMessage" class="form-message" style="display:none"></div>
+
+    
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>
         <div class="cell medium-3">
             {{ form_label(form.filename) }}
         </div>
         <div class="cell medium-4">
-            {{ form_widget(form.filename) }}
+            <label class="button">Kies bestand
+            {{ form_widget(form.filename, { 'attr': 
+                {   'id': 'inputFile',
+                    'hidden' : '',
+                    'size' : '50',
+                    'onchange' : 'fileUpload(this);'
+                } } ) 
+            }}
+        </label>          
         </div>
         <div class="cell medium-2">
+            <div id="message">Selecteer een bestand</div>
             {{ form_errors(form.filename) }}
         </div>
     </div>
+        <script>
+                function fileUpload(myFile){
+                    var file = myFile.files[0];
+                    message.innerHTML = 'Bestand: ' + file.name;
+                }
+                function cancel() {
+                    message.innerHTML ="Selecteer een bestand"
+                }
+        </script>
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>
         <div class="cell medium-3">
@@ -65,8 +89,9 @@
         <div class="cell medium-3"></div>
         <div class="cell medium-3"></div>
         <div class="cell medium-3 text-right">
-            <input type="reset" value="Reset" class="button" />
-            <input type="submit" value="Opslaan" class="button" />
+            <input type="reset" value="Reset" onclick="cancel();" class="button" />
+            {# <input type="submit" value="Opslaan" class="button" /> #}
+            {{ form_widget(form.save) }}
         </div>
         <div class="cell medium-3"></div>
     </div>

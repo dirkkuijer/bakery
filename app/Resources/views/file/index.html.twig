@@ -44,7 +44,7 @@
                 <td id="td">{{ file.period}}</td>
                 <td id="td">
                     {# <a class="button" href="{{ path('file_edit', { 'id': file.id }) }}" title="{{ file.id }}">Bewerken</a> #}
-                    <a class="button" href="{{ path('file_show', { 'id': file.id }) }}">Bekijken</a>
+                    <a class="button" href="javascript:void(0)" data-path="{{ path('file_show', { 'id': file.id }) }}">Bekijken</a>
                     <a class="button" href="{{ path('download_file', { 'id': file.id }) }}" target="_blank">Download PDF</a>
                 </td>
             </tr>
