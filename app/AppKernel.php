@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Ps\PdfBundle\PsPdfBundle(),
             new \Symfony\WebpackEncoreBundle\WebpackEncoreBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            // new PhpOffice\PhpSpreadsheet(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

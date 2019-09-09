@@ -24,7 +24,7 @@ class FileTypeType extends AbstractType
                 'data_class' => null,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '1224k',
                         'mimeTypes' => [
                             'application/pdf',
                             'application/x-pdf',

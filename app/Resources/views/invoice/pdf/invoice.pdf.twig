@@ -2,8 +2,25 @@
 <!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
 <pdf Title="{{ invoice.invoicenumber }} {{ relation.name }}">
     <dynamic-page>
-
-        {# <img src="{{ asset('assets/images/logo.jpeg') }}" class="logo" width="100px" height="100px"/> #}
+        
+        <table>
+            <tr>
+                <td>
+                    <div text-align="left">
+                        Meeuwenlaan 24<br />
+                        3645 GH Vinkeveen<br />
+                        Info@sjhomebakery.nl<br />
+                        06 3343 6850
+                    </div>
+                </td>
+                <td>
+                    <img src="../app/Resources/assets/images/logo.jpeg" class="logo" width="100px" height="100px" margin="0 auto" />
+                </td>
+                <td>
+                    Waar je droom een taart is...
+                </td>
+            </tr>
+        </table>
         
         <h3 border-color="black" padding="5px" text-align="center">
                 Factuur {{ invoice.invoicenumber }}
