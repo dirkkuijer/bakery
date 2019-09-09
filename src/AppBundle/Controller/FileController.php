@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\File;
 use AppBundle\Form\FileTypeType;
+use AppBundle\Service\CheckFile;
 use AppBundle\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -110,32 +111,6 @@ class FileController extends Controller
         return $this->addFlash($status, $state);
     }
 
-    // /**
-    //  * Displays a form to edit an existing file entity.
-    //  *
-    //  * @Route("/{id}/edit", name="file_edit")
-    //  * @Method({"GET", "POST"})
-    //  */
-    // public function editAction(Request $request, File $file)
-    // {
-    //     $deleteForm = $this->createDeleteForm($file);
-    //     $editForm = $this->createForm('AppBundle\Form\FileTypeType', $file);
-    //     $editForm->handleRequest($request);
-
-    //     if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-    //         $this->getDoctrine()->getManager()->flush();
-
-    //         return $this->redirectToRoute('file_edit', array('id' => $file->getId()));
-    //     }
-
-    //     return $this->render('file/index.html.twig', array(
-    //         'file' => $file,
-    //         'edit_form' => $editForm->createView(),
-    //         'delete_form' => $deleteForm->createView(),
-    //     ));
-    // }
-
     /**
      * Deletes a file entity.
      *
@@ -150,20 +125,11 @@ class FileController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $filename = $file->getFilename();
-
-                $dateToday = date('d-m-Y');
-                $dateToday = substr($dateToday, 6, 4);
-
+                $checkFile = new CheckFile();
                 $dateFile = $file->getDate();
-                $dateFile = $this->CheckYear($dateFile);
+                $dateFile = $checkFile->checkYear($dateFile);
 
-                // $dateFile = (int) $dateFile;
-                // $dateToday = (int) $dateToday;
-
-                dump($dateFile);
-                dump($dateToday);
-                die();
-                if ($dateToday == $dateFile) {
+                if ($dateFile) {
                     unlink('../web/uploads/invoices/' . $filename);
 
                     $em = $this->getDoctrine()->getManager();
@@ -175,7 +141,7 @@ class FileController extends Controller
                     $succes = 'succes';
                     $this->showFlash($succes, $state);
                 } else {
-                    $state = 'Niet ouder dan 7 jaar. Bestand wordt niet verwijderd.';
+                    $state = 'Niet toegestaan: Bestand is niet ouder dan 7 jaar.';
                     $succes = 'succes';
                     $this->showFlash($succes, $state);
 
@@ -187,14 +153,6 @@ class FileController extends Controller
         } catch (\Exception $ex) {
             return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
-    }
-
-    public function CheckYear($dateFile)
-    {
-        $dateFile = date_add($dateFile, date_interval_create_from_date_string('7 years'));
-        $dateFile = date_format($dateFile, 'd-m-Y');
-
-        return substr($dateFile, 6, 4);
     }
 
     /**
