@@ -2,9 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-
 /**
  * InvoiceRepository
  *
@@ -13,4 +10,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class InvoiceRepository extends \Doctrine\ORM\EntityRepository
 {
-   }
+    public function getLastInvoiceNumber()
+    {
+        $lastInvoiceNumber = $this->getEntityManager()->createQueryBuilder()
+            ->select('i')
+            ->from('AppBundle:Invoice', 'i')
+            ->orderBy('i.invoiceNumber', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+
+    ;
+        if ($lastInvoiceNumber) {
+            return $lastInvoiceNumber = $lastInvoiceNumber->getInvoicenumber();
+        }
+
+        return $lastInvoiceNumber = '';
+    }
+}

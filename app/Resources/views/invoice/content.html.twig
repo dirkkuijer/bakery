@@ -76,13 +76,15 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.invoiceNumber) }}
+                <label style="padding-bottom:10px;">Factuurnummer</label>
+                {# {{ form_label(form.invoiceNumber) }} #}
             </div>
             <div class="cell medium-3">
-                {{ form_widget(form.invoiceNumber) }}
+                {{ invoice.invoiceNumber }}
+                {# {{ form_widget(form.invoiceNumber) }} #}
             </div>
             <div class="cell medium-3">
-                {{ form_errors(form.invoiceNumber) }}
+                {# {{ form_errors(form.invoiceNumber) }} #}
             </div>
         </div>
         <div class="grid-x grid-padding-x">

@@ -2,19 +2,19 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+require '/home/dirk/projects/bakery/vendor/autoload.php';
+
+use AppBundle\Factory\TaxIndex;
+use Doctrine\ORM\Mapping as ORM;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
-use AppBundle\Entity\Invoice;
-use AppBundle\Entity\Relation;
-use Ps\PdfBundle\Annotation\Pdf;
-
 
 /**
  * Tax controller.
  *
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InvoiceRepository")
  * @Route("tax")
  */
 class TaxController extends Controller
@@ -24,37 +24,19 @@ class TaxController extends Controller
      * @Method("GET")
      */
     public function indexAction(Request $request)
-    { 
+    {
         $em = $this->getDoctrine()->getManager();
 
-        $invoices = new Invoice();
-        $invoice = new Invoice();
-        $relations = new Relation();
         $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
         $relations = $em->getRepository('AppBundle:Relation')->findAll();
-        
-        $totals[] = $em->getRepository('AppBundle:Invoice')->findAll();
+
+        // $this->makeTaxIndex();
+        $tax = new TaxIndex();
+        $tax->newSpreadsheet();
 
         return $this->render('tax/index.html.twig', [
             'invoices' => $invoices,
             'relations' => $relations,
-            'totals' => $totals,
         ]);
     }
-    
-    /**
-     * begin van pdf toevoegingen
-     *
-     * @Route("/pdf/{id}", defaults={ "_format" = "pdf" }, name="tax.pdf")
-     * @Pdf(stylesheet="tax/pdf/tax.pdf.style.twig")
-     * @Method({"GET"})
-     */
-    public function pdfPowerplanAction(Request $request, Invoice $invoice)
-    {
-        return $this->render('tax/pdf/tax.pdf.twig', [
-            'invoice' => $invoice,
-            'relation' => $invoice->getRelation(),
-        ]);
-    }
-
 }

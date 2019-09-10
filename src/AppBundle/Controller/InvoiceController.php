@@ -46,7 +46,13 @@ class InvoiceController extends Controller
     public function newAction(Request $request, InvoiceType $invoiceType)
     {
         try {
+            $em = $this->getDoctrine()->getManager();
+
+            $invoiceNumber = $em->getRepository('AppBundle:Invoice')->getLastInvoiceNumber();
+
             $invoice = new Invoice();
+            $invoice->setInvoiceNumber($this->generateNewInvoiceNumber($invoiceNumber));
+
             $form = $this->createForm(InvoiceType::class, $invoice, [
                 'action' => $this->generateUrl('invoice_new'),
             ]);
@@ -77,6 +83,37 @@ class InvoiceController extends Controller
                 'invoice' => $invoice,
                 'form' => $form->createView(),
             ]);
+        } catch (\Exception $ex) {
+            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
+        }
+    }
+
+    public function generateNewInvoiceNumber($lastInvoiceNumber)
+    {
+        try {
+            if ($lastInvoiceNumber) {
+                $newInvoiceNumber = explode('-', $lastInvoiceNumber);
+                $newInvoiceNumber = $newInvoiceNumber[1] + 1;
+                $year = date('y') . '-';
+
+                $zero = '';
+
+                if (1 == strlen($newInvoiceNumber)) {
+                    $zero = '00';
+                } elseif (2 == strlen($newInvoiceNumber)) {
+                    $zero = '0';
+                } elseif (strlen(3 == $newInvoiceNumber)) {
+                    $zero = '';
+                }
+                $array = [$year, $zero, $newInvoiceNumber];
+                // dump($array);
+                // die();
+
+                return $array[0] . $array[1] . $array[2];
+            }
+            $year = date('y') . '-';
+
+            return $year . '001';
         } catch (\Exception $ex) {
             return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
@@ -181,7 +218,7 @@ class InvoiceController extends Controller
      * @Pdf(stylesheet="invoice/pdf/invoice.pdf.style.twig")
      * @Method({"GET"})
      */
-    public function pdfPowerplanAction(Request $request, Invoice $invoice)
+    public function pdfInvoice(Request $request, Invoice $invoice)
     {
         return $this->render('invoice/pdf/invoice.pdf.twig', [
             'invoice' => $invoice,
