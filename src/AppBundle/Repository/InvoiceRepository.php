@@ -27,4 +27,23 @@ class InvoiceRepository extends \Doctrine\ORM\EntityRepository
 
         return $lastInvoiceNumber = '';
     }
+
+    public function getInvoiceInPeriod($from, $till)
+    {
+        $qb = $this->createQueryBuilder('i');
+
+        $qb
+            ->select('i')
+            ->andWhere(
+                $qb->expr()->between('i.date', ':from', ':till')
+            )
+            ->setParameter(':from', $from)
+            ->setParameter(':till', $till)
+            ->orderBy('i.invoiceNumber')
+        ;
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
 }

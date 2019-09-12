@@ -43,7 +43,7 @@ class InvoiceController extends Controller
      * @Route("/new", name="invoice_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, InvoiceType $invoiceType)
+    public function newAction(Request $request)
     {
         try {
             $em = $this->getDoctrine()->getManager();
@@ -106,8 +106,6 @@ class InvoiceController extends Controller
                     $zero = '';
                 }
                 $array = [$year, $zero, $newInvoiceNumber];
-                // dump($array);
-                // die();
 
                 return $array[0] . $array[1] . $array[2];
             }
