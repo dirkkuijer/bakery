@@ -21,14 +21,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class TaxController extends Controller
 {
     /**
-     * @Route("/search", name="tax_search")
+     * Creates a new invoice entity.
+     *
+     * @Route("/new", name="tax_search")
      * @Method("POST")
      */
     public function searchAction(Request $request)
     {
         try {
             $form = $this->createForm(TaxType::class);
-
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -41,33 +42,36 @@ class TaxController extends Controller
 
                 $invoices = $em->getRepository('AppBundle:Invoice')->getInvoiceInPeriod($from, $till);
 
-                dump($invoices);
-                die();
+                //functioneert niet???
+                // in services.yml factory geregistreerd en geprobeerd parameters mee te geven,
+                // maar dit is niet gelukt na het bestuderen van documentatie.
                 $tax = new TaxIndex();
                 $tax->newSpreadsheet($invoices);
-                // $route = 'tax_index';
 
-                // return new JsonResponse(['redirectToRoute' => $this->generateUrl($route, ['type' => $invoiceType])], 200);
+                $route = 'tax_search';
+
+                //TODO: vragen Sander waarom deze regel de actie verstoord heeft?
+                // return new JsonResponse(['redirectToRoute' => $this->generateUrl($route, ['type' => $invoices])], 200);
 
                 return $this->render('tax/index.html.twig', [
                     'invoices' => $invoices,
                 ]);
             }
-            // if ($form->isSubmitted() && !$form->isValid()) {
-            //     return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
-            // }
+            if ($form->isSubmitted() && !$form->isValid()) {
+                return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
+            }
 
             return $this->render('tax/search.html.twig', [
                 'form' => $form->createView(),
             ]);
         } catch (\Exception $ex) {
-            // return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
+            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
     }
 
     /**
      * @Route("/", name="tax_index")
-     * @Method("GET")
+     * @Method("POST")
      */
     public function indexAction(Request $request)
     {
@@ -81,25 +85,11 @@ class TaxController extends Controller
         // $relations = $em->getRepository('AppBundle:Relation')->findAll();
 
         // $tax = new TaxIndex();
-        // $tax->newSpreadsheet();
+        // $tax->newSpreadsheet($invoices);
 
         return $this->render('tax/index.html.twig', [
             'invoices' => $invoices,
         ]);
-    }
-
-    /**
-     * @Route("/", name="make_stylesheet")
-     * @Method("GET")
-     */
-    public function makeStylesheet()
-    {
-        $tax = new TaxIndex();
-        $tax->newSpreadsheet();
-
-        // Added by Dirk
-        $state = 'Bestand is gemaakt.';
-        $this->showFlash('succes', $state);
     }
 
     public function getInvoice()

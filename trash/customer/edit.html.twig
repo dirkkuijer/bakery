@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="grid-x grid-padding-x">
+    <div class="cell medium-10"></div>
+    <div class="cell medium-2">
+        <a href="{{ path('customer_index') }}" class="button">Overzicht</a>
+    </div>
+</div>
+
+    <h4>Klant bewerken</h4>
+
+    {{ form_start(edit_form) }}
+        
+    <br>
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.firstName) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.firstName) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.firstName) }}
+            </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.lastName) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.lastName) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.lastName) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.street) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.street) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.street) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.houseNumber) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.houseNumber) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.houseNumber) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.postalCode) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.postalCode) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.postalCode) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.city) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.city) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.city) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.telephone) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.telephone) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.telephone) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.email) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.email) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.email) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.allergies) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.allergies) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.allergies) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.bankaccountNumber) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.bankaccountNumber) }}
+        </div>
+        <div class="cell medium-3">
+                {{ form_errors(edit_form.bankaccountNumber) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3">
+            {{ form_label(edit_form.kindOfInvoiceCustomer) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_widget(edit_form.kindOfInvoiceCustomer) }}
+        </div>
+        <div class="cell medium-3">
+            {{ form_errors(edit_form.kindOfInvoiceCustomer) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3"></div>
+        <div class="cell medium-3 text-right">
+            <input class="button" type="submit" value="Opslaan" />
+    {{ form_end(edit_form) }}
+        </div>
+        <div class="cell medium-1"></div>
+        <div class="cell medium-2">
+            {{ form_start(delete_form) }}
+                <input class="button" type="submit" value="Verwijderen" />
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

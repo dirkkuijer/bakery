@@ -5,7 +5,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" href=" {{ path('tax_search') }} " {#data-path=""#} >Overzicht opvragen</a>
+            <a class="button" href="javascript:void(0);" data-path="{{ path('tax_search') }}">Overzicht opvragen</a>
         </div>
     </div> 
 
@@ -51,7 +51,6 @@
                 {# {% endfor %} #}
             </table>
         </div>
-        <a href=" {{ path('make_stylesheet') }} " class="button">Excel maken</a>
         
     </div>
 {% endblock %}

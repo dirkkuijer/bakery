@@ -48,6 +48,7 @@ services:
         arguments:
             $targetDirectory: '%file_directory%'
 
-    AppBundle\Factory\TaxIndex:
-        factory: ['AppBundle\Factory\TaxIndex', 'newSpreadsheet']
+    AppBundle\Factory\TaxIndex: 
         class: AppBundle\Factory\Taxindex
+        factory: ['AppBundle\Factory\TaxIndex', 'newSpreadsheet']
+      
