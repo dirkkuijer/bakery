@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Invoice;
-use AppBundle\Factory\TaxIndex;
+use AppBundle\Factory\TaxIndexFactory;
 use AppBundle\Form\TaxType;
 use Doctrine\ORM\Mapping as ORM;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -45,7 +45,7 @@ class TaxController extends Controller
                 //functioneert niet???
                 // in services.yml factory geregistreerd en geprobeerd parameters mee te geven,
                 // maar dit is niet gelukt na het bestuderen van documentatie.
-                $tax = new TaxIndex();
+                $tax = new TaxIndexFactory();
                 $tax->newSpreadsheet($invoices);
 
                 $route = 'tax_search';
