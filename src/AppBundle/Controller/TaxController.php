@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Invoice;
-use AppBundle\Factory\TaxIndexFactory;
 use AppBundle\Form\TaxType;
 use Doctrine\ORM\Mapping as ORM;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -42,16 +41,9 @@ class TaxController extends Controller
 
                 $invoices = $em->getRepository('AppBundle:Invoice')->getInvoiceInPeriod($from, $till);
 
-                //functioneert niet???
-                // in services.yml factory geregistreerd en geprobeerd parameters mee te geven,
-                // maar dit is niet gelukt na het bestuderen van documentatie.
-                $tax = new TaxIndexFactory();
-                $tax->newSpreadsheet($invoices);
+                $tax = $this->get('AppBundle\Factory\TaxIndexFactory')->newTaxIndex($invoices);
 
                 $route = 'tax_search';
-
-                //TODO: vragen Sander waarom deze regel de actie verstoord heeft?
-                // return new JsonResponse(['redirectToRoute' => $this->generateUrl($route, ['type' => $invoices])], 200);
 
                 return $this->render('tax/index.html.twig', [
                     'invoices' => $invoices,
@@ -83,9 +75,6 @@ class TaxController extends Controller
         // $invoices = $em->getRepository('AppBundle:Invoice')->getInvoiceInPeriod($from, $till);
         $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
         // $relations = $em->getRepository('AppBundle:Relation')->findAll();
-
-        // $tax = new TaxIndex();
-        // $tax->newSpreadsheet($invoices);
 
         return $this->render('tax/index.html.twig', [
             'invoices' => $invoices,

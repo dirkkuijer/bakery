@@ -70,9 +70,8 @@ class InvoiceController extends Controller
 
                 $route = 'invoice_index';
 
-                return new JsonResponse(['redirectToRoute' => $this->generateUrl($route, ['type' => $invoices])], 200);
-
-                return $this->redirectToRoute('invoice_index');
+                return new JsonResponse(['redirectToRoute' => $this->generateUrl($route)], 200);
+                // return $this->redirectToRoute('invoice_index');
             }
 
             if ($form->isSubmitted() && !$form->isValid()) {
@@ -93,18 +92,18 @@ class InvoiceController extends Controller
         try {
             if ($lastInvoiceNumber) {
                 $newInvoiceNumber = explode('-', $lastInvoiceNumber);
-                
+
                 //functie explode werkt op volgorde van array. zet deze om en je gegevens zijn null
                 $yearLastInvoice = $newInvoiceNumber[0] . '-';
                 $newInvoiceNumber = $newInvoiceNumber[1] + 1;
-                
+
                 $year = date('y') . '-';
-          
+
                 // bij het begin van een nieuw jaar het resetten van factuurnummer
                 if ($yearLastInvoice != $year) {
                     $newInvoiceNumber = '001';
                 }
-                
+
                 $zero = '';
 
                 if (1 == strlen($newInvoiceNumber)) {
@@ -115,7 +114,7 @@ class InvoiceController extends Controller
                     $zero = '';
                 }
                 $array = [$year, $zero, $newInvoiceNumber];
-               
+
                 return $array[0] . $array[1] . $array[2];
             }
             $year = date('y') . '-';
