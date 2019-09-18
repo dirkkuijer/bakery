@@ -36,10 +36,10 @@ class InvoiceRepository extends \Doctrine\ORM\EntityRepository
             ->select('i')
             ->andWhere(
                 $qb->expr()->between('i.date', ':from', ':till')
-            )
+         )
             ->setParameter(':from', $from)
             ->setParameter(':till', $till)
-            ->orderBy('i.invoiceNumber')
+            ->orderBy('i.invoiceNumber', 'DESC')
         ;
 
         $query = $qb->getQuery();

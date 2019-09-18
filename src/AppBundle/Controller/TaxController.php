@@ -41,7 +41,7 @@ class TaxController extends Controller
 
                 $invoices = $em->getRepository('AppBundle:Invoice')->getInvoiceInPeriod($from, $till);
 
-                $tax = $this->get('AppBundle\Factory\TaxIndexFactory')->newTaxIndex($invoices);
+                $tax = $this->get('AppBundle\Factory\TaxIndexFactory')->newTaxIndex($invoices, $from, $till);
 
                 $route = 'tax_search';
 
