@@ -9,27 +9,54 @@ class TaxIndexFactory
 {
     public function newTaxIndex($invoices, \DateTime $from, \DateTime $till)
     {
-        $customerInvoices = $invoices->filter(function ($entity) {
-            if ($entity->getRelation()->getKindOfRelation()) {
-                return $entity;
+        try {
+            $customerInvoices = $invoices->filter(function ($entity) {
+                if ($entity->getRelation()->getKindOfRelation()) {
+                    return $entity;
+                }
+            });
+            $supplierInvoices = $invoices->filter(function ($entity) {
+                if (!$entity->getRelation()->getKindOfRelation()) {
+                    return $entity;
+                }
+            });
+
+            $from = $from->format('d-m-Y');
+            $till = $till->format('d-m-Y');
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('../src/AppBundle/Factory/excel/overzicht btw.xlsx');
+
+            $sheet = $spreadsheet->getActiveSheet();
+
+            $this->loopInvoice($customerInvoices, $sheet);
+            $this->loopInvoice($supplierInvoices, $sheet);
+
+            $sheet->setCellValue('B1', date('Y'));
+            $sheet->setCellValue('B2', $from);
+            $sheet->setCellValue('C2', ' t/m ' . $till);
+
+            $filename = 'SJHB btw ' . date('d-m-y');
+
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
+            $writer->save('../web/uploads/tax/' . $filename . '.xls');
+
+            echo '<div class="flash-succes">Overzicht ' . $filename . ' is aangemaakt.</div>';
+        } catch (\Expetion $ex) {
+            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
+        }
+    }
+
+    public function loopInvoice($invoices, $sheet)
+    {
+        foreach ($invoices as $invoice) {
+            $cols = 1;
+            if ($invoice->getRelation()->getKindOfRelation()) {
+                $rows = 7;
+            } else {
+                $rows = 29;
             }
-        });
-        $supplierInvoices = $invoices->filter(function ($entity) {
-            if (!$entity->getRelation()->getKindOfRelation()) {
-                return $entity;
-            }
-        });
+        }
 
-        $from = $from->format('d-m-Y');
-        $till = $till->format('d-m-Y');
-        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('../src/AppBundle/Factory/excel/overzicht btw.xlsx');
-
-        $sheet = $spreadsheet->getActiveSheet();
-
-        $cols = 1;
-        $rows = 7;
-
-        foreach ($customerInvoices as $invoice) {
+        foreach ($invoices as $invoice) {
             $collInvoiceNumber = $invoice->getInvoiceNumber();
             $invoiceDate = $invoice->getDate();
             $collInvoiceDate = $invoiceDate->format('d-m-Y');
@@ -59,22 +86,8 @@ class TaxIndexFactory
                 }
             }
         }
-
-        $sheet->setCellValue('B1', date('Y'));
-        $sheet->setCellValue('B2', $from);
-        $sheet->setCellValue('C2', ' t/m ' . $till);
-
-        $filename = 'btw aangifte-' . date('m-y');
-
-        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save('../web/uploads/tax/' . $filename . '.xls');
-        echo '<div class="flash-succes">Overzicht ' . $filename . ' is aangemaakt.</div>';
     }
-
-    public function loopInvoice($invoices)
-    {
-    }
-
+}
     // public function excelResponse($spreadsheetObject, $title)
     // {
     //     $title = preg_replace('/[^a-zA-Z0-9\._-]+/', '-', $title);
@@ -107,4 +120,3 @@ class TaxIndexFactory
     //     // Dispatch request
     //     return $response;
     // }
-}

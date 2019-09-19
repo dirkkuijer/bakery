@@ -22,7 +22,7 @@ class InvoiceType extends AbstractType
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
             ])
-            // ->add('invoiceNumber')
+            ->add('invoiceNumber')
             ->add('description', TextareaType::class, [
                 'attr' => ['placeholder' => 'Omschrijving bestelling'],
             ])

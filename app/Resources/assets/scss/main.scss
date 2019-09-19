@@ -177,3 +177,11 @@ ul {
 	position: absolute;
 	z-index: -1;
 }
+
+.table {
+    z-index: +1;
+    box-shadow: 3px 3px 5px 3px black;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
