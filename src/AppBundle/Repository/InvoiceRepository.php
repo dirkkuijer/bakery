@@ -39,11 +39,11 @@ class InvoiceRepository extends \Doctrine\ORM\EntityRepository
          )
             ->setParameter(':from', $from)
             ->setParameter(':till', $till)
-            ->orderBy('i.invoiceNumber', 'DESC')
+            ->orderBy('i.invoiceNumber')
         ;
 
         $query = $qb->getQuery();
 
-        return $query->getResult();
+        return new \Doctrine\Common\Collections\ArrayCollection($query->getResult());
     }
 }
