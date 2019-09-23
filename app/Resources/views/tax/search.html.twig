@@ -10,8 +10,8 @@
         } } ) }}  #}
             
             <h4>Overzicht maken</h4>
-            <br />
-        {{ form_start(form, {'action': path('tax_search')}, { 'data-async' : ''} )}}
+            <br />  {# , {'action': path('tax_search')}, { 'data-async' : ''} dit stond form. Moet in de controller #}
+        {{ form_start(form)}}
              <div class="grid-x grid-padding-x">
                 <div class="cell medium-1">{{ form_label(form.from) }}</div>
                 <div class="cell medium-2">{{ form_widget(form.from) }}</div>

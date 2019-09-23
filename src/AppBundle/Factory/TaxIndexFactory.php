@@ -34,13 +34,15 @@ class TaxIndexFactory
             $sheet->setCellValue('B2', $from);
             $sheet->setCellValue('C2', ' t/m ' . $till);
 
-            $filename = 'SJHB btw ' . date('d-m-y');
+            $filename = 'SJHB btw aangifte';
 
             $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
             $writer->save('../web/uploads/tax/' . $filename . '.xls');
 
-            echo '<div class="flash-succes">Overzicht ' . $filename . ' is aangemaakt.</div>';
+            echo '<div class="flash-succes">Overzicht ' . '"' . $filename . '"' . ' is aangemaakt.</div>';
         } catch (\Expetion $ex) {
+            echo '<div class="flash-error">Er is wat fout gegaan:</div> ' . $ex;
+
             return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
     }

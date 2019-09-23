@@ -1,10 +1,10 @@
-{# {% extends 'layout.html.twig' %}
+ {# {% extends 'base.html.twig' %}
 
 {% block stylesheet %}
     {{ parent() }}
-{% endblock %}
+{% endblock %} 
 
-{% block body %} #}
+{% block body %}  #}
 
     <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
@@ -12,14 +12,17 @@
 
 <h4>Contact</h4>
 <br>
-
+<datalist id="contacten">
+            <option>vanbeijnumadministratie@planet.nl</option>
+            <option>dirkkuijer@hotmail.com</option>
+        </datalist>
 {{ form_start(form) }}
     <div class="grid-x grid-padding-x">
+        {# <div class="cell medium-3">
+            {{ form_row(form.from) }}    
+        </div> #}
         <div class="cell medium-3">
-            {{ form_row(form.name) }}
-        </div>
-        <div class="cell medium-3">
-            {{ form_row(form.email) }}    
+            {{ form_row(form.to) }}    
         </div>
         <div class="cell medium-3">
             {{ form_row(form.subject) }}
@@ -73,5 +76,5 @@
     </div>
     
 {{ form_end(form)}}
-{# 
-{% endblock %} #}
+
+{# {% endblock %} #}

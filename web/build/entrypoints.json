@@ -15,7 +15,7 @@
     "functions": {
       "js": [
         "/build/runtime.6e3f3c3a.js",
-        "/build/functions.31a14565.js"
+        "/build/functions.58cb0a59.js"
       ]
     },
     "app_style": {
@@ -23,7 +23,7 @@
         "/build/runtime.6e3f3c3a.js"
       ],
       "css": [
-        "/build/app_style.6d651558.css"
+        "/build/app_style.fe9a0fe6.css"
       ]
     }
   }

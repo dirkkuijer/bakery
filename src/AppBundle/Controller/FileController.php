@@ -142,7 +142,7 @@ class FileController extends Controller
                     $this->showFlash($succes, $state);
                 } else {
                     $state = 'Niet toegestaan: Bestand is niet ouder dan 7 jaar.';
-                    $succes = 'succes';
+                    $succes = 'error';
                     $this->showFlash($succes, $state);
 
                     return $this->redirectToRoute('file_index');

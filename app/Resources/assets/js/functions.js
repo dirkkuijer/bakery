@@ -25,4 +25,8 @@ setTimeout(function() {
     $('.flash-succes').fadeOut('slow');
 }, 5000); // <-- time in milliseconds
 
+setTimeout(function() {
+    $('.flash-error').fadeOut('slow');
+}, 5000); // <-- time in milliseconds
+
 console.log("Functions loaded");

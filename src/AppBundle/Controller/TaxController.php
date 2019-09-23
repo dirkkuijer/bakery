@@ -28,7 +28,13 @@ class TaxController extends Controller
     public function searchAction(Request $request)
     {
         try {
-            $form = $this->createForm(TaxType::class);
+            $form = $this->createForm(
+                TaxType::class,
+                null,
+                [
+                    'action' => $this->generateUrl('tax_search'),
+                ]
+            );
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
