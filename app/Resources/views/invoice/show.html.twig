@@ -48,9 +48,13 @@
                     Factuurnummer
             </div>
             <div class="cell medium-6">
-                <a class="button" href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">
+                {% if invoice.relation.kindOfRelation == true %}
+                    <a class="button" href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">
+                        {{ invoice.invoiceNumber }}
+                        (PDF)</a>
+                {% else %}
                     {{ invoice.invoiceNumber }}
-                (PDF)</a>
+                {% endif %}
             </div>
         </div>
         <div class="grid-x grid-padding-x">

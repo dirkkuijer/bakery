@@ -20,6 +20,9 @@ class Invoice
      * @ORM\JoinColumn(name="relation_id", referencedColumnName="id")
      */
     private $relation;
+    // zet bij de entities de toegang niet op private maar op protected.
+    //Hierdoor kun je er beter instanties van maken indien nodig.
+    // ID zet je ALTIJD op private i.v.m. de veiligheid.
 
     /**
      * @var int

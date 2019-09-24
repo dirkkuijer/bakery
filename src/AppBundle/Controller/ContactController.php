@@ -27,6 +27,9 @@ class ContactController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
 
+            $emailTo = $this->sanitizeAdress($contactFormData['to']);
+            $contentMessage = $this->sanitizeMessage($contactFormData['message']);
+
             $filename = 'SJHB btw aangifte.xls';
 
             if (isset($contactFormData['attachment'])) {
@@ -35,8 +38,8 @@ class ContactController extends Controller
                 ;
                 $message = (new \Swift_Message('SJHB'))
                     // ->setFrom($contactFormData['from'])
-                    ->setTo($contactFormData['to'])
-                    ->setFrom(['appbakkery@gmail.com' => 'S J Home Bakery'])
+                    ->setTo($emailTo)
+                    ->setFrom(['info@sjhomebakery.nl' => 'S J Home Bakery'])
 
                     ->setSubject($contactFormData['subject'])
                     ->attach($attachment)
@@ -51,7 +54,7 @@ class ContactController extends Controller
                         S J Home Bakery
                         </h3>
                         <p>
-                        <i>' . $contactFormData['message'] . '</i>
+                        <i>' . $contentMessage . '</i>
                         </p>
                         
                         Met vriendelijke groeten,<br><br>
@@ -66,8 +69,8 @@ class ContactController extends Controller
                 ;
             } else {
                 $message = (new \Swift_Message('SJHB'))
-                    ->setFrom(['appbakkery@gmail.com' => 'S J Home Bakery'])
-                    ->setTo($contactFormData['to'])
+                    ->setFrom(['info@sjhomebakery.nl' => 'S J Home Bakery'])
+                    ->setTo($emailTo)
                     ->setSubject($contactFormData['subject'])
                     ->setBody(
                         '<html>
@@ -125,5 +128,15 @@ class ContactController extends Controller
         return $this->render('contact.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    public function sanitizeMessage($input)
+    {
+        return filter_var($input, FILTER_SANITIZE_STRING);
+    }
+
+    public function sanitizeAdress($input)
+    {
+        return filter_var($input, FILTER_SANITIZE_EMAIL);
     }
 }
