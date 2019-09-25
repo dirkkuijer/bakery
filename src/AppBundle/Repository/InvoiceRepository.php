@@ -46,4 +46,27 @@ class InvoiceRepository extends \Doctrine\ORM\EntityRepository
 
         return new \Doctrine\Common\Collections\ArrayCollection($query->getResult());
     }
+
+    public function getLastInvoiceRecord()
+    {
+        try {
+            $lastInvoiceNumber = $this->getEntityManager()->createQueryBuilder()
+                ->select('i')
+                ->from('AppBundle:Invoice', 'i')
+                ->orderBy('i.invoiceNumber', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult()
+           ;
+            if (!$lastInvoiceNumber) {
+                throw $this->createNotFoundException(
+                );
+                // echo '<div class="flash-error">Geen factuurnummer gevonden</div>';
+            }
+
+            return $lastInvoiceNumber;
+        } catch (\Exception $e) {
+            echo '<div class="flash-error">' . $e . '</div>';
+        }
+    }
 }

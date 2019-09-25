@@ -40,6 +40,7 @@ class RelationType extends AbstractType
             ->add('city')
             ->add('telephone', TextType::class, [
                 'attr' => ['placeholder' => '012-3456789'],
+                'required' => false,
             ])
             ->add('email', EmailType::class, [
                 'attr' => ['placeholder' => 'naam@email.nl'],

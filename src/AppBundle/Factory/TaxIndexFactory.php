@@ -37,7 +37,7 @@ class TaxIndexFactory
             $filename = 'SJHB btw aangifte';
 
             $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
-            $writer->save('../web/uploads/tax/' . $filename . '.xls');
+            $writer->save('../private/upload/tax/' . $filename . '.xls');
 
             echo '<div class="flash-succes">Overzicht ' . '"' . $filename . '"' . ' is aangemaakt.</div>';
         } catch (\Expetion $ex) {

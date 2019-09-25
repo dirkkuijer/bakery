@@ -8,7 +8,7 @@ imports:
 parameters:
     locale: nl
     # file uploader
-    file_directory: '%kernel.project_dir%/web/uploads/invoices'
+    file_directory: '%kernel.project_dir%/private/upload/invoices'
 framework:
     #esi: ~
     translator: { fallbacks: ['%locale%'] }

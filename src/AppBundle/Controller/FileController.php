@@ -130,7 +130,7 @@ class FileController extends Controller
                 $dateFile = $checkFile->checkYear($dateFile);
 
                 if ($dateFile) {
-                    unlink('../web/uploads/invoices/' . $filename);
+                    unlink('../private/upload/invoices/' . $filename);
 
                     $em = $this->getDoctrine()->getManager();
                     $em->remove($file);
@@ -161,7 +161,7 @@ class FileController extends Controller
     public function downloadFileAction(File $file)
     {
         $file = $file->getFilename();
-        $response = new BinaryFileResponse('../web/uploads/invoices/' . $file . '');
+        $response = new BinaryFileResponse('../private/upload/invoices/' . $file . '');
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, '' . $file . '.pdf');
 
         return $response;

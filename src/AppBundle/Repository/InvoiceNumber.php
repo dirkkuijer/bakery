@@ -8,21 +8,24 @@ class InvoiceNumber extends EntityRepository
 {
     public function getLastInvoiceNumber()
     {
-        $lastInvoiceNumber = $this->getEntityManager()->createQueryBuilder()
-            ->select('i')
-            ->from('AppBundle:Invoice', 'i')
-            ->orderBy('i.invoiceNumber', 'DESC')
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getOneOrNullResult()
-       ;
+        try {
+            $lastInvoiceNumber = $this->getEntityManager()->createQueryBuilder()
+                ->select('i')
+                ->from('AppBundle:Invoice', 'i')
+                ->orderBy('i.invoiceNumber', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult()
+           ;
+            if (!$lastInvoiceNumber) {
+                throw $this->createNotFoundException(
+                );
+                // echo '<div class="flash-error">Geen factuurnummer gevonden</div>';
+            }
 
-        if (!$lastInvoiceNumber) {
-            throw $this->createNotFoundException(
-                'Geen factuurnummer gevonden'
-            );
+            return $lastInvoiceNumber->getInvoiceNumber() + 1;
+        } catch (\Exception $e) {
+            echo '<div class="flash-error">' . $e . '</div>';
         }
-
-        return $lastInvoiceNumber->getInvoiceNumber() + 1;
     }
 }

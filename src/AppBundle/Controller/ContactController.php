@@ -33,7 +33,7 @@ class ContactController extends Controller
             $filename = 'SJHB btw aangifte.xls';
 
             if (isset($contactFormData['attachment'])) {
-                $attachment = \Swift_Attachment::fromPath('../web/uploads/tax/' . $filename)
+                $attachment = \Swift_Attachment::fromPath('../private/upload/tax/' . $filename)
                     ->setDisposition('inline')
                 ;
                 $message = (new \Swift_Message('SJHB'))
@@ -102,7 +102,7 @@ class ContactController extends Controller
                 $message
             );
 
-            // $route = 'contact    </body>
+            // $route = 'contact
 
             // return new JsonResponse(['redirectToRoute' => $this->generateUrl($route)], 200);
 

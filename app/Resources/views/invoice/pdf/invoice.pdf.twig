@@ -14,17 +14,25 @@
                     </div>
                 </td>
                 <td>
-                    <img src="../app/Resources/assets/images/logo.jpeg" class="logo" width="100px" height="100px" margin="0 auto" />
+                    <img src="../app/Resources/assets/images/logo.jpeg" class="logo" width="150px" height="150px" margin="0 auto" />
                 </td>
                 <td>
-                    Waar je droom een taart is...
+                    www.sjhomebakery.nl<br />
+                    silvija@sjhomebakery.nl
                 </td>
             </tr>
         </table>
         
-        <h3 border-color="black" padding="5px" text-align="center">
-                Factuur {{ invoice.invoicenumber }}
-            </h3> 
+        <table border-color="black" padding="5px" margin-top="15px">
+            <tr>
+                <td text-align="center" width="200px" >
+                    Factuurdatum {{ invoice.date|date("d-m-Y") }}
+                </td>
+                <td padding-left="100px">
+                    Factuur <strong>{{ invoice.invoicenumber }}</strong>
+                </td>
+            </tr>    
+        </table>
 
                 
             <table font-size="14px" margin-top="25px">
@@ -49,7 +57,7 @@
                         <div height="15px">
                             {{ relation.street }} 
                             {{ relation.housenumber }}, 
-                            {{ relation.postalcode }} 
+                            {{ relation.postalcode }}
                             {{ relation.city }}
                         </div>
                     </td>
@@ -93,6 +101,7 @@
                     </td>
                 </tr>
             </table>
+            <strong>LET OP: in onze producten kunnen sporen van noten zitten!</strong>
 
             <hr width="100%" />
 
@@ -125,10 +134,18 @@
             <br />
             <p height="150px">
                 U wordt geacht het totale bedrag op rekening <strong>NL21 INGB 0651 7369 19</strong> te storten, 
-                binnen 14 dagen na de factuurdatum. <br />Dit onder vermelding van het factuurnummer bovenaan.
+                binnen 14 dagen na de factuurdatum. <br />Ten name van S. Ilic en het factuurnummer.
+                <br />
+                <br />
+                Het totaal bedrag dient binnen 14 dagen na factuurdatum
+                overgemaakt te worden op onderstaand rekeningnummer
+                Bij betaling gaan wij ervan uit dat u de algemene voorwaarden gelezen
+                heeft en daarmee akkoord gaat.
+                Deze zijn te vinden op de website www.sjhomebakery.nl
+                eventueel kunnen wij deze samen met de disclaimer e-mailen.
             </p>
 
-            <p margin-top="75px">
+            <p margin-top="15px">
                     Kvk nr: 67837484<br />
                     BTW nr: NL540609882B01<br />
                     Rekeningnr: NL21 INGB 0651 7369 19
