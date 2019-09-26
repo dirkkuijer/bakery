@@ -29,7 +29,7 @@ CREATE TABLE `file` (
   `period` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8C9F36103C0BE965` (`filename`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `file` (
 
 LOCK TABLES `file` WRITE;
 /*!40000 ALTER TABLE `file` DISABLE KEYS */;
+INSERT INTO `file` VALUES (6,'taartoutletfactuur245571-5d8a28aea2799.pdf','2019-07-02',3),(7,'19004coenenwendyverlaan-5d8a32a745805.pdf','2019-07-20',3);
 /*!40000 ALTER TABLE `file` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,7 +76,7 @@ CREATE TABLE `fos_user` (
 
 LOCK TABLES `fos_user` WRITE;
 /*!40000 ALTER TABLE `fos_user` DISABLE KEYS */;
-INSERT INTO `fos_user` VALUES (7,'dirk','dirk','dirk@feka.nl','dirk@feka.nl',1,'OyLx5ljOv1dnMJQBSxT.ZW6KNwD/UrHUDPwec64egUw','BN114eXDh0BmoH+wr/qwfFQO81eCtTD8osMAn58ks+htcmFnDPWKboZZp1yprP5xv7QZXz3XMbwUpwYUo7LPIw==','2019-09-12 14:14:23',NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0),(9,'silvija','silvija','silvija_ilic@hotmail.com','silvija_ilic@hotmail.com',1,'t0ucMAgkmeg7egbUwLnGpJeWFMT1cx7tUXSzT80M7nE','xCZ0RB0X1igZMoj4g4k1c1rObzSyjGlJuFCZKeRQG+4bKq0DHY2HTCZxaRaDVd6RCv7dAwXjVDCig37oszuMWw==',NULL,NULL,NULL,'a:1:{i:0;s:10:\"ROLE_ADMIN\";}',0);
+INSERT INTO `fos_user` VALUES (7,'dirk','dirk','dirk@feka.nl','dirk@feka.nl',1,'OyLx5ljOv1dnMJQBSxT.ZW6KNwD/UrHUDPwec64egUw','BN114eXDh0BmoH+wr/qwfFQO81eCtTD8osMAn58ks+htcmFnDPWKboZZp1yprP5xv7QZXz3XMbwUpwYUo7LPIw==','2019-09-26 08:11:05',NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0),(9,'silvija','silvija','silvija_ilic@hotmail.com','silvija_ilic@hotmail.com',1,'t0ucMAgkmeg7egbUwLnGpJeWFMT1cx7tUXSzT80M7nE','xCZ0RB0X1igZMoj4g4k1c1rObzSyjGlJuFCZKeRQG+4bKq0DHY2HTCZxaRaDVd6RCv7dAwXjVDCig37oszuMWw==',NULL,NULL,NULL,'a:1:{i:0;s:10:\"ROLE_ADMIN\";}',0);
 /*!40000 ALTER TABLE `fos_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,11 +99,12 @@ CREATE TABLE `invoice` (
   `invoiceSend` date DEFAULT NULL,
   `statusPayment` tinyint(1) NOT NULL,
   `invoiceNumber` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `reference` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_9065174426DEA64B` (`invoiceNumber`),
   KEY `IDX_906517443256915B` (`relation_id`),
   CONSTRAINT `FK_906517443256915B` FOREIGN KEY (`relation_id`) REFERENCES `relation` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +113,7 @@ CREATE TABLE `invoice` (
 
 LOCK TABLES `invoice` WRITE;
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
-INSERT INTO `invoice` VALUES (54,'2019-09-19','safsdfsfds',35,38.15,3.15,9,2,'2019-09-23',1,'19-001'),(55,'2011-09-10','Testen met overzicht',23,25.07,2.07,9,1,NULL,0,'19-002'),(56,'2010-09-04','Volgende test',46,50.14,4.14,9,3,NULL,0,'19-003'),(57,'2019-09-11','asdfsdfafsfdsf',67,73.03,6.03,9,4,NULL,0,'19-004');
+INSERT INTO `invoice` VALUES (71,'2019-07-20','Taart Cars met beloofde korting',45.87,50,4.13,9,8,'2019-07-21',1,'19-004',''),(76,'2019-07-02','1x LOL surprise cirkel 1,\r\n1x LOL surprise cupcake 1',14.8,16.5,1.7,9,10,NULL,1,'19-005','245571');
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +138,7 @@ CREATE TABLE `relation` (
   `bankAccountNumber` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `extraInfo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +147,7 @@ CREATE TABLE `relation` (
 
 LOCK TABLES `relation` WRITE;
 /*!40000 ALTER TABLE `relation` DISABLE KEYS */;
-INSERT INTO `relation` VALUES (1,0,'Feka','Rendementsweg','14','3641 SL','Mijdrecht','234234234','info@feka.nl',NULL,'INGB12 121 5513 033',NULL),(2,1,'Dirk Kuijer','Meeuwenlaan','24','3645 GH','Vinkeveen','06 2530 6299','dirkkuijer@hotmail.com',NULL,'ING12 000 7714020',NULL),(3,1,'Jan Kuijer','Tjerk Hiddeslaan','22','1234 AB','Baarn','0615562628','jan@janimo.nl',NULL,'ing12 000 3388111',NULL),(4,0,'TaartenWereld',NULL,'55','232','Mijdrecht','020-12345679','taarten@mail.nl',NULL,'NLINGB 0000 44454555',NULL);
+INSERT INTO `relation` VALUES (8,1,'Coen & Wendy Verlaan',NULL,NULL,NULL,'Vinkeveen',NULL,'coenwendy@hotmail.com','Niet bekend','Niet bekend',NULL),(10,0,'Taartoutlet','Kweldergras','8, 1','9738 AJ','Groningen','050 280 4071','info@taartoutlet.nl',NULL,'NL73 RABO 014 4064 111',NULL);
 /*!40000 ALTER TABLE `relation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -158,4 +160,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-12 16:56:36
+-- Dump completed on 2019-09-26 11:43:27

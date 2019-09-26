@@ -52,3 +52,6 @@ services:
         # class: AppBundle\Factory\TaxIndexFactory
         # factory: ['AppBundle\Factory\TaxIndexFactory', 'newTaxIndex']
         public: true
+    
+    AppBundle\Factory\InvoiceFactory: 
+        public: true

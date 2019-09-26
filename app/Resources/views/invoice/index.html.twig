@@ -33,6 +33,7 @@
                         <tr>
                             <th>Број</th>
                             <th>Име и Презиме</th>
+                            <th>Референце</th>
                             <th>Датум</th>
                             <th>Објашњење</th>
                             <th>Verzonden</th>
@@ -44,15 +45,15 @@
                         {% for invoice in invoices %}   
                         <tr id="tr">
                             <td id="td">{{ invoice.invoiceNumber }}</td>
-                            {# <td>{{ invoice.firstname }}</td> #}
                             <td id="td">
                                 {% for relation in relations %}
                                 
                                 {% if invoice.relation.id == relation.id %}
-                                    <a href="javascript:void(0)" data-path=" {{ path('relation_show', { 'id' : relation.id}) }} ">{{ invoice.relation.name }}</a>
+                                <a href="javascript:void(0)" data-path=" {{ path('relation_show', { 'id' : relation.id}) }} ">{{ invoice.relation.name }}</a>
                                 {% endif %}
-                            {% endfor %}
+                                {% endfor %}
                             </td>
+                            <td id="td">{{ invoice.reference }}</td>
                             <td id="td">{% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}</td>
                             <td id="td">{{ invoice.description }}</td>
                             <td id="td">

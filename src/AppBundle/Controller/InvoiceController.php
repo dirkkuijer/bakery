@@ -51,7 +51,9 @@ class InvoiceController extends Controller
             $invoiceNumber = $em->getRepository('AppBundle:Invoice')->getLastInvoiceNumber();
 
             $invoice = new Invoice();
-            $invoice->setInvoiceNumber($this->generateNewInvoiceNumber($invoiceNumber));
+            $newInvoiceNumber = $this->get('AppBundle\Factory\InvoiceFactory')->generateNewInvoiceNumber($invoiceNumber);
+
+            $invoice->setInvoiceNumber($newInvoiceNumber);
 
             $form = $this->createForm(InvoiceType::class, $invoice, [
                 'action' => $this->generateUrl('invoice_new'),
@@ -87,43 +89,43 @@ class InvoiceController extends Controller
         }
     }
 
-    public function generateNewInvoiceNumber($lastInvoiceNumber)
-    {
-        try {
-            if ($lastInvoiceNumber) {
-                $newInvoiceNumber = explode('-', $lastInvoiceNumber);
+    // public function generateNewInvoiceNumber($lastInvoiceNumber)
+    // {
 
-                //functie explode werkt op volgorde van array. zet deze om en je gegevens zijn null
-                $yearLastInvoice = $newInvoiceNumber[0] . '-';
-                $newInvoiceNumber = $newInvoiceNumber[1] + 1;
+    //     try {
+    //         if ($lastInvoiceNumber) {
+    //             $newInvoiceNumber = explode('-', $lastInvoiceNumber);
+    //             //functie explode werkt op volgorde van array. zet deze om en je gegevens zijn null
+    //             $yearLastInvoice = $newInvoiceNumber[0] . '-';
+    //             $newInvoiceNumber = $newInvoiceNumber[1] + 1;
 
-                $year = date('y') . '-';
+    //             $year = date('y') . '-';
 
-                // bij het begin van een nieuw jaar het resetten van factuurnummer
-                if ($yearLastInvoice != $year) {
-                    $newInvoiceNumber = '001';
-                }
+    //             // bij het begin van een nieuw jaar het resetten van factuurnummer
+    //             if ($yearLastInvoice != $year) {
+    //                 $newInvoiceNumber = '001';
+    //             }
 
-                $zero = '';
+    //             $zero = '';
 
-                if (1 == strlen($newInvoiceNumber)) {
-                    $zero = '00';
-                } elseif (2 == strlen($newInvoiceNumber)) {
-                    $zero = '0';
-                } elseif (strlen(3 == $newInvoiceNumber)) {
-                    $zero = '';
-                }
-                $array = [$year, $zero, $newInvoiceNumber];
+    //             if (1 == strlen($newInvoiceNumber)) {
+    //                 $zero = '00';
+    //             } elseif (2 == strlen($newInvoiceNumber)) {
+    //                 $zero = '0';
+    //             } elseif (strlen(3 == $newInvoiceNumber)) {
+    //                 $zero = '';
+    //             }
+    //             $array = [$year, $zero, $newInvoiceNumber];
 
-                return $array[0] . $array[1] . $array[2];
-            }
-            $year = date('y') . '-';
+    //             return $array[0] . $array[1] . $array[2];
+    //         }
+    //         $year = date('y') . '-';
 
-            return $year . '001';
-        } catch (\Exception $ex) {
-            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
-        }
-    }
+    //         return $year . '001';
+    //     } catch (\Exception $ex) {
+    //         return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
+    //     }
+    // }
 
     /**
      * Finds and displays a invoice entity.

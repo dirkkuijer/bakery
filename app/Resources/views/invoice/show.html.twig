@@ -52,11 +52,20 @@
                     <a class="button" href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">
                         {{ invoice.invoiceNumber }}
                         (PDF)</a>
-                {% else %}
-                    {{ invoice.invoiceNumber }}
-                {% endif %}
+                        {% else %}
+                        {{ invoice.invoiceNumber }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="cell medium-2"></div>
+                    <div class="cell medium-4">
+                        Referentie
+                    </div>
+                <div class="cell medium-6">
+                    {{ invoice.reference }}
+                </div>
             </div>
-        </div>
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
@@ -66,15 +75,6 @@
                &#8364; {{ invoice.amount|number_format(2, ',','.')  }}
             </div>
         </div>
-        {# <div class="grid-x grid-padding-x">
-            <div class="cell medium-2"></div>
-            <div class="cell medium-4">
-                    Bedrag incl. BTW
-            </div>
-            <div class="cell medium-6">
-                {{ invoice.amountWithVat }}
-            </div>
-        </div> #}
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">

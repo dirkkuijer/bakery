@@ -69,6 +69,10 @@ class Invoice
     private $invoiceNumber;
 
     /**
+     * @ORM\Column(name="reference", type="string", length=255)
+     */
+    private $reference;
+    /**
      * @var float
      *
      * @ORM\Column(name="amount", type="float", length=255)
@@ -362,6 +366,28 @@ class Invoice
     public function setStatusPayment($statusPayment)
     {
         $this->statusPayment = $statusPayment;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of reference
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * Set the value of reference
+     *
+     * @param mixed $reference
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
 
         return $this;
     }
