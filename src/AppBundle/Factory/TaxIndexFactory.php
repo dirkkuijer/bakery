@@ -2,9 +2,6 @@
 
 namespace AppBundle\Factory;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-
 class TaxIndexFactory
 {
     public function newTaxIndex($invoices, \DateTime $from, \DateTime $till)
@@ -39,7 +36,7 @@ class TaxIndexFactory
             $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
             $writer->save('../private/upload/tax/' . $filename . '.xls');
 
-            echo '<div class="flash-succes">Overzicht ' . '"' . $filename . '"' . ' is aangemaakt.</div>';
+            echo '<div class="flash-success">Overzicht ' . '"' . $filename . '"' . ' is aangemaakt.</div>';
         } catch (\Expetion $ex) {
             echo '<div class="flash-error">Er is wat fout gegaan:</div> ' . $ex;
 
@@ -90,35 +87,3 @@ class TaxIndexFactory
         }
     }
 }
-    // public function excelResponse($spreadsheetObject, $title)
-    // {
-    //     $title = preg_replace('/[^a-zA-Z0-9\._-]+/', '-', $title);
-    //     $filename = $title . '.xlsx';
-
-    //     $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheetObject, 'Xls');
-    //     ob_start();
-    //     $writer->save('../web/uploads/tax/' . $filename . '.xls');
-    //     $output = ob_get_contents();
-    //     ob_end_clean();
-
-    //     $response = new Response($output);
-
-    //     $disposition = $response->headers->makeDisposition(
-    //         ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-    //         $filename
-    //     );
-
-    //     // Set the content disposition
-    //     $response->headers->set('Content-Disposition', $disposition);
-    //     //$response->headers->set('Content-Type', 'application/vnd.ms-excel; charset=utf-8');
-    //     $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8');
-    //     $response->headers->set('Last-Modified', '' . gmdate('D, d M Y H:i:s') . ' GMT');
-    //     $response->headers->set('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-    //     $response->headers->set('Cache-Control', 'max-age=1');
-    //     $response->headers->set('Pragma', 'public');
-
-    //     echo '<div class="flash-succes">Overzicht is aangemaakt.</div>';
-
-    //     // Dispatch request
-    //     return $response;
-    // }

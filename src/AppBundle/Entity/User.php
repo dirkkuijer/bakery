@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -20,7 +19,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @Assert\Length(min=10, minMessage="Minimaal 10 karakters invullen aub.")
+     *
      */
     protected $plainPassword;
 

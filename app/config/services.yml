@@ -44,9 +44,7 @@ services:
         tags:
             - { name: twig.extension }
       
-    AppBundle\Service\FileUploader:
-        arguments:
-            $targetDirectory: '%file_directory%'
+    # AppBundle\Factory\FileUploaderFactory:
 
     AppBundle\Factory\TaxIndexFactory: 
         # class: AppBundle\Factory\TaxIndexFactory
@@ -54,4 +52,12 @@ services:
         public: true
     
     AppBundle\Factory\InvoiceFactory: 
+        public: true
+
+    AppBundle\Factory\CheckFileFactory:
+        public: true 
+    
+    AppBundle\Factory\FileUploaderFactory: 
+        arguments:
+            $targetDirectory: '%file_directory%'
         public: true

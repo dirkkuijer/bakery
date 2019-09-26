@@ -69,7 +69,7 @@ class Invoice
     private $invoiceNumber;
 
     /**
-     * @ORM\Column(name="reference", type="string", length=255)
+     * @ORM\Column(name="reference", type="string", length=255, nullable=true)
      */
     private $reference;
     /**

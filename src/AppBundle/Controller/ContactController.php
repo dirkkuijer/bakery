@@ -44,28 +44,12 @@ class ContactController extends Controller
                     ->setSubject($contactFormData['subject'])
                     ->attach($attachment)
                     ->setBody(
-                        '<html>
-                        <body>
-                        <h3 style="background-color:purple;
-                        color:white;
-                        text-align:center;
-                        padding:3px;
-                        box-shadow:1px1px1pxblack;">
-                        S J Home Bakery
-                        </h3>
-                        <p>
-                        <i>' . $contentMessage . '</i>
-                        </p>
-                        
-                        Met vriendelijke groeten,<br><br>
-                        <br>
-                        Silvija Ilic
-                        </body>
-                        </html>',
+                        $this->renderView(
+                            'email/email.html.twig',
+                            ['contentMessage' => $contentMessage]
+                        ),
                         'text/html'
                         )
-                        // ->setReplyTo(['silvija_ilic@hotmail.com' => 'S J Home Bakery'])
-                        // ->addBcc('silvija_ilic@hotmail.com')
                 ;
             } else {
                 $message = (new \Swift_Message('SJHB'))
@@ -73,49 +57,24 @@ class ContactController extends Controller
                     ->setTo($emailTo)
                     ->setSubject($contactFormData['subject'])
                     ->setBody(
-                        '<html>
-                        <body>
-                        <h3 style="background-color:purple;
-                        color:white;
-                        text-align:center;
-                        padding:3px;
-                        box-shadow:1px1px1pxblack;">
-                        S J Home Bakery
-                        </h3>
-                        <p>
-                        <i>' . $contactFormData['message'] . '</i>
-                        </p>
-                        
-                        Met vriendelijke groeten,<br><br>
-                        <br>
-                        Silvija Ilic
-                        </body>
-                        </html>',
+                        $this->renderView(
+                            'email/email.html.twig',
+                            ['contentMessage' => $contentMessage]
+                        ),
                         'text/html'
                         )
-                    // ->setReplyTo(['silvija_ilic@hotmail.com' => 'S J Home Bakery'])
-                        ;
+                ;
             }
 
-            echo '<div class="flash-succes">E-mail is verzonden.</div>';
+            $this->addFlash('success', 'E-mail verzonden.');
             $mailer->send(
                 $message
             );
 
-            // $route = 'contact
-
-            // return new JsonResponse(['redirectToRoute' => $this->generateUrl($route)], 200);
-
-            // return $this->render('tax/index.html.twig', [
-            //     'form' => $form->createView(),
-            // ]);
-            // $route = 'tax_index';
-
-            // return new JsonResponse(['redirectToRoute' => $this->generateUrl($route, ['type' => $contactType])], 200);
             return $this->redirectToRoute('tax_index');
         }
         if ($form->isSubmitted() && !$form->isValid()) {
-            // echo '<div class="flash-error">Er is een fout opgetreden.</div>';
+            $this->showFlash('error', 'Verzonden mislukt, probeer het opnieuw.');
             // return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
         }
 
@@ -125,7 +84,7 @@ class ContactController extends Controller
         //         ]);
         //     }
 
-        return $this->render('contact.html.twig', [
+        return $this->render('email/contact.html.twig', [
             'form' => $form->createView(),
         ]);
     }

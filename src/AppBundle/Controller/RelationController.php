@@ -56,10 +56,7 @@ class RelationController extends Controller
             $em->persist($relation);
             $em->flush();
 
-            // Added by Dirk
-            $state = 'Relatie is opgeslagen.';
-            $succes = 'succes';
-            $this->showFlash($succes, $state);
+            $this->addFlash('success', 'Relatie is opgeslagen.');
 
             return $this->redirectToRoute('relation_index');
         }
@@ -103,10 +100,7 @@ class RelationController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            // Added by Dirk
-            $state = 'Relatie is aangepast.';
-            $succes = 'succes';
-            $this->showFlash($succes, $state);
+            $this->addFlash('success', 'Relatie is aangepast.');
 
             return $this->redirectToRoute('relation_index', ['id' => $relation->getId()]);
         }
@@ -134,19 +128,10 @@ class RelationController extends Controller
             $em->remove($relation);
             $em->flush();
 
-            // Added by Dirk
-            $state = 'Relatie is verwijderd.';
-            $succes = 'succes';
-            $this->showFlash($succes, $state);
+            $this->addFlash('success', 'Relatie is verwijderd.');
         }
 
         return $this->redirectToRoute('relation_index');
-    }
-
-    // added by Dirk to show flash messages after submitting form
-    public function showFlash(String $status, String $state)
-    {
-        return $this->addFlash($status, $state);
     }
 
     /**

@@ -118,9 +118,10 @@ ul {
   }
   
   .flash-error {
-    background-color: rgba(243, 8, 8, 0.5);
+    background-color: red;
     border-radius: 5px;
     padding: 1rem 2rem;
+    color: white;
     position: fixed;
     right: 0;
     top: 65%;
@@ -128,7 +129,7 @@ ul {
 }
 
 .flash-error msg {
-    color: black;
+    color: white;
 }
 
 @media only screen and (max-width: 600px) {
@@ -142,7 +143,7 @@ ul {
     }
   
 }
-  .flash-succes {
+  .flash-success {
     background-color: rgba(134, 226, 213, 0.5);
     border-radius: 5px;
     padding: 1rem 2rem;
@@ -152,16 +153,16 @@ ul {
     box-shadow: -5px 5px 5px 0px rgba(0,0,0,0.25);
 }
 
-.flash-succes msg {
+.flash-success msg {
     color: black;
 }
 
 @media only screen and (max-width: 600px) {
-.flash-succes {
+.flash-success {
     overflow: auto;
     }
 
-.flash-succes msg {
+.flash-success msg {
         color: black;
         padding: 2rem;
     }

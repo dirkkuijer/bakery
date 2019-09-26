@@ -65,10 +65,7 @@ class InvoiceController extends Controller
                 $em->persist($invoice);
                 $em->flush();
 
-                // Added by Dirk
-                $state = 'Factuur is opgeslagen.';
-                $succes = 'succes';
-                $this->showFlash($succes, $state);
+                $this->addFlash('success', 'Factuur is opgeslagen.');
 
                 $route = 'invoice_index';
 
@@ -77,7 +74,8 @@ class InvoiceController extends Controller
             }
 
             if ($form->isSubmitted() && !$form->isValid()) {
-                return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
+                // return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
+                return $this->addFlash('error', 'Probeer het formulier opnieuw in te vullen.');
             }
 
             return $this->render('invoice/content.html.twig', [
@@ -88,44 +86,6 @@ class InvoiceController extends Controller
             return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
     }
-
-    // public function generateNewInvoiceNumber($lastInvoiceNumber)
-    // {
-
-    //     try {
-    //         if ($lastInvoiceNumber) {
-    //             $newInvoiceNumber = explode('-', $lastInvoiceNumber);
-    //             //functie explode werkt op volgorde van array. zet deze om en je gegevens zijn null
-    //             $yearLastInvoice = $newInvoiceNumber[0] . '-';
-    //             $newInvoiceNumber = $newInvoiceNumber[1] + 1;
-
-    //             $year = date('y') . '-';
-
-    //             // bij het begin van een nieuw jaar het resetten van factuurnummer
-    //             if ($yearLastInvoice != $year) {
-    //                 $newInvoiceNumber = '001';
-    //             }
-
-    //             $zero = '';
-
-    //             if (1 == strlen($newInvoiceNumber)) {
-    //                 $zero = '00';
-    //             } elseif (2 == strlen($newInvoiceNumber)) {
-    //                 $zero = '0';
-    //             } elseif (strlen(3 == $newInvoiceNumber)) {
-    //                 $zero = '';
-    //             }
-    //             $array = [$year, $zero, $newInvoiceNumber];
-
-    //             return $array[0] . $array[1] . $array[2];
-    //         }
-    //         $year = date('y') . '-';
-
-    //         return $year . '001';
-    //     } catch (\Exception $ex) {
-    //         return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
-    //     }
-    // }
 
     /**
      * Finds and displays a invoice entity.
@@ -162,9 +122,7 @@ class InvoiceController extends Controller
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
 
-                // Added by Dirk
-                $state = 'Factuur is aangepast.';
-                $this->showFlash('succes', $state);
+                $this->addFlash('success', 'Factuur is aangepast.');
 
                 $route = 'invoice_index';
 
@@ -205,18 +163,10 @@ class InvoiceController extends Controller
             $em->remove($invoice);
             $em->flush();
 
-            // Added by Dirk
-            $state = 'Factuur is verwijderd.';
-            $this->showFlash('succes', $state);
+            $this->addFlash('success', 'Factuur is verwijderd.');
         }
 
         return $this->redirectToRoute('invoice_index');
-    }
-
-    // added by Dirk to show flash messages after submitting form
-    public function showFlash(String $status, String $state)
-    {
-        return $this->addFlash($status, $state);
     }
 
     /**

@@ -49,8 +49,6 @@ class TaxController extends Controller
 
                 $tax = $this->get('AppBundle\Factory\TaxIndexFactory')->newTaxIndex($invoices, $from, $till);
 
-                $route = 'tax_search';
-
                 return $this->render('tax/index.html.twig', [
                     'invoices' => $invoices,
                 ]);
@@ -75,12 +73,7 @@ class TaxController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        // $from = date('2019-01-01');
-        // $till = date('Y-m-d');
-
-        // $invoices = $em->getRepository('AppBundle:Invoice')->getInvoiceInPeriod($from, $till);
         $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
-        // $relations = $em->getRepository('AppBundle:Relation')->findAll();
 
         return $this->render('tax/index.html.twig', [
             'invoices' => $invoices,
@@ -92,10 +85,5 @@ class TaxController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         return $invoiceNumbers = $em->getRepository('AppBundle:Invoice')->findAll();
-    }
-
-    public function showFlash(String $status, String $state)
-    {
-        return $this->addFlash($status, $state);
     }
 }

@@ -4,8 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\File;
 use AppBundle\Form\FileTypeType;
-use AppBundle\Service\CheckFile;
-use AppBundle\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -45,7 +43,7 @@ class FileController extends Controller
      * @Route("/new", name="file_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader, FileTypeType $fileType)
+    public function newAction(Request $request, FileTypeType $fileType)
     {
         try {
             $file = new File();
@@ -57,7 +55,7 @@ class FileController extends Controller
             if ($form->isSubmitted() && $form->isValid()) {
                 $fileName = $form['filename']->getData();
                 if ($fileName) {
-                    $name = $fileUploader->upload($fileName);
+                    $name = $this->get('AppBundle\Factory\FileUploaderFactory')->upload($fileName);
                     $file->setFilename($name);
                 }
 
@@ -65,10 +63,7 @@ class FileController extends Controller
                 $em->persist($file);
                 $em->flush();
 
-                // Added by Dirk
-                $state = 'Bestand is opgeslagen.';
-                $succes = 'succes';
-                $this->showFlash($succes, $state);
+                $this->addFlash('success', 'Bestand is opgeslagen.');
 
                 $route = 'file_index';
 
@@ -105,12 +100,6 @@ class FileController extends Controller
         ]);
     }
 
-    // added by Dirk to show flash messages after submitting form
-    public function showFlash(String $status, String $state)
-    {
-        return $this->addFlash($status, $state);
-    }
-
     /**
      * Deletes a file entity.
      *
@@ -125,9 +114,8 @@ class FileController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $filename = $file->getFilename();
-                $checkFile = new CheckFile();
                 $dateFile = $file->getDate();
-                $dateFile = $checkFile->checkYear($dateFile);
+                $dateFile = $this->get('AppBundle\Factory\CheckFileFactory')->checkYear($dateFile);
 
                 if ($dateFile) {
                     unlink('../private/upload/invoices/' . $filename);
@@ -136,14 +124,9 @@ class FileController extends Controller
                     $em->remove($file);
                     $em->flush();
 
-                    // Added by Dirk
-                    $state = 'Bestand is verwijderd.';
-                    $succes = 'succes';
-                    $this->showFlash($succes, $state);
+                    $this->addFlash('success', 'Bestand is verwijderd.');
                 } else {
-                    $state = 'Niet toegestaan: Bestand is niet ouder dan 7 jaar.';
-                    $succes = 'error';
-                    $this->showFlash($succes, $state);
+                    $this->addFlash('error', 'Niet toegestaan: Bestand is niet ouder dan 7 jaar.');
 
                     return $this->redirectToRoute('file_index');
                 }

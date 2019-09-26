@@ -62,11 +62,9 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            // Added by Dirk
-            $state = 'Gebruiker is toegevoegd.';
-            $this->showFlash($state);
+            $this->addFlash('success', 'Gebruiker is toegevoegd.');
 
-            return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('user/content.html.twig', [
@@ -108,10 +106,7 @@ class UserController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            // added by Dirk
-            $state = 'Gebruiker is aangepast.';
-
-            $this->showFlash($state);
+            $this->addFlash('success', 'Gebruiker is aangepast.');
 
             //  , array('id' => $user->getId()) stond achter 'user_index'
             return $this->redirectToRoute('user_index');
@@ -145,16 +140,10 @@ class UserController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('user_index');
-        $state = 'Gebruiker is verwijderd.';
-        // added by Dirk
-        $this->showFlash($state);
-    }
+        $this->addFlash('success', 'Gebruiker is verwijderd.');
 
-    // added by Dirk to show flash messages after submitting form
-    public function showFlash(String $state)
-    {
-        return $this->addFlash('succes', $state);
+        return $this->redirectToRoute('user_index');
+        $this->addFlash('success', 'Gebruiker is verwijderd');
     }
 
     /**

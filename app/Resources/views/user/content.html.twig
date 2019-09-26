@@ -21,14 +21,8 @@
             Nieuwe gebruiker
         {% endif %}
     </h4>
-
-    {{ form_start(form, {
-            'attr': {
-                'novalidate': 'novalidate',
-                'data-abide': 'data-abide'
-            }
-        })
-    }}
+        {{ form_start(form) }}
+  
 
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
