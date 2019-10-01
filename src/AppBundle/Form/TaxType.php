@@ -24,10 +24,10 @@ class TaxType extends AbstractType
                 'constraints' => [
                     new NotBlank(), ],
             ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Opslaan',
-                'attr' => ['class' => 'button'],
-            ])
+            // ->add('save', SubmitType::class, [
+            //     'label' => 'Opslaan',
+            //     'attr' => ['class' => 'button'],
+            // ])
         ;
     }
 

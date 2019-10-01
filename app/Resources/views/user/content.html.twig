@@ -5,11 +5,15 @@
     {% endblock %}
 {% block body %} #}
 
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" href="{{ path('user_index') }}" title="Overzicht">
-                Overzicht
+            <a class="button" href="{{ path('user_index') }}">
+                <i class="fas fa-list-ol"></i>
             </a>
         </div>
     </div>
@@ -97,11 +101,11 @@
         <div class="cell large-6"></div>
         <div class="cell large-3 text-right">
             {% if user.id == null %}
-                <input type="reset" class="button" value="Annuleren" />
+                <button type="reset" class="button"><i class="fas fa-remove-format"></i></button>
             {% endif %}
-                <button class="button" type="submit" title="Opslaan">
-                Opslaan
-            </button>
+                <button class="button" type="submit">
+                    <i class="far fa-save"></i>
+                </button>
         </div>   
         <div class="cell large-3"></div>
     </div>

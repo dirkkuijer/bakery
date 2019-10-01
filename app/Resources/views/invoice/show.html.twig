@@ -2,7 +2,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" href="{{ path('invoice_index') }}">Overzicht</a>
+            <a class="button" href="{{ path('invoice_index') }}"><i class="fas fa-list-ol"></i></a>
         </div>
     </div>
     {% if is_granted('ROLE_ADMIN') %}
@@ -51,7 +51,7 @@
                 {% if invoice.relation.kindOfRelation == true %}
                     <a class="button" href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">
                         {{ invoice.invoiceNumber }}
-                        (PDF)</a>
+                        <i class="far fa-file-pdf"></i></a>
                         {% else %}
                         {{ invoice.invoiceNumber }}
                         {% endif %}
@@ -133,14 +133,16 @@
         <div class="grid-x grid-padding-x">
             <div class="cell small-6"></div>
             <div class="cell small-2 text-right">
-                <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">Bewerken</a>
+                <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">
+                    <i class="far fa-edit"></i>
+                </a>
             </div>
             
             {{ form_start(delete_form) }}
             {#<input type="submit" class="button" value="Verwijderen" href="{{ path('invoice_delete', { 'id': invoice.id }) }}" title="Verwijderen" />#}
             
-            <button class="button" type="submit" title="Verwijderen">
-                Verwijderen
+            <button class="button" type="submit">
+                <i class="fas fa-trash-alt"></i>
             </button> 
             {{ form_end(delete_form) }}
             

@@ -1,5 +1,4 @@
 var Encore = require('@symfony/webpack-encore');
-
 Encore
 
 
@@ -29,10 +28,13 @@ Encore
 
     .addEntry('formLoad', ['./app/Resources/assets/js/formLoad.js'])
     .addEntry('app', './app/Resources/assets/js/app.js')
+    .addEntry('all', './app/Resources/assets/js/all.js')
     .addEntry('functions', './app/Resources/assets/js/functions.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
     .addStyleEntry('app_style', './app/Resources/assets/scss/main.scss')
+    .addStyleEntry('allFontawesome_scss', './app/Resources/assets/scss/fontawesome.scss')
+    .addStyleEntry('allFontawesome', './app/Resources/assets/css/all.css')
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()

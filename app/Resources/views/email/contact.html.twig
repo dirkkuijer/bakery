@@ -1,0 +1,83 @@
+ {# {% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+{% endblock %} 
+
+{% block body %}  #}
+
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button> 
+
+<h4>Contact</h4>
+<br>
+<datalist id="contacten">
+            <option>vanbeijnumadministratie@planet.nl</option>
+            <option>dirkkuijer@hotmail.com</option>
+        </datalist>
+{{ form_start(form) }}
+    <div class="grid-x grid-padding-x">
+        {# <div class="cell medium-3">
+            {{ form_row(form.from) }}    
+        </div> #}
+        <div class="cell medium-3">
+            {{ form_row(form.to) }}    
+        </div>
+        <div class="cell medium-3">
+            {{ form_row(form.subject) }}
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-2">
+            <label class="button" onclick="fileUpload(this)"><i class="fas fa-file-export"></i>
+                {{ form_widget(form.attachment, { 'attr': 
+                {   'id': 'inputFile',
+                'hidden' : '',
+                'size' : '50',
+                        'onchange' : 'fileUpload(this);'
+                    } } ) 
+                }} 
+            </label>  
+        </div>
+        <div class="cell medium-2">
+            <div id="message">Selecteer een bestand</div>
+        </div>
+            <script>
+                function fileUpload(myFile){
+                    var file = myFile.files[0];
+                    message.innerHTML = 'Bestand: ' + file.name;
+                }
+                function cancel() {
+                    message.innerHTML ="Selecteer een bestand"
+                }
+            </script>
+            {# {{ form_row(form.attachment) }} #}
+        <div class="cell medium-8">
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-12" style="width:80%">
+            {{ form_row(form.message) }}
+        </div>
+    </div>
+ 
+
+    <div class="grid-x grid-padding-x">
+        {# <div class="cell medium-1">
+            {{ form_row( form.send) }}
+        </div>   #}
+        <div class="cell medium-2">
+            <button type="reset" class="button" onclick="cancel(this)">
+                <i class="fas fa-remove-format"></i>
+            </button>
+            <button class="button" type="submit">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div> 
+        <div class="cell medium-10"></div>
+    </div>
+    
+{{ form_end(form)}}
+
+{# {% endblock %} #}

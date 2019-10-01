@@ -11,7 +11,8 @@
             </div>
         </div>
         <div class="cell medium-2">
-            <a class="button" href="javascript:void(0);" data-path="{{ path('file_new') }}">+ Bestand uploaden</a>
+            <a class="button" href="javascript:void(0);" data-path="{{ path('file_new') }}">
+            + <i class="fas fa-file-upload"></i></a>
         </div>
     </div>
 
@@ -44,8 +45,12 @@
                 <td id="td">{{ file.period}}</td>
                 <td id="td">
                     {# <a class="button" href="{{ path('file_edit', { 'id': file.id }) }}" title="{{ file.id }}">Bewerken</a> #}
-                    <a class="button" href="javascript:void(0);" data-path="{{ path('file_show', { 'id': file.id }) }}">Bekijken</a>
-                    <a class="button" href="{{ path('download_file', { 'id': file.id }) }}" target="_blank">Download PDF</a>
+                    <a class="button" href="javascript:void(0);" data-path="{{ path('file_show', { 'id': file.id }) }}">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a class="button" href="{{ path('download_file', { 'id': file.id }) }}" target="_blank">
+                        <i class="fas fa-download"></i> <i class="far fa-file-pdf"></i>
+                    </a>
                 </td>
             </tr>
         {% endfor %}

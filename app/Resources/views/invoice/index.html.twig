@@ -14,8 +14,10 @@
                 <input id="myInput" class="myInput" placeholder="Zoeken" />
             </div>
         </div>
-        <div class="cell medium-2">
-            <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_new') }}">+ Нова фактура</a>
+        <div class="cell medium-2">                                                                         
+            <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_new') }}">
+                <i class="fas fa-plus"></i> фактура
+            </a>
         </div>
     </div>
 
@@ -60,22 +62,22 @@
                                 {% if invoice.invoiceSend is not null %}
                                     {{ invoice.invoiceSend|date("d-m-Y") }}
                                 {% else %}
-                                    N.v.t.
+                                     <i class="fas fa-times"></i>
                                 {% endif %}
                             </td>
                             <td id="td">
                                 {% if invoice.statusPayment == 1 %}
-                                    Betaald
+                                    <i class="fas fa-check"></i>
                                 {% else %}
-                                    Niet betaald
+                                    <i class="fas fa-times"></i>
                                 {% endif %}
                             </td>
                             <td id="td">
                                 <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_show', { 'id': invoice.id }) }}">
-                                    Bиди
+                                    <i class="fas fa-eye"></i>{#  Bиди #}
                                 </a>
                                 <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">
-                                    Измени
+                                    <i class="fas fa-edit"></i>{# Измени #}
                                 </a>
                             </td>
                         </tr>

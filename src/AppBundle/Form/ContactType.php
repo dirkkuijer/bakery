@@ -37,10 +37,11 @@ class ContactType extends AbstractType
                     'Vraag' => 'Vraag',
                     'Anders' => 'Anders',
                 ],
-            ])->add('send', SubmitType::class, [
-                'label' => 'Verzenden',
-                'attr' => ['class' => 'button'],
             ])
+            // ->add('send', SubmitType::class, [
+            //     'label' => 'Verzenden',
+            //     'attr' => ['class' => 'button'],
+            // ])
             ->add('message', TextareaType::class, [
                 'attr' => ['placeholder' => 'Typ uw bericht',
                     'rows' => '4', ],

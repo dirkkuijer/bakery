@@ -15,7 +15,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a href="{{ path('invoice_index') }}" class="button">Afsluiten</a>
+            <a href="{{ path('invoice_index') }}" class="button"><i class="fas fa-list-ol"></i></a>
         </div>
     </div>
 
@@ -134,7 +134,9 @@
             </div>
             <div class="cell medium-3">
                 {{ form_errors(form.vatPercentage) }}
-                <a href="JavaScript:Void(0)" onClick="calculate()" class="button">Bereken</a>
+                <a href="JavaScript:Void(0)" onClick="calculate()" class="button">
+                    <i class="fas fa-calculator"></i>
+                </a>
             </div>
         </div>
         
@@ -192,11 +194,13 @@
             <div class="cell medium-3"></div>
             <div class="cell medium-3"></div>
             <div class="cell medium-3 text-right">
-            {% if invoice.id == null%}
-                <input type="reset" value="Reset" class="button" />
+            {% if invoice.id == null %}
+                <button type="reset" class="button"><i class="fas fa-remove-format"></i></button>
             {% endif %}
-                {# <input type="submit" value="Opslaan" class="button" /> #}
-                {{ form_widget(form.save) }}
+               <button class="button" type="submit">
+                    <i class="far fa-save"></i>
+                </button>
+                {# {{ form_widget(form.save) }} #}
             </div>
             <div class="cell medium-3"></div>
         </div>

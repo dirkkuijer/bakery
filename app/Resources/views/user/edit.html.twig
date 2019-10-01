@@ -5,15 +5,18 @@
 {% endblock %}
 
 {% block body %} #}
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
 {{ form_start(edit_form) }}
     
 <h3>Gebruiker bewerken</h3>
 
     <div class="grid-x grid-padding-x">
         <div class="cell medium-2">
-            <a href="{{ path('user_index') }}"
-                <a href="{{ path('user_index') }}" class="button" title="Overzicht">
-               Overzicht
+            <a href="{{ path('user_index') }}" class="button">
+               <i class="fas fa-list-ol"></i>
             </a>
         </div>
         <div class="cell medium-10"></div>
@@ -64,7 +67,8 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-7"></div>
         <div class="cell medium-2">  
-            <button class="button" type="submit" title="Opslaan">
+            <button class="button" type="submit">
+                <i class="far fa-save"></i>
             </button>
         </div> 
         <div class="cell medium-3"></div>

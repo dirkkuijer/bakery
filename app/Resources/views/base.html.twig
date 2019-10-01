@@ -8,10 +8,14 @@
        
         {% block stylesheets %} 
             {{ encore_entry_link_tags('app_style') }}
+            {{ encore_entry_link_tags('allFontawesome') }}
+            {{ encore_entry_link_tags('allFontawesome_scss') }}
+
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('all') }}
             {{ encore_entry_script_tags('functions') }}
         {% endblock %}
 
@@ -36,8 +40,8 @@
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <div id="userLoggedIn">
                     {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
-                    | <a href="{{ path('fos_user_security_logout') }}" title="Uitloggen">
-                        Ођављивање
+                    | <a href="{{ path('fos_user_security_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
             {# {% else %} 
@@ -94,7 +98,8 @@
             </div>
             <div class="cell medium-9"></div>
             <div class="cell medium-1">
-                <a class="button small" href="javascript:void(0)" data-path="{{ path('contact') }}">E-mail</a>
+                <a class="button large" href="javascript:void(0)" data-path="{{ path('contact') }}">
+                <i class="far fa-envelope"></i></a>
             </div>
         </div>
         

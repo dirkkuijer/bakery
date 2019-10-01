@@ -54,14 +54,18 @@ class TaxController extends Controller
                 ]);
             }
             if ($form->isSubmitted() && !$form->isValid()) {
-                return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
+                $this->addFlash('error', 'Ongeldige waarde ingevoerd, probeer het opnieuw.');
+                return $this->redirectToRoute('tax_index');
+                // return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
             }
-
+            
             return $this->render('tax/search.html.twig', [
                 'form' => $form->createView(),
-            ]);
-        } catch (\Exception $ex) {
-            return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
+                ]);
+            } catch (\Exception $ex) {
+                $this->addFlash('error', $ex);
+                return $this->redirectToRoute('tax_index');
+            // return new JsonResponse(['message' => (string) $ex->getMessage()], 500);
         }
     }
 

@@ -9,7 +9,13 @@
     "app": {
       "js": [
         "/build/runtime.6e3f3c3a.js",
-        "/build/app.d2ad9af9.js"
+        "/build/app.6147a933.js"
+      ]
+    },
+    "all": {
+      "js": [
+        "/build/runtime.6e3f3c3a.js",
+        "/build/all.280e89ff.js"
       ]
     },
     "functions": {
@@ -23,7 +29,23 @@
         "/build/runtime.6e3f3c3a.js"
       ],
       "css": [
-        "/build/app_style.17edbaab.css"
+        "/build/app_style.acd30ec1.css"
+      ]
+    },
+    "allFontawesome_scss": {
+      "js": [
+        "/build/runtime.6e3f3c3a.js"
+      ],
+      "css": [
+        "/build/allFontawesome_scss.e2aee5de.css"
+      ]
+    },
+    "allFontawesome": {
+      "js": [
+        "/build/runtime.6e3f3c3a.js"
+      ],
+      "css": [
+        "/build/allFontawesome.4fcc454c.css"
       ]
     }
   }

@@ -49,10 +49,10 @@ class InvoiceType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
             ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Opslaan',
-                'attr' => ['class' => 'button'],
-            ])
+            // ->add('save', SubmitType::class, [
+            //     'label' => 'Opslaan',
+            //     'attr' => ['class' => 'button'],
+            // ])
         ;
     }
 

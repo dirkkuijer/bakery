@@ -1,5 +1,5 @@
 // require('../css/app.css');
-// import 'foundation-sites';
+// import '../app/Resources/assets/css/fontawesome.css';
 
 require('../js/calculate');
 

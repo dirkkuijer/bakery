@@ -46,14 +46,14 @@ class FileTypeType extends AbstractType
                     'required' => false,
                 ]
             )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Opslaan',
-                    'attr' => ['class' => 'button'],
-                ]
-            )
+            // ->add(
+            //     'save',
+            //     SubmitType::class,
+            //     [
+            //         'label' => 'Opslaan',
+            //         'attr' => ['class' => 'button'],
+            //     ]
+            // )
         ;
     }
 

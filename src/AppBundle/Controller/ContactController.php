@@ -74,7 +74,7 @@ class ContactController extends Controller
             return $this->redirectToRoute('tax_index');
         }
         if ($form->isSubmitted() && !$form->isValid()) {
-            $this->showFlash('error', 'Verzonden mislukt, probeer het opnieuw.');
+            $this->showFlash('error', 'Verzenden mislukt, probeer het opnieuw.');
             // return new JsonResponse(['message' => (string) $form->getErrors(true, false)], 500);
         }
 

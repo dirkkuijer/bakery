@@ -21,7 +21,9 @@
                 <div class="cell medium-2">{{ form_widget(form.till) }}</div>
                 <div class="cell medium-2">{{ form_errors(form.till) }}</div>
             </div>
-
-            {{ form_widget(form)}}
+                <button class="button" type="submit">
+                    <i class="far fa-save"></i>
+                </button>
+            {# {{ form_widget(form)}} #}
         {{ form_end(form) }}
 {# {% endblock %} #}
