@@ -17,7 +17,7 @@
      <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a href="{{ path('file_index') }}" class="button">
+            <a href="{{ path('file_index') }}" title="{{ 'Index.Back'|trans }}" class="button">
                 <i class="fas fa-list-ol"></i>
             </a>
         </div>
@@ -28,7 +28,12 @@
         'data-async': '',
     } } ) }}
     
-    <h4>{% if file.id == null %}Nieuw{% else %}Wijzig{% endif %} bestand</h4>
+    <h4>{% if file.id == null %}
+            {{ 'File.New file'|trans }}
+        {% else %}
+            {{ 'File.Edit file'|trans }}
+        {% endif %}
+    </h4>
 
     <br>    
 
@@ -39,7 +44,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>
         <div class="cell medium-3">
-            {{ form_label(form.filename) }}
+            {{ 'File.Filename'|trans }}
         </div>
         <div class="cell medium-4">
             <label class="button"><i class="fas fa-file-export"></i>
@@ -51,7 +56,7 @@
                 } } ) 
             }}
         </label>          
-            <nobr><div id="message">Selecteer een bestand</div></nobr>
+            <nobr><div id="message">{{ 'Message.Add file'|trans }}</div></nobr>
         </div>
         {# <div class="cell medium-1"> #}
             {{ form_errors(form.filename) }}
@@ -61,16 +66,16 @@
         <script>
                 function fileUpload(myFile){
                     var file = myFile.files[0];
-                    message.innerHTML = 'Bestand: ' + file.name;
+                    message.innerHTML = "{{ 'File.Filename'|trans }}: " + file.name;
                 }
                 function cancel() {
-                    message.innerHTML ="Selecteer een bestand"
+                    message.innerHTML ="{{ 'Contact.Choose file'|trans }} "
                 }
         </script>
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>
         <div class="cell medium-3">
-            {{ form_label(form.date) }}
+            {{ 'Invoice.Date'|trans }}
         </div>
         <div class="cell medium-3">
             {{ form_widget(form.date) }}
@@ -82,7 +87,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-3"></div>
         <div class="cell medium-3">
-            {{ form_label(form.period) }}
+            {{ 'File.Period'|trans }}
         </div>
         <div class="cell medium-3">
             {{ form_widget(form.period) }}
@@ -97,10 +102,10 @@
         <div class="cell medium-3"></div>
         <div class="cell medium-3"></div>
         <div class="cell medium-3 text-right">
-            <button type="reset" class="button" onclick="cancel(this)">
+            <button type="reset" title=" {{ 'Form.Empty'|trans }} "class="button" onclick="cancel(this)">
                 <i class="fas fa-remove-format"></i>
             </button>
-            <button class="button" type="submit">
+            <button class="button" type="submit" title="{{ 'Form.Save'|trans }}">
                 <i class="far fa-save"></i>
             </button>
         </div>

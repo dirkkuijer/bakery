@@ -6,17 +6,17 @@
         <div class="cell medium-8"></div>
         <div class="cell medium-2">
             <div class="wrapper_searchField">
-                <input id="myInput" class="myInput" placeholder="Zoeken" />
+                <input id="myInput" class="myInput" placeholder="{{ 'Message.Search'|trans }}" />
             </div>
         </div>
         <div class="cell medium-2">
             <a class="button large" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('relation_new') }}"> 
-                + <i class="far fa-address-card"></i>
+                + <i class="far fa-address-card" title="{{ 'Relation.NewInvoice'|trans }}"></i>
              </a>
         </div>
     </div>
     
-    <h4>Relaties</h4>
+    <h4>{{ 'Base.Relations'|trans }}</h4>
     
     <br>
     
@@ -27,13 +27,13 @@
             <table class="stack hover table" id="table">
                 <thead>
                     <tr>
-                        <th>Naam</th>
-                        <th>Telefoon</th>
-                        <th>E-mail</th>
-                        <th>Allergiën</th>
-                        <th>Rekeningnummer</th>
-                        <th>Facturen</th>
-                        <th colspan="2">Acties</th>
+                        <th>{{ 'Relation.Name'|trans }}</th>
+                        <th>{{ 'Relation.Telephone'|trans }}</th>
+                        <th>{{ 'Relation.Email'|trans }}</th>
+                        <th>{{ 'Relation.Allergies'|trans }}</th>
+                        <th>{{ 'Relation.Bankaccountnumber'|trans }}</th>
+                        <th>{{ 'Base.Invoices'|trans }}</th>
+                        <th colspan="2">{{ 'Index.Action'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody id="myTable">
@@ -46,23 +46,24 @@
                             {% if relation.allergies is not null %}
                                 {{ relation.allergies }}
                             {% else %}
-                                Niet bekend
+                                {{ 'Message.Unknown'|trans }}
                             {% endif %}
                         </td>
                         <td id="td">{{ relation.bankAccountNumber }}</td>
                         <td id="td">
                             {% for invoice in invoices %}
                                 {% if relation.id == invoice.relation.id %}
-                                    <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path=" {{ path('invoice_show', { 'id': invoice.id }) }} ">{{ invoice.invoiceNumber }}</a>
+                                    <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path=" {{ path('invoice_show', { 'id': invoice.id }) }} "
+                                    title="{{ 'Invoice.Show invoice'|trans }}">{{ invoice.invoiceNumber }}</a>
                                 {% endif %}
                             {% endfor %}
                         </td>
                         <td id="td">
                            <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path="{{ path('relation_show', { 'id': relation.id }) }}">
-                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye" title="{{ 'Index.Show'|trans }}"></i>
                             </a>
                             <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path="{{ path('relation_edit', { 'id': relation.id }) }}">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-edit" title="{{ 'Index.Edit'|trans }}"></i>
                             </a>
                         </td>
                     </tr>

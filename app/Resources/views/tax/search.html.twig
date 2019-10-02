@@ -9,19 +9,19 @@
             'action': path('tax_search'), 
         } } ) }}  #}
             
-            <h4>Overzicht maken</h4>
+            <h4>{{ 'Tax.Make index'|trans }}</h4>
             <br />  {# , {'action': path('tax_search')}, { 'data-async' : ''} dit stond form. Moet in de controller #}
         {{ form_start(form)}}
              <div class="grid-x grid-padding-x">
-                <div class="cell medium-1">{{ form_label(form.from) }}</div>
+                <div class="cell medium-1">{{ 'Tax.From'|trans }}</div>
                 <div class="cell medium-2">{{ form_widget(form.from) }}</div>
                 <div class="cell medium-2">{{ form_errors(form.from) }}</div>
                 
-                <div class="cell medium-1">{{ form_label(form.till) }}</div>
+                <div class="cell medium-1">{{ 'Tax.Till'|trans }}</div>
                 <div class="cell medium-2">{{ form_widget(form.till) }}</div>
                 <div class="cell medium-2">{{ form_errors(form.till) }}</div>
             </div>
-                <button class="button" type="submit">
+                <button class="button" title=" {{'Form.Save'|trans }} " type="submit">
                     <i class="far fa-save"></i>
                 </button>
             {# {{ form_widget(form)}} #}

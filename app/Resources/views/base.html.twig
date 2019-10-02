@@ -39,9 +39,9 @@
         <div class="container-user">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <div id="userLoggedIn">
-                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                    {{ 'layout.login'|trans({'%username%': app.user.username} ) }}
                     | <a href="{{ path('fos_user_security_logout') }}">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="fas fa-sign-out-alt"  title=" {{ 'layout.logout'|trans }} "></i>
                     </a>
                 </div>
             {# {% else %} 
@@ -65,30 +65,30 @@
                 <img src="{{ asset('build/images/logo.jpeg') }}" class="logo">
        
          {% if is_granted('ROLE_ADMIN') %}
-        <h3>Администрација</h3>
+        <h3>{{ 'Base.Administration'|trans  }}</h3>
         
         <div class="grid-x cell shrink">    
             <div class="cell medium-2">
                 <ul class="dropdown menu" data-dropdown-menu>
-                    <li><a href="#"><strong>Мени</strong></a>
+                    <li><a href="#"><strong>{{'Base.Menu'|trans }}</strong></a>
                         <ul>
                             <li>
-                                <a href="#">Преглед</a>
+                                <a href="#">{{ 'Base.Index'|trans }}</a>
                                     <ul class="menu vertical nested">
-                                        <li><a href=" {{ path('user_index') }} ">Kорисника</a></li>
-                                        <li><a href=" {{ path('invoice_index') }} ">Фактура</a></li>
-                                        <li><a href=" {{ path('relation_index') }} ">однос</a></li>
-                                        <li><a href=" {{ path('file_index') }} ">Фајлови</a></li>
-                                        <li><a href=" {{ path('tax_index') }} ">Порез</a></li>
+                                        <li><a href=" {{ path('user_index') }} ">{{'Base.Users'|trans }}</a></li>
+                                        <li><a href=" {{ path('invoice_index') }} ">{{ 'Base.Invoices'|trans }}</a></li>
+                                        <li><a href=" {{ path('relation_index') }} ">{{ 'Base.Relations'|trans }}</a></li>
+                                        <li><a href=" {{ path('file_index') }} ">{{ 'Base.Files'|trans }}</a></li>
+                                        <li><a href=" {{ path('tax_index') }} ">{{ 'Base.Taxes'|trans }}</a></li>
                                     </ul> 
                             </li>
                             <li>
-                                <a href="#">Heb</a>
+                                <a href="#">{{ 'Base.New'|trans }}</a>
                                 <ul class="menu vertical nested">
-                                    <li><a href="javascript:void(0)"  data-path=" {{ path('user_new') }} ">Kорисника</a></li>
-                                    <li><a href="javascript:void(0)"  data-path=" {{ path('invoice_new') }} ">Фактура</a></li>
-                                    <li><a href="javascript:void(0)"  data-path=" {{ path('relation_new') }} ">однос</a></li>
-                                    <li><a href="javascript:void(0)"  data-path=" {{ path('file_new') }} ">Фајлови</a></li>
+                                    <li><a href="javascript:void(0)"  data-path=" {{ path('user_new') }} ">{{'Base.Users'|trans }}</a></li>
+                                    <li><a href="javascript:void(0)"  data-path=" {{ path('invoice_new') }} ">{{ 'Base.Invoices'|trans }}</a></li>
+                                    <li><a href="javascript:void(0)"  data-path=" {{ path('relation_new') }} ">{{ 'Base.Relations'|trans }}</a></li>
+                                    <li><a href="javascript:void(0)"  data-path=" {{ path('file_new') }} ">{{ 'Base.Files'|trans }}</a></li>
                                 </ul>
                             </li>
                             
@@ -98,7 +98,7 @@
             </div>
             <div class="cell medium-9"></div>
             <div class="cell medium-1">
-                <a class="button large" href="javascript:void(0)" data-path="{{ path('contact') }}">
+                <a class="button large" title=" {{ 'Base.Send email'|trans }} " href="javascript:void(0)" data-path="{{ path('contact') }}">
                 <i class="far fa-envelope"></i></a>
             </div>
         </div>

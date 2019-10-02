@@ -15,7 +15,9 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a href="{{ path('invoice_index') }}" class="button"><i class="fas fa-list-ol"></i></a>
+            <a href="{{ path('invoice_index') }}" title="{{ 'Index.Back'|trans }}" class="button">
+                <i class="fas fa-list-ol"></i>
+            </a>
         </div>
     </div>
 
@@ -29,7 +31,11 @@
         'data-async': '',
     } } ) }}
 
-        <h4>Factuur {% if typeInvoice  %}aanmaken{% else %}wijzigen{% endif %}</h4>
+        <h4>{% if typeInvoice  %}
+                {{ 'Invoice.Add'|trans }}
+            {% else %}
+                {{ 'Invoice.Edit'|trans }}
+            {% endif %}</h4>
 
         <br>
 
@@ -39,7 +45,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.relation) }}
+                {{ 'Relation.Name'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.relation) }}
@@ -52,7 +58,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.date) }}
+                {{ 'Invoice.Date'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.date) }}
@@ -64,7 +70,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.description) }}
+                {{ 'Invoice.Description'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.description) }}
@@ -77,7 +83,7 @@
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
                 {# <label style="padding-bottom:10px;">Factuurnummer</label> #}
-                {{ form_label(form.invoiceNumber) }}
+                {{ 'Invoice.Invoice Number'|trans }}
             </div>
             <div class="cell medium-3">
                 {# {{ invoice.invoiceNumber }} #}
@@ -90,7 +96,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.reference) }}
+                {{ 'Invoice.Reference'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.reference)}}
@@ -102,14 +108,16 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.amount) }}
+                {{ 'Invoice.Amount'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.amount)}}
             </div> 
             <div class="cell medium-3">
                 {{ form_errors(form.amount) }}
-                <span id="amountError" style="display:none">Vul een waarde in!</span>
+                <span id="amountError" style="display:none">
+                    {{ 'Message.Amount error'|trans }}
+                </span>
             </div>
         </div>
         
@@ -122,7 +130,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.vatPercentage) }}
+                {{ 'Invoice.Vat percentage'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.vatPercentage, { 
@@ -134,7 +142,7 @@
             </div>
             <div class="cell medium-3">
                 {{ form_errors(form.vatPercentage) }}
-                <a href="JavaScript:Void(0)" onClick="calculate()" class="button">
+                <a href="JavaScript:Void(0)" onClick="calculate()" title=" {{ 'Message.Calculate'|trans }} " class="button">
                     <i class="fas fa-calculator"></i>
                 </a>
             </div>
@@ -143,7 +151,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.vatAmount) }}
+                {{ 'Invoice.Vat amount'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.vatAmount) }}
@@ -155,7 +163,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.amountWithVat) }}
+                {{ 'Invoice.Amount with vat'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.amountWithVat) }}
@@ -168,7 +176,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.invoiceSend) }}
+                {{ 'Invoice.Invoice send'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.invoiceSend) }}
@@ -180,7 +188,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.statusPayment) }}
+                {{ 'Invoice.Status payment'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.statusPayment) }}
@@ -195,9 +203,11 @@
             <div class="cell medium-3"></div>
             <div class="cell medium-3 text-right">
             {% if invoice.id == null %}
-                <button type="reset" class="button"><i class="fas fa-remove-format"></i></button>
+                <button type="reset" title=" {{ 'Form.Empty'|trans }} " class="button">
+                    <i class="fas fa-remove-format"></i>
+                </button>
             {% endif %}
-               <button class="button" type="submit">
+               <button class="button" title=" {{ 'Form.Save'|trans }} " type="submit">
                     <i class="far fa-save"></i>
                 </button>
                 {# {{ form_widget(form.save) }} #}

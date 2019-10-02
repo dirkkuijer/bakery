@@ -10,7 +10,7 @@
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
             <a class="button" href="{{ path('relation_index') }}">
-                <i class="fas fa-list-ol"></i>
+                <i class="fas fa-list-ol" title="{{ 'Index.Back'|trans }}"></i>
             </a>
         </div>
     </div>
@@ -23,16 +23,20 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Relatie            
+                {{ 'Relation.Kind of relation'|trans }}           
             </div>
             <div class="cell medium-6">
-                {% if relation.kindOfRelation %}Klant{% else %}Leverancier{% endif %}
+                {% if relation.kindOfRelation %}
+                    {{ 'Relation.Customer'|trans }}    
+                {% else %}
+                    {{ 'Relation.Supplier'|trans }}    
+                {% endif %}
             </div>
         </div>
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Straat            
+                {{ 'Relation.Street'|trans }}    
             </div>
             <div class="cell medium-6">
                 {{ relation.street }}
@@ -41,7 +45,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Huisnummer            
+                    {{ 'Relation.Housenumber'|trans }}            
             </div>
             <div class="cell medium-6">
                 {{ relation.housenumber }}
@@ -50,7 +54,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Postcode            
+                {{ 'Relation.Postalcode'|trans }}            
             </div>
             <div class="cell medium-6">
                 {{ relation.postalCode }}
@@ -59,7 +63,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Woonplaats            
+                {{ 'Relation.City'|trans }}            
             </div>
             <div class="cell medium-6">
                 {{ relation.city }}
@@ -68,7 +72,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Telefoon            
+                {{ 'Relation.Telephone'|trans }}            
             </div>
             <div class="cell medium-6">
                 {{ relation.telephone }}
@@ -77,7 +81,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                E-mail
+                {{ 'Relation.Email'|trans }}
             </div>
             <div class="cell medium-6">
                 {{ relation.email }}
@@ -86,7 +90,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Allergiën
+                {{ 'Relation.Allergies'|trans }}
             </div>
             <div class="cell medium-6">
                 {{ relation.allergies }}
@@ -95,25 +99,33 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Rekeningnummer
+                {{ 'Relation.Bankaccountnumber'|trans }}
             </div>
             <div class="cell medium-6">
-                {{ relation.bankAccountNumber }}
+                {% if relation.bankAccountNumber == null %}
+                    {{ 'Message.Unknown'|trans }}
+                {% else %}
+                    {{ relation.bankAccountNumber }}
+                {% endif %}
             </div>
         </div>
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Informatie
+                {{ 'Relation.Extra info'|trans }}
             </div>
             <div class="cell medium-6">
-                {{ relation.extraInfo }}
+                {% if relation.extraInfo == null %}
+                    {{ 'Message.Unknown'|trans}}
+                {% else %}
+                    {{ relation.extraInfo }}
+                {% endif %}
             </div>
         </div>
         <div class="grid-x grid-padding-x">
             <div class="cell small-6"></div>
             <div class="cell small-2 text-right">
-                <a class="button" href="javascript:void(0)" data-path="{{ path('relation_edit', { 'id': relation.id }) }}">
+                <a class="button"  title="{{ 'Index.Edit'|trans }}" href="javascript:void(0)" data-path="{{ path('relation_edit', { 'id': relation.id }) }}">
                     <i class="far fa-edit"></i>
                 </a>
             </div>
@@ -121,7 +133,7 @@
             {# <a class="button" href="{{ path('relation_delete', { 'id': relation.id }) }}" title="Verwijderen">
                 Verwijderen
             </a> #}
-                <button class="button" type="submit">
+                <button class="button" type="submit"  title="{{ 'Form.Delete'|trans }}">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             {{ form_end(delete_form) }}

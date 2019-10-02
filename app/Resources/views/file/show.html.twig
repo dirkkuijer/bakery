@@ -17,21 +17,21 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" href="{{ path('file_index') }}">
+            <a class="button" href="{{ path('file_index') }}" title="{{ 'Index.Back'|trans }}">
                 <i class="fas fa-list-ol"></i>
             </a>
         </div>
     </div>
     {% if is_granted('ROLE_ADMIN') %}
   
-    <h4>Bestand</h4>
+    <h4>{{ 'File.File'|trans }}</h4>
 
     <br> 
 
     <div class="grid-x grid-padding-x">
         <div class="cell medium-2"></div>
         <div class="cell medium-4">
-            Bestand
+            {{ 'File.File'|trans }}
          </div>
         <div class="cell medium-6">
             {{ file.filename }}
@@ -40,7 +40,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-2"></div>
         <div class="cell medium-4">
-            Datum
+            {{ 'Invoice.Date'|trans }}
         </div>
         <div class="cell medium-6">{% if file.date %}{{ file.date|date('d-m-Y') }}{% endif %}</td>
         </div>
@@ -48,7 +48,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-2"></div>
         <div class="cell medium-4">
-            Kwartaal
+            {{ 'File.Period'|trans }}
         </div>
         <div class="cell medium-6">{{ file.period }}</td>
         </div>
@@ -60,7 +60,7 @@
             {# <a class="button" href="{{ path('file_edit', { 'id': file.id }) }}">Bewerken</a> #}
         </div>
             {{ form_start(delete_form) }}
-                <button class="button" type="submit">
+                <button class="button" title=" {{ 'Form.Delete'|trans }} "type="submit">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             {{ form_end(delete_form) }}

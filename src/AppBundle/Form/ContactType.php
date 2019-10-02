@@ -21,8 +21,8 @@ class ContactType extends AbstractType
                 'required' => false,
             ])
             ->add('to', EmailType::class, [
-                'attr' => ['placeholder' => 'naam@email.nl',
-                    'list' => 'contacten', ],
+                'attr' => ['placeholder' => 'Message.Email',
+                    'list' => 'contacts', ],
             ])
             // ->add('from', EmailType::class,[
             //     'attr' => ['placeholder' => 'naam@email.nl']
@@ -30,12 +30,12 @@ class ContactType extends AbstractType
             ->add('subject', ChoiceType::class, [
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Kies een optie',
+                'placeholder' => 'Contact.Option subject',
                 'choices' => [
-                    'BTW-aangifte SJHB' => 'BTW-aangifte SJHB',
-                    'Persoonsgegevens' => 'Persoonsgegevens',
-                    'Vraag' => 'Vraag',
-                    'Anders' => 'Anders',
+                    'Contact.Send tax' => 'Contact.Send tax',
+                    'Contact.Person information' => 'Contact.Person information',
+                    'Contact.Question' => 'Contact.Question',
+                    'Contact.Other' => 'Contact.Other',
                 ],
             ])
             // ->add('send', SubmitType::class, [
@@ -43,7 +43,7 @@ class ContactType extends AbstractType
             //     'attr' => ['class' => 'button'],
             // ])
             ->add('message', TextareaType::class, [
-                'attr' => ['placeholder' => 'Typ uw bericht',
+                'attr' => ['placeholder' => 'Message.Type your message',
                     'rows' => '4', ],
                 'required' => 'required',
             ])

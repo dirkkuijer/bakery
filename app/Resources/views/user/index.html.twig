@@ -14,7 +14,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-10"></div>
                 <div class="cell medium-2">
-                <a class="button" href="javascript:void(0);" data-path="{{ path('user_new') }}"  title="Gebruiker toevoegen">
+                <a class="button" title=" {{ 'Message.Add user'|trans }} " href="javascript:void(0);" data-path="{{ path('user_new') }}"  title="Gebruiker toevoegen">
                     + <i class="fas fa-user"></i>
                 </a>
             </div>
@@ -22,7 +22,7 @@
     
 {% endif %}
 
-    <h4>Gebruikers</h4>
+    <h4>{{ 'Base.Users'|trans }}</h4>
 
 
 <div class="grid-x padding-grid-x">
@@ -32,12 +32,11 @@
         <table class="stack hover table">
             <thead>
                 <tr>
-                    <th>Gebruiker</th>
-                    <th>E-mail</th>
-                    <th>Rol</th>
-                    <th>Laatste login</th>
-                    {# <th>Actief</th> #}
-                    <th>Acties</th>
+                    <th>{{ 'User.User'|trans }}</th>
+                    <th>{{ 'Relation.Email'|trans }}</th>
+                    <th>{{ 'User.Roll'|trans }}</th>
+                    <th>{{ 'User.Last login'|trans }}</th>
+                    <th>{{ 'Index.Action'|trans }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,17 +45,17 @@
                 {% if user.username != "dirk" %}
                     <tr>
                         <td>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}" title="Gebruiker bekijken">
+                            <a href="{{ path('user_show', { 'id': user.id }) }}" title="{{ 'Index.Show'|trans }}">
                             {{ user.username }}
                             </a>
                         </td>
                         <td>{{ user.email }}</td>
                         <td>{% for role in user.roles %}
                                         {% if role == 'ROLE_ADMIN' %}
-                                            Admin
+                                            {{ 'User.Admin'|trans }}
                                         {% endif %}
                                         {% if role == 'ROLE_USER' %}
-                                            Gebruiker
+                                            {{ 'User.User'|trans }}
                                         {% endif %}
                                     {% endfor %}  
                         </td>
@@ -66,10 +65,12 @@
     
                     
                         {# {% if user.system == false %} #}
-                        <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_show', { 'id': user.id }) }}" title="Inzien">
+                        <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_show', { 'id': user.id }) }}" 
+                            title="{{ 'Index.Show'|trans }}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
+                        <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_edit', { 'id': user.id }) }}" 
+                            title="{{ 'Index.Edit'|trans }}">
                             <i class="fas fa-edit"></i>
                         </a>
                         {# {% endif %} #}

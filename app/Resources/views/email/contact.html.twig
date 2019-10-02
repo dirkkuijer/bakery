@@ -10,9 +10,9 @@
         <span aria-hidden="true">&times;</span>
     </button> 
 
-<h4>Contact</h4>
+<h4>{{ 'Contact.Title'|trans }}</h4>
 <br>
-<datalist id="contacten">
+<datalist id="contacts">
             <option>vanbeijnumadministratie@planet.nl</option>
             <option>dirkkuijer@hotmail.com</option>
         </datalist>
@@ -22,15 +22,20 @@
             {{ form_row(form.from) }}    
         </div> #}
         <div class="cell medium-3">
-            {{ form_row(form.to) }}    
+            {{ 'Contact.To'|trans }}
+            {{ form_widget(form.to) }}    
+            {{ form_errors(form.to) }}    
         </div>
         <div class="cell medium-3">
-            {{ form_row(form.subject) }}
+            {{ 'Contact.Subject'|trans }}
+            {{ form_widget(form.subject) }}
+            {{ form_errors(form.subject) }}
         </div>
     </div>
     <div class="grid-x grid-padding-x">
         <div class="cell medium-2">
-            <label class="button" onclick="fileUpload(this)"><i class="fas fa-file-export"></i>
+            <label class="button" onclick="fileUpload(this)" title=" {{'Message.Add file'|trans }} ">
+                <i class="fas fa-file-export"></i>
                 {{ form_widget(form.attachment, { 'attr': 
                 {   'id': 'inputFile',
                 'hidden' : '',
@@ -41,15 +46,15 @@
             </label>  
         </div>
         <div class="cell medium-2">
-            <div id="message">Selecteer een bestand</div>
+            <div id="message">{{ 'Message.Add file'|trans }}</div>
         </div>
             <script>
                 function fileUpload(myFile){
                     var file = myFile.files[0];
-                    message.innerHTML = 'Bestand: ' + file.name;
+                    message.innerHTML = "{{ 'File.Filename'|trans }}: " + file.name;
                 }
                 function cancel() {
-                    message.innerHTML ="Selecteer een bestand"
+                    message.innerHTML =" {{ 'Contact.Choose file'|trans }} "
                 }
             </script>
             {# {{ form_row(form.attachment) }} #}
@@ -58,7 +63,9 @@
     </div>
     <div class="grid-x grid-padding-x">
         <div class="cell medium-12" style="width:80%">
-            {{ form_row(form.message) }}
+            {{ 'Contact.Message'|trans }}
+            {{ form_widget(form.message) }}
+            {{ form_errors(form.message) }}
         </div>
     </div>
  
@@ -68,10 +75,10 @@
             {{ form_row( form.send) }}
         </div>   #}
         <div class="cell medium-2">
-            <button type="reset" class="button" onclick="cancel(this)">
+            <button type="reset" title=" {{ 'Form.Empty'|trans }} " class="button" onclick="cancel(this)">
                 <i class="fas fa-remove-format"></i>
             </button>
-            <button class="button" type="submit">
+            <button class="button" type="submit" title=" {{ 'Form.Send'|trans }} ">
                 <i class="fas fa-paper-plane"></i>
             </button>
         </div> 

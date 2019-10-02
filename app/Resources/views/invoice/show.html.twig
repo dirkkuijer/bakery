@@ -2,7 +2,9 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" href="{{ path('invoice_index') }}"><i class="fas fa-list-ol"></i></a>
+            <a class="button" href="{{ path('invoice_index') }}" title="{{ 'Index.Back'|trans }}">
+                <i class="fas fa-list-ol"></i>
+            </a>
         </div>
     </div>
     {% if is_granted('ROLE_ADMIN') %}
@@ -11,14 +13,14 @@
         <span aria-hidden="true">&times;</span>
     </button>
 
-    <h4>Factuur</h4>
+    <h4>{{ 'Base.Invoices'|trans }}</h4>
 
     <br> 
     
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Naam            
+                {{ 'Relation.Name'|trans }}            
             </div>
             <div class="cell medium-6">
                 {{ invoice.relation.name }}
@@ -27,7 +29,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Datum
+                {{ 'Invoice.Date'|trans }}
             </div>
             <div class="cell medium-6">
                 {% if invoice.date %}{{ invoice.date|date('d-m-Y') }}{% endif %}
@@ -36,7 +38,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Omschrijving
+                {{ 'Invoice.Description'|trans }}
             </div>
             <div class="cell medium-6">
                 {{ invoice.description }}
@@ -45,11 +47,11 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                    Factuurnummer
+                    {{ 'Invoice.Invoice Number'|trans }}
             </div>
             <div class="cell medium-6">
                 {% if invoice.relation.kindOfRelation == true %}
-                    <a class="button" href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">
+                    <a class="button" title=" {{ 'Message.Open pdf'|trans }} " href="{{ path('invoice.pdf', { 'id': invoice.id }) }}" target="_blank">
                         {{ invoice.invoiceNumber }}
                         <i class="far fa-file-pdf"></i></a>
                         {% else %}
@@ -60,7 +62,7 @@
                 <div class="grid-x grid-padding-x">
                     <div class="cell medium-2"></div>
                     <div class="cell medium-4">
-                        Referentie
+                        {{ 'Invoice.Reference'|trans }}
                     </div>
                 <div class="cell medium-6">
                     {{ invoice.reference }}
@@ -69,7 +71,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                    Bedrag
+                {{ 'Invoice.Amount'|trans }}
             </div>
             <div class="cell medium-6">
                &#8364; {{ invoice.amount|number_format(2, ',','.')  }}
@@ -78,7 +80,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                BTW-bedrag
+                {{ 'Invoice.Vat amount'|trans }}
             </div>
             <div class="cell medium-6">
                 &#8364; {{ invoice.vatAmount|number_format(2, ',','.')  }}
@@ -87,7 +89,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                BTW-percentage
+                {{ 'Invoice.Vat percentage'|trans }}
             </div>
             <div class="cell medium-6">
                 {{ invoice.vatPercentage|number_format(2, ',' ,'.') }} %
@@ -96,7 +98,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Totaal
+                {{ 'Invoice.Amount with vat'|trans }}
             </div>
             <div class="cell medium-6">
                 {# {% set totalAmount = invoice.amount + ((invoice.amount / 100) * invoice.vatPercentage) %} #}
@@ -106,7 +108,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Factuur verzonden op
+                {{ 'Invoice.Invoice send'|trans }}
             </div>
             <div class="cell medium-6">
                 {% if invoice.invoiceSend is not null %}
@@ -119,13 +121,13 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Status
+                {{ 'Invoice.Status payment'|trans }}
             </div>
             <div class="cell medium-6">
                 {% if invoice.statusPayment == 1 %}
-                    Betaald
+                    {{ 'Invoice.Payed'|trans }}
                 {% else %}
-                    Niet betaald
+                    {{ 'Invoice.Not payed'|trans }}
                 {% endif %}
             </div>
         </div>
@@ -133,7 +135,8 @@
         <div class="grid-x grid-padding-x">
             <div class="cell small-6"></div>
             <div class="cell small-2 text-right">
-                <a class="button" href="javascript:void(0)" data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">
+                <a class="button" href="javascript:void(0)" title=" {{ 'Index.Edit'|trans }} " 
+                data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">
                     <i class="far fa-edit"></i>
                 </a>
             </div>
@@ -141,7 +144,7 @@
             {{ form_start(delete_form) }}
             {#<input type="submit" class="button" value="Verwijderen" href="{{ path('invoice_delete', { 'id': invoice.id }) }}" title="Verwijderen" />#}
             
-            <button class="button" type="submit">
+            <button class="button" title=" {{ 'Form.Delete'|trans }} " type="submit">
                 <i class="fas fa-trash-alt"></i>
             </button> 
             {{ form_end(delete_form) }}

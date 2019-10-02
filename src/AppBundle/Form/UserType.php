@@ -17,12 +17,10 @@ class UserType extends AbstractType
         $user = $builder->getData();
 
         $builder
-            ->add('email', EmailType::class, ['label' => 'form.email',
-                'attr' => ['placeholder' => 'naam@mail.nl'],
-                'attr' => ['minlength' => 10],
-                'translation_domain' => 'FOSUserBundle', ])
-
-            ->add('username', null, ['label' => 'form.username',
+            ->add('email', EmailType::class, [
+                'attr' => ['placeholder' => 'Message.Email'],
+            ])
+            ->add('username', null, ['label' => 'User.Username',
                 'translation_domain' => 'FOSUserBundle', ])
 
             ->add('roles', ChoiceType::class, [
@@ -30,8 +28,8 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'placeholder' => 'false',
                 'choices' => [
-                    'Gebruiker' => 'ROLE_USER',
-                    'Admin' => 'ROLE_ADMIN',
+                    'User.User' => 'ROLE_USER',
+                    'User.Admin' => 'ROLE_ADMIN',
                 ],
             ])
         ;
@@ -40,19 +38,13 @@ class UserType extends AbstractType
             $builder
                 ->add('plainPassword', RepeatedType::class, [
                     'type' => PasswordType::class,
-                    'options' => [
-                        'translation_domain' => 'FOSUserBundle',
-                        'attr' => [
-                            'autocomplete' => 'new-password',
-                        ],
+                    'attr' => [
+                        'autocomplete' => 'new-password',
                     ],
-                    'first_options' => ['label' => 'form.password',
-                        'attr' => ['placeholder' => 'Minimaal 10 karakters',
-                        ], ],
-                    'second_options' => ['label' => 'form.password_confirmation',
-                        'attr' => ['placeholder' => 'Minimaal 10 karakters',
-                        ], ],
-                    'invalid_message' => 'fos_user.password.mismatch',
+                    'first_options' => ['attr' => ['placeholder' => 'Message.Minimum characters']],
+
+                    'second_options' => ['attr' => ['placeholder' => 'Message.Minimum characters']],
+                    'invalid_message' => 'User.Mismatch',
                 ])
             ;
         }

@@ -11,12 +11,12 @@
         <div class="cell medium-8"></div>
         <div class="cell medium-2">
             <div class="wrapper_searchField">
-                <input id="myInput" class="myInput" placeholder="Zoeken" />
+                <input id="myInput" class="myInput" placeholder="{{ 'Message.Search'|trans }}" />
             </div>
         </div>
         <div class="cell medium-2">                                                                         
-            <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_new') }}">
-                <i class="fas fa-plus"></i> фактура
+            <a class="button" title=" {{ 'Message.Add invoice'|trans }} " href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_new') }}">
+                <i class="fas fa-plus"></i> {{ 'Base.Invoices'|trans }}
             </a>
         </div>
     </div>
@@ -33,14 +33,14 @@
                 <table class="stack hover table" id="table">
                     <thead>
                         <tr>
-                            <th>Број</th>
-                            <th>Име и Презиме</th>
-                            <th>Референце</th>
-                            <th>Датум</th>
-                            <th>Објашњење</th>
-                            <th>Verzonden</th>
-                            <th>Status</th>
-                            <th>Acties</th>
+                            <th>{{ 'Invoice.Invoice Number'|trans }}</th>
+                            <th>{{ 'Invoice.FullName'|trans }}</th>
+                            <th>{{ 'Invoice.Reference'|trans }}</th>
+                            <th>{{ 'Invoice.Date'|trans }}</th>
+                            <th>{{ 'Invoice.Description'|trans }}</th>
+                            <th>{{ 'Invoice.Invoice send'|trans }}</th>
+                            <th>{{ 'Invoice.Status payment'|trans }}</th>
+                            <th>{{ 'Index.Action'|trans }}</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
@@ -73,10 +73,10 @@
                                 {% endif %}
                             </td>
                             <td id="td">
-                                <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_show', { 'id': invoice.id }) }}">
+                                <a class="button" title=" {{ 'Index.Show'|trans}} " href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_show', { 'id': invoice.id }) }}">
                                     <i class="fas fa-eye"></i>{#  Bиди #}
                                 </a>
-                                <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">
+                                <a class="button" title=" {{ 'Index.Edit'|trans}} "  href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('invoice_edit', { 'id': invoice.id }) }}">
                                     <i class="fas fa-edit"></i>{# Измени #}
                                 </a>
                             </td>

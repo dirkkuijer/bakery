@@ -17,14 +17,14 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" href="{{ path('user_index') }}">
+            <a class="button" href="{{ path('user_index') }}" title=" {{ 'Index.Back'|trans }} ">
                 <i class="fas fa-list-ol"></i>
             </a>
         </div>
     </div>
      {% if is_granted('ROLE_ADMIN') %}
     
-    <h4>Gebruiker {{ user.username }}</h4>
+    <h4>{{ 'User.User'|trans }} {{ user.username }}</h4>
             
     <br>
 
@@ -32,7 +32,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                E-mail            
+                {{ 'Relation.Email'|trans }}            
             </div>
             <div class="cell medium-6">
                 {{ user.email }}
@@ -41,15 +41,15 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-2"></div>
             <div class="cell medium-4">
-                Rol        
+                {{ 'User.Roll'|trans }}        
             </div>
             <div class="cell medium-6">
                 {% for role in user.roles %}
                     {% if role == 'ROLE_ADMIN' %}
-                        Admin
+                        {{ 'User.Admin'|trans }}        
                     {% endif %}
                     {% if role == 'ROLE_USER' %}
-                        Gebruiker
+                        {{ 'User.User'|trans }}        
                     {% endif %}
                 {% endfor %}  
             </div>
@@ -58,13 +58,13 @@
         <div class="grid-x grid-padding-x">
             <div class="cell small-6"></div>
             <div class="cell small-2 text-right">
-                <a class="button" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
+                <a class="button" title=" {{ 'Index.Edit'|trans }}" href="javascript:void(0);" data-reveal-id="newInvoice" data-path="{{ path('user_edit', { 'id': user.id }) }}" title="Bewerken">
                     <i class="far fa-edit"></i>
                 </a>
             </div>
             <div class="cell small-4">
                 {{ form_start(delete_form) }}
-                    <button class="button" type="submit">
+                    <button class="button" title=" {{ 'Form.Save'|trans }} " type="submit">
                         <i class="fas fa-trash-alt"></i>
                     </button> 
                 {{ form_end(delete_form) }}

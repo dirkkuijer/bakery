@@ -21,35 +21,33 @@ class RelationType extends AbstractType
         $relation = new Relation();
         $builder
             ->add('kindOfRelation', ChoiceType::class, [
-                'choices' => ['Klant' => true, 'Leverancier' => false],
+                'choices' => ['Relation.Customer' => true, 'Relation.Supplier' => false],
                 'expanded' => true,
                 'multiple' => false,
             ])
             ->add('name', TextType::class, [
-                'attr' => ['placeholder' => 'voornaam en achternaam / bedrijfsnaam'],
+                'attr' => ['placeholder' => 'Message.Name'],
             ])
             ->add('street')
             ->add('houseNumber', TextType::class, [
-                'attr' => ['placeholder' => 'met toevoeging'],
+                'attr' => ['placeholder' => 'Message.Addition house'],
                 'required' => false,
             ])
             ->add('postalCode', TextType::class, [
-                'attr' => ['placeholder' => '1234 AB'],
                 'required' => false,
             ])
             ->add('city')
             ->add('telephone', TextType::class, [
-                'attr' => ['placeholder' => '012-3456789'],
                 'required' => false,
             ])
             ->add('email', EmailType::class, [
-                'attr' => ['placeholder' => 'naam@email.nl'],
+                'attr' => ['placeholder' => 'Message.Email'],
             ])
             ->add('allergies', TextareaType::class, [
                 'required' => false,
             ])
             ->add('bankAccountNumber', TextType::class, [
-                'attr' => ['placeholder' => '12 karakters'],
+                'required' => false,
             ])
             ->add('extraInfo', TextareaType::class, [
                 'required' => false,

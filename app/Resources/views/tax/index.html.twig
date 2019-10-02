@@ -5,17 +5,17 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" style="padding:1px1px;" href="{{ path('tax_index') }}">
+            <a class="button" title=" {{ 'Message.Total index'|trans }} " style="padding:1px1px;" href="{{ path('tax_index') }}">
                 <span style="font-size:18px;"><strong>100</strong></span>
                  <i class="fas fa-percent" style="font-size:-2px;"></i>
             </a>
-            <a class="button" style="height:36px;vertical-align:center;" href="javascript:void(0);" data-path="{{ path('tax_search') }}">
-                <i class="fas fa-chart-pie"></i> Selectie
+            <a class="button" title=" {{ 'Message.Specified selection'|trans }} " style="height:36px;vertical-align:center;" href="javascript:void(0);" data-path="{{ path('tax_search') }}">
+                <i class="fas fa-chart-pie"></i> {{ 'Tax.Selection'|trans }}
             </a>
         </div>
     </div> 
 
-    <h4>Belastingen</h4>
+    <h4>{{ 'Base.Taxes'|trans}}</h4>
 
     <br>
      <div class="grid-x grid-padding-x">
@@ -23,14 +23,14 @@
             <table class="stack hover table">
                 <thead>
                     <tr>
-                        <th>Relatie</th>
-                        <th>Naam</th>
-                        <th>Factuurnummer</th>
-                        <th>Datum</th>
-                        <th>Bedrag</th>
-                        <th>BTW (%)</th>
-                        <th>Bedrag BTW</th>
-                        <th>Totaal</th>
+                        <th>{{ 'Base.Relations'|trans }}</th>
+                        <th>{{ 'Relation.Name'|trans }}</th>
+                        <th>{{ 'Invoice.Invoice Number'|trans }}</th>
+                        <th>{{ 'Invoice.Date'|trans }}</th>
+                        <th>{{ 'Invoice.Amount'|trans }}</th>
+                        <th>{{ 'Invoice.Vat amount'|trans }} (%)</th>
+                        <th>{{ 'Invoice.Amount with vat'|trans }}</th>
+                        <th>{{ 'Invoice.Total'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,3 +1,4 @@
+
 Email: E-mail
 Street:	Straat
 Allergies: Allergieën
@@ -26,3 +27,21 @@ Status payment: Status betaling
 Extra info: Extra informatie
 Period: Kwartaal
 To: Naar
+Reference: Referentie
+
+layout:
+  login: Ingelogd als
+
+Base:
+  Administration: Administratie
+  Menu: Меnu
+  Users: Gebruikers
+  Invoices: Facturen
+  Relations: Relaties
+  Files: Bestanden
+  Taxes: Belasting
+  Index: Overzicht
+  New: Nieuw
+
+Message:
+    javaScript: Activeer Javascript voor een correcte werking van deze site.

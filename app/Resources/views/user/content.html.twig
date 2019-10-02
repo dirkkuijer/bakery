@@ -12,7 +12,7 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" href="{{ path('user_index') }}">
+            <a class="button" title=" {{ 'Index.Back'|trans}} " href="{{ path('user_index') }}">
                 <i class="fas fa-list-ol"></i>
             </a>
         </div>
@@ -20,9 +20,9 @@
     
     <h4>
         {% if user.id is not null %}
-            Gebruiker bewerken
+            {{'User.Edit'|trans }}
         {% else %}
-            Nieuwe gebruiker
+            {{'User.Add'|trans }}
         {% endif %}
     </h4>
         {{ form_start(form) }}
@@ -31,7 +31,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.username) }}
+                {{ 'User.Username'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.username) }}
@@ -43,7 +43,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.email) }}
+                {{ 'Relation.Email'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.email) }}
@@ -55,7 +55,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.roles) }}
+                {{ 'User.Roll'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.roles) }}
@@ -71,7 +71,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.plainPassword.first) }}
+                {{ 'User.Password'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.plainPassword.first) }}
@@ -83,7 +83,7 @@
         <div class="grid-x grid-padding-x">
             <div class="cell medium-3"></div>
             <div class="cell medium-3">
-                {{ form_label(form.plainPassword.second) }}
+                    {{ 'User.Password confirm'|trans }}
             </div>
             <div class="cell medium-3">
                 {{ form_widget(form.plainPassword.second) }}
@@ -101,9 +101,9 @@
         <div class="cell large-6"></div>
         <div class="cell large-3 text-right">
             {% if user.id == null %}
-                <button type="reset" class="button"><i class="fas fa-remove-format"></i></button>
+                <button type="reset" title=" {{ 'Form.Empty'|trans }} " class="button"><i class="fas fa-remove-format"></i></button>
             {% endif %}
-                <button class="button" type="submit">
+                <button class="button" title=" {{ 'Form.Save'|trans }} " type="submit">
                     <i class="far fa-save"></i>
                 </button>
         </div>   

@@ -25,11 +25,10 @@ class InvoiceType extends AbstractType
             ])
             ->add('invoiceNumber')
             ->add('reference', TextType::class, [
-                'attr' => ['placeholder' => 'bijv. factuurnummer leverancier'],
                 'required' => false,
             ])
             ->add('description', TextareaType::class, [
-                'attr' => ['placeholder' => 'Omschrijving bestelling'],
+                'attr' => ['placeholder' => 'Message.Description order'],
             ])
             ->add('amount')
             ->add('amountWithVat')
@@ -45,7 +44,7 @@ class InvoiceType extends AbstractType
                 'required' => false,
             ])
             ->add('statusPayment', ChoiceType::class, [
-                'choices' => ['Betaald' => true, 'Niet betaald' => false],
+                'choices' => ['Invoice.Payed' => true, 'Invoice.Not payed' => false],
                 'expanded' => true,
                 'multiple' => false,
             ])
