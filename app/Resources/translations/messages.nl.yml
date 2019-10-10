@@ -1,47 +1,146 @@
 
-Email: E-mail
-Street:	Straat
-Allergies: Allergieën
-House number: Huisnummer
-Postal code: Postcode
-City: Woonplaats
-Telephone: Telefoon
-Date: Datum
-Description: Omschrijving
-Invoice Number: Factuurnummer
-Roles: Rol gebruiker
-Name: Naam
-Subject: Onderwerp
-Message: Bericht
-Bank account number: Rekeningnummer
-Invoice number: Factuurnummer
-Amount: Bedrag
-Amount with vat: Bedrag incl. BTW
-Vat amount: BTW-bedrag
-Vat percentage: BTW-percentage
-fullName: Klant
-Kind of invoice customer: Type
-Kind of relation: Relatie
-Invoice send: Factuur verzonden op
-Status payment: Status betaling
-Extra info: Extra informatie
-Period: Kwartaal
-To: Naar
-Reference: Referentie
+Base:
+  Administration: Administratie
+  Files: Bestanden
+  Index: Overzicht
+  Invoices: Facturen
+  Menu: Меnu
+  New: Nieuw
+  Relations: Relaties
+  Send email: E-mail verzenden
+  Taxes: Belasting
+  Users: Gebruikers
+
+Contact:
+  Choose file: Kies een bestand
+  Message: Bericht
+  Option subject: Opties onderwerp
+  Other: Anders
+  Person information: Persoonsgegevens
+  Question: Vraag
+  Send tax: BTW-overzicht verzenden
+  Subject: Onderwerp
+  Title: Contact
+  To: Naar
+
+File:
+  Download: Download
+  Edit file: Bestand bewerken
+  File: Bestand
+  Filename: Bestandsnaam
+  New file: Nieuw bestand
+  Period: Kwartaal
+
+Form:
+  Delete: Verwijderen
+  Empty: Formulier leegmaken
+  Save: Opslaan
+  Send: Verzenden
+
+Index:
+  Action: Acties
+  Back: Terug naar het overzicht
+  Edit: Bewerken
+  Show: Inzien
+
+Invoice:
+  Add: Nieuwe factuur
+  Amount: Bedrag
+  Amount with vat: Bedrag incl. BTW
+  Date: Datum
+  Description: Omschrijving
+  Edit: Factuur bewerken
+  FullName: Klant
+  Invoice Number: Factuurnummer
+  Invoice send: Factuur verzonden op
+  Kind of invoice customer: Type
+  Message: Bericht
+  Not payed: Niet betaald
+  Payed: Betaald
+  Period: Kwartaal
+  Reference: Referentie
+  Show invoice: Factuur zien
+  Status payment: Status betaling
+  Subject: Onderwerp
+  Total: Totaal
+  Vat amount: BTW-bedrag
+  Vat percentage: BTW-percentage
 
 layout:
   login: Ingelogd als
+  logout: Uitloggen
 
-Base:
-  Administration: Administratie
-  Menu: Меnu
-  Users: Gebruikers
-  Invoices: Facturen
-  Relations: Relaties
-  Files: Bestanden
-  Taxes: Belasting
-  Index: Overzicht
-  New: Nieuw
-
+# title attributes as well
 Message:
-    javaScript: Activeer Javascript voor een correcte werking van deze site.
+  Addition house: Toevoeging huisnummer
+  Add file: Bestand toevoegen
+  Add invoice: Factuur toevoegen
+  Add user: Gebruiker toevoegen
+  Amount error: Vul een waarde in
+  Calculate: Berekenen
+  Description order: Omschrijving
+  Email: naam@mail.nl
+  javaScript: Activeer Javascript voor een correcte werking van deze site.
+  Minimum characters: Minimaal 10 karakters
+  Name: voornaam en achternaam / Bedrijfsnaam
+  Open pdf: PDF openen
+  Paymessage: Het totaal bedrag dient binnen 14 dagen na factuurdatum
+                overgemaakt te worden op onderstaand rekeningnummer. 
+  Saved relation: Relatie is opgeslagen.
+  Search: Zoeken...
+  Specified selection: Specifieke selectie maken
+  Total index: Totaal overzicht
+  Type your message: Typ hier uw bericht...
+  Unknown: Niet bekend
+  Watch out: LET OP! in onze producten kunnen sporen van noten zitten!
+
+Relation:
+  Add: Relatie toevoegen
+  Adress: Adres
+  Allergies: Allergieën
+  Bankaccountnumber: Rekeningnummer
+  City: Woonplaats
+  Contactinformation: Contactinformatie
+  Customer: Klant
+  Date: Datum
+  Description: Omschrijving
+  Edit: Relatie bewerken
+  Email: E-mail
+  Extra info: Extra informatie
+  House number: Huisnummer
+  Kind of invoice customer: Type
+  Kind of relation: Relatie
+  Name: Naam
+  NewInvoice: Nieuwe factuur
+  Postalcode: Postcode
+  Street:	Straat
+  Supplier: Leverancier
+  Telephone: Telefoon
+
+Role:
+  Roles: Rol gebruiker
+
+security:
+  login:
+    username: Gebruiker
+    password: Wachtwoord
+
+User:
+  Add: Nieuwe gebruiker
+  Admin: Administrator
+  Edit: Gebruiker bewerken
+  Last login: Laatste login
+  Mismatch: Wachtwoorden zijn niet hetzelfde
+  Password: Wachtwoord
+  Password confirm: Wachtwoord herhalen
+  Roll: Rol
+  User: Gebruiker 
+  Username: Gebruikersnaam
+
+Tax:
+  From: Van
+  Make index: BTW-overzicht aanmaken
+  Selection: Selecteren
+  Till: Tot
+
+

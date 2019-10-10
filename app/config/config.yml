@@ -7,6 +7,8 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: rs
+    app.locales: rs|nl
+    routes: invoice|tax|user|relation|file|login|contact
     # file uploader
     file_directory: '%kernel.project_dir%/private/upload/invoices'
 framework:

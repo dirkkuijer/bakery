@@ -61,3 +61,4 @@ services:
         arguments:
             $targetDirectory: '%file_directory%'
         public: true
+

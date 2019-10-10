@@ -1,0 +1,149 @@
+
+Base:
+  Administration: Администрација
+  Files: Фајлови
+  Index: Преглед
+  Invoices: Фактура
+  Menu: Мени
+  New: Heb
+  Relations: Однос
+  Send email: Пошаљи емаил
+  Taxes: Порез
+  Users: Kорисника
+
+Contact:
+  Choose file: Изаберите датотеку
+  Message: Порука
+  Option subject: Одлучите се
+  Other: Иначе
+  Person information: Личне информације
+  Question: Питајте
+  Send tax: Пореска пријава
+  Subject: Предмет
+  Title: Контакт
+  To: 3a
+
+File:
+  Download: Преузми
+  Edit file: Измените датотеку
+  File: Филе
+  Filename: Назив датотеке
+  New file: Нова датотека
+  Period: Четвртина
+
+Form:
+  Delete: Избриши
+  Empty: Јасан облик
+  Save: Сачувај
+  Send: Пошаљи
+
+Index:
+  Action: Акције
+  Back: Назад на преглед
+  Edit: Измени
+  Show: Да видим
+
+Invoice:
+  Add: Нова фактура
+  Amount: Износ
+  Amount with vat: Износ са порезом
+  Date: Датум
+  Description: Опис
+  Edit: Измените фактуру
+  FullName: Цело име
+  Invoice Number: Број фактуре
+  Invoice send: Датум отпреме фактуре
+  Kind of invoice customer: Type
+  Message: Порука
+  Not payed: Није плаћено
+  Payed: Плаћено
+  Period: Четвртина
+  Reference: Референце
+  Show invoice: Погледајте фактуру
+  Status payment: Статус плаћања
+  Subject: Предмет
+  Total: Укупно
+  Vat amount: Износ пореза
+  Vat percentage: Проценат пореза
+
+layout:
+  login: Пријављени сте као
+  logout: Пријављивање
+
+# title attributes as well
+Message:
+  Addition house: са додатком
+  Add file: Додај датотеку
+  Add invoice: Додајте нову фактуру
+  Add user: Додај корисника
+  Amount error: Унесите вредност
+  Calculate: Израчунајте
+  Description order: Опис поруџбине
+  Email: Име@eмаил.rs
+  javaScript: Активирајте ЈаваСцрипт у свом претраживачу. Ради другачије овај сајт није добар.
+  Minimum characters: Минимално 10 знакова
+  Name: име и презиме / назив компаније
+  Open pdf: Отвори ПДФ
+  Paymessage: Укупни износ мора бити пребачен у року од 14 дана од датума 
+  Saved relation: Однос је промењен.
+  Search: Тражи...
+  Specified selection: Наведени избор
+  Total index: Комплетан преглед
+  Type your message: Откуцајте своју поруку...
+  Unknown: Није познато
+  Watch out: НАПОМЕНА! наши производи могу садржати трагове орашастих плодова!
+              фактуре на доњи број рачуна. Након уплате претпостављамо да сте прочитали и 
+              прихватили опште услове. Они се могу наћи на веб локацији ввв.сјхомебакери.нл
+              ако је потребно, можемо то послати е-поштом заједно са изјавом о одрицању одговорности.
+
+Relation:
+  Add: Додајте одноц
+  Adress: Адреса
+  Allergies: Алергична
+  Bankaccountnumber: Банковни рачун
+  City: Град
+  Contactinformation: Подаци за контакт
+  Customer: Купац
+  Date: Датум
+  Description: Опис
+  Edit: Подеси Одноц
+  Email: Емаил
+  Extra info: Додатне информације
+  Housenumber: кућни број
+  Kind of relation: Oднос
+  Name: Име
+  NewInvoice: Нев однос
+  Postalcode: Поштански број
+  Street:	Улица
+  Supplier: Снабдевач
+  Telephone: Телефон
+
+security:
+  login:
+    username: Корисничко име
+    password: Лозинка
+
+Role:
+  Roles: Улога корисника
+
+User:
+  Add: Нови корисник
+  Admin: Администратор
+  Edit: Измени корисника
+  Last login: Последњи пут унутра
+  Mismatch: Лозинке нису исте
+  Password: Лозинка
+  Password confirm: Потврдите лозинку
+  Roll: Врста или корисник
+  User: Корисник 
+  Username: Корисничко име
+
+
+
+Tax:
+  From: Фром
+  Make index: Креирајте преглед
+  Selection: Избор
+  Till: До краја
+
+

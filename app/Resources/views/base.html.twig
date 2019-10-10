@@ -40,9 +40,11 @@
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <div id="userLoggedIn">
                     {{ 'layout.login'|trans({'%username%': app.user.username} ) }}
-                    | <a href="{{ path('fos_user_security_logout') }}">
-                        <i class="fas fa-sign-out-alt"  title=" {{ 'layout.logout'|trans }} "></i>
-                    </a>
+                    | <a href="{{ path('fos_user_security_logout') }}" title="{{ 'layout.logout'|trans }}">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    | <a href="{{ path('app_translate_show', { '_locale' : 'rs'}) }}">SRB</a>
+                    | <a href="{{ path('app_translate_show', { '_locale' : 'nl'}) }}">NL</a>
                 </div>
             {# {% else %} 
 

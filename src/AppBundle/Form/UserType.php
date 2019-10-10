@@ -20,7 +20,7 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, [
                 'attr' => ['placeholder' => 'Message.Email'],
             ])
-            ->add('username', null, ['label' => 'User.Username',
+            ->add('username', null, ['label' => 'security.login.username',
                 'translation_domain' => 'FOSUserBundle', ])
 
             ->add('roles', ChoiceType::class, [

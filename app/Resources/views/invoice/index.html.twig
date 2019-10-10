@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <h4>Фактуре</h4>
+    <h4>{{ 'Base.Invoices'|trans }}</h4>
 
     <br>
 
@@ -67,9 +67,9 @@
                             </td>
                             <td id="td">
                                 {% if invoice.statusPayment == 1 %}
-                                    <i class="fas fa-check"></i>
+                                    <i class="fas fa-check" style="color:green;"></i>
                                 {% else %}
-                                    <i class="fas fa-times"></i>
+                                    <i class="fas fa-times" style="color:red;"></i>
                                 {% endif %}
                             </td>
                             <td id="td">
