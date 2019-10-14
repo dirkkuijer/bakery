@@ -4,9 +4,15 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+   
+# all:
+#     path:     /{_locale}/%routes%
+#     defaults: { _controller: AppBundle:%routes% }
+#     requirements:
+#         _locale: '%app.locales%'
 
-all:
-    path:     /{_locale}/%routes%
-    defaults: { _controller: AppBundle:%routes% }
-    requirements:
-        _locale: '%app.locales%'
+# invoice:
+#     path:     /{_locale}/invoice
+#     defaults: { _controller: AppBundle:invoice:index }
+#     requirements:
+#         _locale: '%app.locales%'

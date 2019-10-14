@@ -22,7 +22,11 @@ security:
                 default_target_path:            /invoice
                 use_referer: true
                 failure_path: /login
-            logout:       true
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+            logout:
+                path: fos_user_security_logout
+                target: /invoice 
             anonymous:    true
 
     access_control:

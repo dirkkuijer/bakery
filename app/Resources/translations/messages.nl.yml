@@ -66,10 +66,6 @@ Invoice:
   Vat amount: BTW-bedrag
   Vat percentage: BTW-percentage
 
-layout:
-  login: Ingelogd als
-  logout: Uitloggen
-
 # title attributes as well
 Message:
   Addition house: Toevoeging huisnummer
