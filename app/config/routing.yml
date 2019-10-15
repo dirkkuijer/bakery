@@ -1,18 +1,16 @@
 app:
     resource: '@AppBundle/Controller/'
-    type: annotation
+    # type: annotation
+    # prefix: /%locale%/
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-   
-# all:
-#     path:     /{_locale}/%routes%
-#     defaults: { _controller: AppBundle:%routes% }
-#     requirements:
-#         _locale: '%app.locales%'
+    prefix: /%locale%
+    # prefix zo laten staan. Maakt dubbel locale aan in routing, maar werkt wel?!
 
 # invoice:
-#     path:     /{_locale}/invoice
-#     defaults: { _controller: AppBundle:invoice:index }
+#     path:     /invoice
+#     defaults: { _controller: AppBundle:Invoice:index }
+    # prefix: %locale%/
 #     requirements:
 #         _locale: '%app.locales%'

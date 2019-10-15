@@ -7,8 +7,8 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: sr
-    # app.locales: sr|nl
-    routes: invoice|tax|user|relation|file|login|contact
+    app.locales: sr|nl
+    # routes: invoice
     # file uploader
     file_directory: '%kernel.project_dir%/private/upload/invoices'
 framework:
@@ -106,6 +106,8 @@ assetic:
 jms_i18n_routing:
     default_locale: "%locale%"
     locales: [nl, sr]
-    strategy: prefix
+    strategy: prefix 
 
-    # prefix, custom, prefix_except_default zijn mogelijk voor setting strategy.
+    # prefix: hierbij kun je vooraf een route instellen bv: /%locale%/normale/routes/
+    # prefic_except_default: alles heeft als prefix de locale behalve de standaard taal.
+    # custom: Deze geeft geen prefix. Je routes blijven zoals ze altijd waren.

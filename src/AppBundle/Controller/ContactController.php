@@ -71,7 +71,7 @@ class ContactController extends Controller
                 $message
             );
 
-            return $this->redirectToRoute('tax_index');
+            return $this->redirectToRoute('invoice_index');
         }
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->showFlash('error', 'Verzenden mislukt, probeer het opnieuw.');

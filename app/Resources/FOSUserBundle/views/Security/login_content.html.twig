@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h4>Пријављивање</h4>
+    <h4>{{ 'layout.login'|trans }}</h4>
 
     {% if error %}
         <div style="text-align:center;color:red;size:18pt">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -24,12 +24,12 @@
             <div class="cell medium-3">
                 <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" autofocus/>
                 <span class="form-error">
-                    Ово је обавезно поље
+                    {{ 'fos_user.username.blank'|trans({}, 'validators') }}
                 </span>
             </div>
             <div class="cell medium-3"></div>
         </div>
-
+        
         <div class="grid-x grid-padding-x">
             <div class="cell medium-4"></div>
             <div class="cell medium-1">
@@ -38,7 +38,7 @@
             <div class="cell medium-3">
                 <input type="password" id="password" name="_password" required="required" autocomplete="current-password" required pattern="password"/>
                 <span class="form-error">
-                    Dit veld is verplicht.
+                    {{ 'fos_user.password.blank'|trans({}, 'validators') }}
                 </span>
             </div>
             <div class="cell medium-3"></div>
@@ -47,7 +47,7 @@
         <div class="grid-x grid-padding-x">
                 <div class="cell medium-6"></div> 
                 <div class="cell medium-1">
-                    <a href=" {{ path('fos_user_resetting_request') }} ">
+                    <a href=" {{ path('fos_user_resetting_request',{'_locale': 'sr'}) }} ">
                         {{ 'security.login.password'|trans }}? {# Лозинка? #}
                     </a>
                 </div> 

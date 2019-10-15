@@ -19,14 +19,14 @@ security:
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
                 always_use_default_target_path: true
-                default_target_path:            /invoice
+                default_target_path: /%locale%/invoice
                 use_referer: true
-                failure_path: /login
+                failure_path: logout
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
             logout:
                 path: fos_user_security_logout
-                target: /invoice 
+                # target: /%locale%/login 
             anonymous:    true
 
     access_control:
@@ -39,4 +39,4 @@ security:
         - { path: ^/invoice/, role: ROLE_ADMIN }
         - { path: ^/file/, role: ROLE_ADMIN }
         - { path: ^/tax/, role: ROLE_ADMIN }
-        - { path: ^/user/help, role: ROLE_USER }
+        # - { path: ^/user/help, role: ROLE_USER }

@@ -47,12 +47,12 @@
                     <a class="button tiny" style="vertical-align:top;" href="{{  path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'nl'}) ) }}" ><strong>NL</strong></a>
                 </div>
             {# {% else %} 
-
+                
                 <a href="{{ path('fos_user_security_login') }}">
                     {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
                 </a> #}
             {% endif %}
-    
+   
             {% if app.request.hasPreviousSession %}
                 {% for type, messages in app.session.flashbag.all() %}
                     {% for message in messages %}

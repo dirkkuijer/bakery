@@ -5,13 +5,15 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-10"></div>
         <div class="cell medium-2">
-            <a class="button" title=" {{ 'Message.Total index'|trans }} " style="padding:1px1px;" href="{{ path('tax_index') }}">
-                <span style="font-size:18px;"><strong>100</strong></span>
-                 <i class="fas fa-percent" style="font-size:-2px;"></i>
-            </a>
-            <a class="button" title=" {{ 'Message.Specified selection'|trans }} " style="height:36px;vertical-align:center;" href="javascript:void(0);" data-path="{{ path('tax_search') }}">
-                <i class="fas fa-chart-pie"></i> {{ 'Tax.Selection'|trans }}
-            </a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="button" title=" {{ 'Message.Total index'|trans }} " style="padding:1px1px;" href="{{ path('tax_index') }}">
+                    <span style="font-size:18px;"><strong>100</strong></span>
+                    <i class="fas fa-percent" style="font-size:-2px;"></i>
+                </a>
+                <a class="button" title=" {{ 'Message.Specified selection'|trans }} " style="height:36px;vertical-align:center;" href="javascript:void(0);" data-path="{{ path('tax_search') }}">
+                    <i class="fas fa-chart-pie"></i> {{ 'Tax.Selection'|trans }}
+                </a>
+            {% endif %}
         </div>
     </div> 
 
